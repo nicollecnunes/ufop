@@ -15,7 +15,7 @@ int main(){
 	}
 
 	for (i=0; i<5; i++){
-		for(j=1; j<11-aux; j++){
+		for(j=i+1; j<11-aux; j++){
 			soma = M[i][j] + soma;
 		}
 		aux = aux + 1;
