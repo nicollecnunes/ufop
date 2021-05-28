@@ -1,30 +1,34 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 int main()
 {
     double **M;
 
     char O[0];
-    int aux = 0, i, j, n;
+    int aux = 1, i, j, n;
     double soma = 0;
 
     scanf("%d", &n);
-    M = (int**) malloc(sizeof(int*)* *n);
-    for(i=0;i<*n;i++){
-		M[i] = (int*) malloc(sizeof(int)* *n); 
-	}
+    getchar();
+    printf("o numero n é %d", n);
+	M = malloc (n * sizeof (double*)) ;
+	for (i=0; i < n; i++)
+   		M[i] = malloc (n * sizeof (double)) ;
 
     scanf("%c", &O[0]);
+    printf("a operação é %c", O[0]);
 
-
-    for (i=0; i<12; i++){
-    	for (j=0; j<12; j++){
+    for (i=0; i<n; i++){
+    	for (j=0; j<n; j++){
     		scanf("%lf",&M[i][j]);
     	}   	
 	}
 
 	for (i=0; i<5; i++){
-		for(j=i+1; j<11-aux; j++){
+		for(j=i+1; j<n-aux; j++){
 			soma = M[i][j] + soma;
+			printf("\nsomando o indice %d %d\n", i,j);
 		}
 		aux = aux + 1;
 	}
@@ -36,11 +40,10 @@ int main()
 
 	printf("%.1lf\n", soma);
 
-	for(i=0;i<n;i++){
-		free(M[i]);
-	}
-	free(M);
+	for (i=0; i <n; i++)
+	   free (M[i]);
 
+	free (M) ;
     return 0;
 }
 
