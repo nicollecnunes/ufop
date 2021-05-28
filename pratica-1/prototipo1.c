@@ -6,7 +6,7 @@ int main()
     double **M;
 
     char O[0];
-    int aux = 1, i, j, n;
+    int aux = 1, i, j, n, qtd=0;
     double soma = 0;
 
     scanf("%d", &n);
@@ -28,15 +28,18 @@ int main()
 	int v = n/2 - 1;
 
 	for (i=0; i<v; i++){
+		printf("somando o inicide %d %d\n", i,j);
 		for(j=i+1; j<n-aux; j++){
-			soma = M[i][j] + soma;;
+			soma = M[i][j] + soma;
+			qtd = qtd+1;
 		}
 		aux = aux + 1;
+		printf("finalç somando o inicide %d %d\n", i,j);
 	}
 
 
 	if(O[0]=='M'){
-		soma = soma/30;
+		soma = soma/qtd;
 	}
 
 	printf("%.1lf\n", soma);
