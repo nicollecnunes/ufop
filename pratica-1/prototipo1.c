@@ -25,10 +25,11 @@ int main()
     	}   	
 	}
 
-	for (i=0; i<5; i++){
+	int v = n/2 - 1;
+
+	for (i=0; i<v; i++){
 		for(j=i+1; j<n-aux; j++){
-			soma = M[i][j] + soma;
-			printf("\nsomando o indice %d %d\n", i,j);
+			soma = M[i][j] + soma;;
 		}
 		aux = aux + 1;
 	}
