@@ -2,7 +2,7 @@
 #include<stdio.h>
 
 void lerOperacao(char *operacao){
-	scanf("%c", &O[0]);
+	scanf("%c", operacao);
 }
 
 void lerMatriz(double M[][12]){
@@ -16,6 +16,7 @@ void lerMatriz(double M[][12]){
 
 double somaMatriz(double M[][12]){
 	int i, j, aux = 0;
+	double soma;
 	for (i=0; i<5; i++){
 		for(j=i+1; j<11-aux; j++){
 			soma = M[i][j] + soma;
