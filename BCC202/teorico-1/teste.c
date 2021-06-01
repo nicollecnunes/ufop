@@ -22,25 +22,27 @@ int main(){
 	v = (float *) malloc(5 * sizeof(float));
 
 	for(i=0; i<5; i++){
-		printf("lendo ele %d", i);
+		printf("Digite V[%d]: ", i);
 		scanf("%f", &v[i]);
 	}
 
-	printf("fim da leitira");
+	printf("Fim da leitura de V. Chamando a função reverso\n");
 
 	novo = reverso(4, v);
 
-	printf("vetor V:\n");
+	printf("\nVetor V:\n");
 	for (i = 0;i < 5; i++){
-    	printf("%.2f\n",v[i]);
+    	printf("V[%d] = %.2f\n",i, v[i]);
   	}
 
-  	printf("vetor NOVO:\n");
+  	printf("\nVetor NOVO:\n");
 	for (i = 0;i < 5; i++){
-    	printf("%.2f\n",novo[i]);
+    	printf("Novo[%d] = %.2f\n",i, novo[i]);
   	}
 
+	printf("Liberando o vetor V...\n");
 	free(v);
+	printf("Liberando o vetor NOVO...\n");
 	free(novo);
 
 
