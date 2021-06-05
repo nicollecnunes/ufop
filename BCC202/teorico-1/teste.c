@@ -16,27 +16,29 @@ float* reverso(int n, float *v){
 
 int main(){
 
-	int i;
+	int i, n;
 	float *v, *novo;
 
-	v = (float *) malloc(5 * sizeof(float));
+	scanf("%d", &n);
 
-	for(i=0; i<5; i++){
+	v = (float *) malloc(n * sizeof(float));
+
+	for(i=0; i<=n; i++){
 		printf("Digite V[%d]: ", i);
 		scanf("%f", &v[i]);
 	}
 
 	printf("Fim da leitura de V. Chamando a função reverso\n");
 
-	novo = reverso(4, v);
+	novo = reverso(n, v);
 
 	printf("\nVetor V:\n");
-	for (i = 0;i < 5; i++){
+	for (i = 0;i <=n; i++){
     	printf("V[%d] = %.2f\n",i, v[i]);
   	}
 
   	printf("\nVetor NOVO:\n");
-	for (i = 0;i < 5; i++){
+	for (i = 0;i <=n; i++){
     	printf("Novo[%d] = %.2f\n",i, novo[i]);
   	}
 
