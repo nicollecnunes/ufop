@@ -3,6 +3,9 @@
 #include<stdlib.h>
 
 void lerOrdem(int *ordem){
+	//printf("lendo a ordem\n");
+	scanf("%d", ordem);
+    getchar();
 
 }
 
@@ -45,11 +48,13 @@ void lerMatriz(double **M, int ordem){
 }
 
 double somaMatriz(double **M, int ordem){
-	int i, j, aux=1, soma;
+	int i, j, aux=1;
+	double soma=0;
 	int v = ordem/2 - 1;
 	for (i=0; i<v; i++){
 		for(j=i+1; j<ordem-aux; j++){
 			soma = M[i][j] + soma;
+			//printf("SOMANDO o valor %.2lf na posicao %d %d.... deu %.2lf\n", M[i][j], i, j, soma);
 		}
 		aux = aux + 1;
 	}
@@ -58,8 +63,17 @@ double somaMatriz(double **M, int ordem){
 }
 
 double media(double resultado, int ordem){
-	ordem = ordem * 2.5;
-	resultado = resultado / ordem;
+	int i, j,aux=1, qtd=0;
+	int v = ordem/2 - 1;
+	for (i=0; i<v; i++){
+		for(j=i+1; j<ordem-aux; j++){
+			qtd = qtd +1;
+		}
+		aux = aux + 1;
+	}
+	
+	resultado = resultado / qtd;
+	//printf("A DIVISAO FOI POR %d e a ordem era %d\n", qtd, ordem);
 	return resultado;
 
 }
