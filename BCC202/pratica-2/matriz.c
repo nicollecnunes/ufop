@@ -73,7 +73,6 @@ double media(double resultado, int ordem){
 	}
 	
 	resultado = resultado / qtd;
-	//printf("A DIVISAO FOI POR %d e a ordem era %d\n", qtd, ordem);
 	return resultado;
 
 }
