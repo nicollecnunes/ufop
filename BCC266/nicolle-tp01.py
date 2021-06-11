@@ -1,33 +1,22 @@
+# Nicolle Canuto Nunes
+# 20.1.4022
+# BCC266
+
+#opcode -> o que a instrução vai fazer
+#halt parar
+# opcode | x | y | z
+#x,y,z são ENDEREÇOS, não conteúdos 
+
 import random
 import sys
-import numpy as np
 
 INT_MAX = sys.maxsize
+memoriaInstrucoes = []
 RAM = [0] * 100
-memoriaInstrucoes = np.empty((10, 4)) #mudar 100
 
 def iniciaRAM():
     for i in range(100):
-        RAM[i] = random.randint(0, 1000)
-        
-def montarInstAleatorias():
-    umaInstrucao = [0,0,0,0]
-    for i in range(9):#mudar 99
-        umaInstrucao[0] = random.randint(0,1) #gera 0 ou 1
-        umaInstrucao[1] = random.randint(0, 1000)
-        umaInstrucao[2] = random.randint(0, 1000)
-        umaInstrucao[3] = random.randint(0, 1000)
-        memoriaInstrucoes[i] = umaInstrucao
-        print(memoriaInstrucoes[i])
-        
-    umaInstrucao[0] = -1
-    umaInstrucao[1] = -1
-    umaInstrucao[2] = -1
-    umaInstrucao[3] = -1
-    memoriaInstrucoes[9] = umaInstrucao
-    print(memoriaInstrucoes[9])
-    
-    maquina()
+        RAM[i] = random.randint(0, 1001)
         
 
 def maquina():
@@ -56,6 +45,31 @@ def maquina():
         elif opcode == 3:
             umaInstrucao[1] = RAM[umaInstrucao[2]]
         PC += 1
+        
+def adicionaInstru(end1, end2, end3):
+    umaInstrucao = [0] * 4
+    umaInstrucao[0] = 1 #??
+    umaInstrucao[1] = end1
+    umaInstrucao[2] = end2
+    umaInstrucao[3] = end3
+    return umaInstrucao
+
+def subInstru(end1, end2, end3):
+    umaInstrucao = [0] * 4
+    umaInstrucao[0] = 2 #??
+    umaInstrucao[1] = end1
+    umaInstrucao[2] = end2
+    umaInstrucao[3] = end3
+    return umaInstrucao
+
+
+def levaPraMemo(x, end):
+    umaInstrucao = [0] * 4 #0000
+    umaInstrucao[0] = 0
+    umaInstrucao[1] = x
+    umaInstrucao[2] = end
+    umaInstrucao[3] = -1
+    return umaInstrucao
 
 
 def somar(num1, num2):    
@@ -108,8 +122,7 @@ def subtrair(num1, num2):
     
 
 #principal
-op = INT_MAX
-montarInstAleatorias()
+op = INT_MAX        
 
 print("+-+-+-+-+-+-+-+ +-+-+-+")
 print("|M|A|Q|U|I|N|A| |N|I|C|")
