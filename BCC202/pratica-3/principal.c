@@ -7,6 +7,9 @@ int main()
     TADduende *D;
     TADtime *T;
 
+    D = NULL;
+    T = NULL;
+
     lerQuantidade(&qtd); //ok
     D = alocaDuendes(D, qtd);
     T = alocaTimes(T, qtd/3);
