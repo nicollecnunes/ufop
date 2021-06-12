@@ -23,7 +23,7 @@ struct time {
 void lerQuantidade(int *qtd){
 	scanf("%d", qtd);
     getchar();
-    printf("quantidade lida: %d\n",*qtd);
+    //printf("quantidade lida: %d\n",*qtd);
 }
 //Manter como especificado
 TADduende *alocaDuendes(TADduende *D, int qtd){
