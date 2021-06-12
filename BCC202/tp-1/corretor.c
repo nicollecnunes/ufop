@@ -4,7 +4,7 @@
 #include<string.h>
 
 struct subm {
-  char id[];
+  char id[1];
   int t;
   char julg[20];
 };
@@ -30,12 +30,35 @@ TADsubm *desalocaSubm(TADsubm *S){
 	return S;
 }
 
-void lerSubm(TADsubm *S, int n){
+int testaCorreto(char julg[]){
+	//printf("ENTRANDO COM: %s\n", julg);
+	if (strcmp(julg, "correto") ==0){
+		//printf("entrei no if!!!\n");
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+void lerSubm(TADsubm *S, int n, int *c){
   int i;
+  //printf("c agora vale %d\n", *c);
   for (i=0; i <n; i++){
   	scanf("%c", S[i].id);
+  	getchar();
   	scanf("%d", &S[i].t);
-  	scanf("%s", D[i].julg);
-  	printf("lida a submissao [%d], letra: %s, tempo: %d, julgamento: %s\n",i, S[i].id, S[i].t, S[i].julg);
+  	getchar();
+  	scanf("%s", S[i].julg);
+  	getchar();
+  	//printf("LEVANDO PARA O TESTEEEEE: %s, \n",S[i].julg);;
+  	//printf("lida a submissao [%d], letra: %s, tempo: %d, julgamento: %s\n",i, S[i].id, S[i].t, S[i].julg);
+  	*c =  *c + testaCorreto(S[i].julg);
+  	//printf("o trem agora vale %d\n",testaCorreto(S[i].julg));
+  	//printf("c agora vale %d por causa do indice [%d]\n", *c, i);
+  	;
   }
+}
+
+void printSaida(TADsubm *S, int n, int c){
+	printf("corretos: %d", c);
 }
