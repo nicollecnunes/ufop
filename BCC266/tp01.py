@@ -20,7 +20,7 @@ def maquinaInt(umaInstrucao):
         #print("end1 = {} e end2={}".format(end1, end2))
         soma = RAM[end1] + RAM[end2]
         end3 = int(umaInstrucao[3])
-        print("Somando {} com {} e obtendo {}\n".format(RAM[end1], RAM[end2], soma))
+        #print("Somando {} com {} e obtendo {}\n".format(RAM[end1], RAM[end2], soma))
         RAM[end3] = soma        
     elif opcode == 1: #subtrai
         end1 = int(umaInstrucao[1])
@@ -170,6 +170,9 @@ def multip(num1, num2): #??
 
 def div(num1, num2):
     #0 soma; 1 sub; 3 traz; 2 leva
+    if(num2 == 0):
+        print("Impossível dividir por 0!\n")
+        return "∄"
     umaInstrucao = [0] * 4
     
     umaInstrucao = instLevaPMemo(num2, 0)#leva o valor n2 pra posicao 0 (2/num2/0/-1)
@@ -204,6 +207,28 @@ def div(num1, num2):
     maquinaInt(umaInstrucao)
         
     return resultado
+
+def pot(num1, num2):     
+    x = 1
+    
+    for i in range(num2): #tentar criar uma funcao pra ficar aqui dentro
+        x = multip(num1, x)
+        print(x)
+        
+    umaInstrucao = [0] * 4
+    
+    umaInstrucao = instLevaPMemo(x, 0)#leva o valor x pra posicao 0
+    memoriaInstrucoes[0] = umaInstrucao
+     
+    umaInstrucao = [-1] * 4 #halt
+    memoriaInstrucoes[1] = umaInstrucao #multiplicador pq i vai ate ele +2
+
+    maquina() #maquina leva pra memoria. sem parametro pq e variavel global
+    
+    resultado = trazMemo(0)
+    maquinaInt(umaInstrucao)
+    
+    return resultado
     
 
 def menu():
@@ -216,6 +241,8 @@ def menu():
     print("3) Subtração")
     print("4) Multiplicação")
     print("5) Divisão")
+    print("6) Potenciação")
+
 
     print("-1) Sair\n")
 
@@ -234,25 +261,29 @@ while op != -1:
     elif op == 2:
         num1 = int(input("Digite o primeiro valor: "))
         num2 = int(input("Digite o segundo valor: "))
-        print("Soma de {:.0f} + {:.0f} = {}".format(num1, num2,somar(num1,num2)))
+        print("Soma de {:.0f} + {:.0f} = {}".format(num1, num2, somar(num1,num2)))
     elif op == 3:
         num1 = int(input("Digite o minuendo: "))
         num2 = int(input("Digite o subtraendo: "))
-        print("Subtração de {:.0f} - {:.0f} = {}".format(num1, num2,subtrair(num1, num2)))
+        print("Subtração de {:.0f} - {:.0f} = {}".format(num1, num2, subtrair(num1, num2)))
     elif op==4:
         num1 = int(input("Digite o multiplicando: "))
         num2 = int(input("Digite o multiplicador: "))
         if(num1>=num2):
-            print("Multiplicação de {:.0f} x {:.0f} = {}".format(num1, num2,multip(num1, num2)))
+            print("Multiplicação de {:.0f} x {:.0f} = {}".format(num1, num2, multip(num1, num2)))
         else:
-            print("Multiplicação de {:.0f} x {:.0f} = {}".format(num1, num2,multip(num2, num1)))
+            print("Multiplicação de {:.0f} x {:.0f} = {}".format(num1, num2, multip(num2, num1)))
     elif op==5:
         num1 = int(input("Digite o dividendo: "))
         num2 = int(input("Digite o divisor: "))
-        print("Divisão de {:.0f} : {:.0f} = {}".format(num1, num2,div(num1, num2)))
-        
+        print("Divisão de {:.0f} : {:.0f} = {}".format(num1, num2, div(num1, num2)))
+    elif op ==6:
+        num1 = int(input("Digite a base: "))
+        num2 = int(input("Digite o expoente: "))
+        print("Potência de {:.0f} ^ {:.0f} = {}".format(num1, num2, pot(num1, num2)))     
     else:
-        if op != -1: print("Opção Inválida!\n")
+        if op != -1:
+            print("Opção Inválida!\n")
         continue
     print("\n\n")
 print("Finalizando a máquina...")
