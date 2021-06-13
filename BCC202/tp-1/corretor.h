@@ -13,6 +13,8 @@ int testaCorreto(char julg[]);
 
 void lerSubm(TADsubm *S, int n, int *c);
 
-void printSaida(TADsubm *S, int n, int c);
+void printSaida(TADsubm *S, int n, int c, int p);
+
+void calculaP(int *p, TADsubm *S, int n);
 
 # endif
