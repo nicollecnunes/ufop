@@ -43,15 +43,13 @@ int testaCorreto(char julg[]){
 }
 
 void calculaP(int *p, TADsubm *S, int n){
-	int sumParcial = 0, i,j, uc;
+	int sumParcial = 0, i,j;
 	for (i=0; i<n; i++){
 		j = i;
 		if((testaCorreto(S[i].julg) == 0)){
 			//printf("%s ja estava certa de cara!\n", S[i].id);
-			*p = *p + S[i].t;
+			*p = *p + S[i].t + sumParcial;
 			//printf("P esta valendo %d\n", *p);
-			uc = i;
-
 		}else{
 			while ((testaCorreto(S[j].julg) == 1) && (strcmp(S[i].id, S[j].id) ==0)){
 				//printf("a letra %s esta incorreta. somando 20...\n", (S[j].id));
@@ -61,20 +59,17 @@ void calculaP(int *p, TADsubm *S, int n){
 			if ((testaCorreto(S[j].julg) == 1)){
 				//printf("julgamento do SJ ok\n");
 				//printf("%s e %s\n", S[i].id, S[j].id);
+				sumParcial = 0;
 			}
 
-			if((testaCorreto(S[j].julg) == 0) && (strcmp(S[uc].id, S[j].id) !=0)){
+			if((testaCorreto(S[j].julg) == 0)){
 				//printf("%s (j-1 )esta correta. passando a soma... de %d do acerto e %d da soma ate aqui \n", (S[j].id), S[j].t, sumParcial);
 				*p = *p + sumParcial + S[j].t;
 				//printf("P esta valendo %d\n", *p);
 				i = j;
-			}else{
-				//printf("a letra %s nunca se corrigiu!! zerando...\n",(S[j].id));
+			}
 		}
 		sumParcial = 0;
-
-		}
-		
 
 	}
 
