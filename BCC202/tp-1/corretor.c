@@ -9,6 +9,11 @@ struct subm {
   char julg[20];
 };
 
+struct c{
+	char id[1];
+	int p;
+};
+
 
 void lerQuantidade(int *n){
 	scanf("%d", n);
@@ -30,6 +35,22 @@ TADsubm *desalocaSubm(TADsubm *S){
 	return S;
 }
 
+
+TADcorr *alocaCorr(TADcorr *C, int n){
+	int i;
+	for (i=0; i < n; i++){
+   		C = malloc (n * sizeof (TADcorr)) ;
+	}
+	return C;
+}
+
+
+TADcorr *desalocaCorr(TADcorr *C){
+	free (C);
+	return C;
+}
+
+
 int testaCorreto(char julg[]){
 	//printf("ENTRANDO COM: %s\n", julg);
 	if (strcmp(julg, "correto") ==0){
@@ -42,51 +63,60 @@ int testaCorreto(char julg[]){
 	}
 }
 
-void calculaP(int *p, TADsubm *S, int n){
+void calculaP(int *p, TADsubm *S, int n, TADcorr *C){
 	int sumParcial = 0, i,j;
-	for (i=0; i<n; i++){
-		j = i;
-		if((testaCorreto(S[i].julg) == 0)){
-			//printf("%s ja estava certa de cara!\n", S[i].id);
-			*p = *p + S[i].t + sumParcial;
-			//printf("P esta valendo %d\n", *p);
+	for (i=0; i <n; i++){
+		//printf("i vale %d\n\n", i);
+		if ((testaCorreto(S[i].julg) == 0)){
+			//printf("S[%d] = %s correto \n\n", i, S[i].id);
+			for(j=0; j<=i; j++){
+				//printf("buscando a anterior 73\n");
+				//printf("S[j(%d)] = %s e S[i(%d)] = %s \n",j, S[j].id,i,S[i].id);
+				if((strcmp(S[i].id, S[j].id) ==0)){
+					//printf("encontrei em j valendo %d, que e igual a i valendo %d\n", j,i);
+					//printf("soma era %d", sumParcial);
+					sumParcial = sumParcial + S[i].t + C[j].p;
+					//printf("soma ficou %d.pela soma de %d + %d\n", sumParcial,S[i].t, C[j].p);
+					break;
+				}
+
+			} //correto
 		}else{
-			while ((testaCorreto(S[j].julg) == 1) && (strcmp(S[i].id, S[j].id) ==0)){
-				//printf("a letra %s esta incorreta. somando 20...\n", (S[j].id));
-				sumParcial = sumParcial + 20;
-				j = j + 1;
-			}
-			if ((testaCorreto(S[j].julg) == 1)){
-				//printf("julgamento do SJ ok\n");
-				//printf("%s e %s\n", S[i].id, S[j].id);
-				sumParcial = 0;
+			//printf("S[%d] = %s incorreto\n\n", i, S[i].id);
+			for (j=0; j<=i; j++){
+				//printf("buscando a anterior 86\n");
+				//printf("S[j(%d)] = %s e S[i(%d)] = %s \n",j, S[j].id,i,S[i].id);
+
+				if((strcmp(S[i].id, S[j].id) ==0)){
+					C[j].p = C[j].p + 20;
+					//printf("encontrei em j valendo %d, que e igual a i valendo %d. a P em j é %d\n", j,i,C[j].p);
+					break;
+				}
 			}
 
-			if((testaCorreto(S[j].julg) == 0)){
-				//printf("%s (j-1 )esta correta. passando a soma... de %d do acerto e %d da soma ate aqui \n", (S[j].id), S[j].t, sumParcial);
-				*p = *p + sumParcial + S[j].t;
-				//printf("P esta valendo %d\n", *p);
-				i = j;
-			}
+
 		}
-		sumParcial = 0;
 
 	}
+	*p = sumParcial;
 
 }
 
-void lerSubm(TADsubm *S, int n, int *c){
+void lerSubm(TADsubm *S, int n, int *c, TADcorr *C){
   int i;
 
   //printf("c agora vale %d\n", *c);
   for (i=0; i <n; i++){
-  	scanf("%c", S[i].id);
+  	scanf("%s", S[i].id);
   	getchar();
+  	strcpy(C[i].id, S[i].id);
   	scanf("%d", &S[i].t);
   	getchar();
+
   	scanf("%s", S[i].julg);
   	getchar();
-  	//printf("LEVANDO PARA O TESTEEEEE: %s, \n",S[i].julg);;
+  	C[i].p = 0;
+  	//printf("LEVANDO PARA O TESTEEEEE: %s, \n",S[i].julg);
   	if((testaCorreto(S[i].julg) == 0)){
   		*c = *c + 1;
 

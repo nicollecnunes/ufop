@@ -67,12 +67,12 @@ def montarInstAleatorias():
         
 def instSoma(end1, end2, end3):
     umaInstrucao = [0,end1,end2,end3]
+    # 0 | end1 | end2 |endd3
     return umaInstrucao
 
 def instSubt(end1, end2, end3):
     umaInstrucao = [1,end1,end2,end3]
     return umaInstrucao
-
 
 def instLevaPMemo(x, end): 
     umaInstrucao = [2,x,end,-1]
@@ -260,14 +260,15 @@ def raizq(num1):
     ram2 = trazMemo(2) #0 count
     
     for i in range(1,ram0,2): #impares ate ram0
-        #print("linha 260 somando ram1: {} + i: {} ".format(ram1, i))
         ram1 = somar(ram1, i)
-        #print("linha 261 somando ram2: {} + 1".format(ram2))
         ram2 = somar(ram2, 1)
+        
+        umaInstrucao = instLevaPMemo(ram2, 0)#leva o valor ram2 pra posicao 0
+        memoriaInstrucoes[0] = umaInstrucao
+        
+        maquinaInt(umaInstrucao)
         if (ram1==ram0):
-            resultado = trazMemo(2)
-            maquinaInt(umaInstrucao)
-            
+            resultado = trazMemo(0)
             return resultado
         elif (ram1>ram0):
             print("Não é um quadrado perfeito.")
