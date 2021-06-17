@@ -150,7 +150,7 @@ def multip(num1, num2):
 
     for i in range(abs(num2)): #tentar criar uma funcao pra ficar aqui dentro
         umaInstrucao = [0,0,1,1] #vai montar 0 | 0 | 1 | 1
-        print(i)
+        #print(i)
         # somar | end0 tem o num1 | end1 inicialmente tem 0 | é pra onde vai o resultado (substituir). nas outras vezes do for, ja vai reaproveitar    
         memoriaInstrucoes[i+2] = umaInstrucao #+2 pq ja usei 0 e 1
     
@@ -216,11 +216,12 @@ def pot(num1, num2):
     maquinaInt(umaInstrucao)
     
     ram0 = trazMemo(0)
-    print (ram0)
+    if(num2 == 0):
+        return ram0        
     
     for i in range(num2): #tentar criar uma funcao pra ficar aqui dentro
         ram0 = multip(num1, ram0)
-        print(ram0)
+        #print(ram0)
         
     umaInstrucao = [0] * 4
     
@@ -492,7 +493,46 @@ def paralArea(num1,num2,num3):
 
     return resultado
 
+def prisVol(num1, num2):
+    umaInstrucao = instLevaPMemo(multip(num1,num2), 12)#leva o valor da multp pra posicao 12
+    memoriaInstrucoes[0] = umaInstrucao
 
+    maquinaInt(umaInstrucao)
+
+    ram0 = trazMemo(12)
+
+    umaInstrucao = instLevaPMemo(ram0, 5)#leva o valor ram0 pra posicao 5
+    memoriaInstrucoes[0] = umaInstrucao
+    
+    maquinaInt(umaInstrucao)
+    
+    resultado = trazMemo(5)
+
+    return resultado
+
+def pirVol(num1,num2):
+    umaInstrucao = instLevaPMemo(prisVol(num1,num2), 12)#leva o valor pra posicao 12
+    memoriaInstrucoes[0] = umaInstrucao
+
+    maquinaInt(umaInstrucao)
+
+    ram0 = trazMemo(12)
+
+    umaInstrucao = instLevaPMemo(div(ram0,3), 13)#leva o valor pra posicao 12
+    memoriaInstrucoes[0] = umaInstrucao
+
+    maquinaInt(umaInstrucao)
+
+    resultado = trazMemo(13)
+
+    return resultado
+
+# ========================================== MATRIZES ==================================================================
+def matQuaNula(num1):
+    for i in range(num1):
+        for j in range(num1):
+            print('0\t', end="")
+        print()
 
 
 def menu():
@@ -524,6 +564,11 @@ def menu():
     print("14) Área de Cubo")
     print("15) Volume de Cubo")
     print("16) Área de Paralelepípedo")
+    print("17) Volume de Paralelepípedo")
+    print("18) Volume de Prisma")
+    print("19) Volume de Pirâmide\n")
+
+ 
     
     print("============= Opções da Máquina ========================")
     print("-1) Sair")
@@ -622,11 +667,22 @@ while op != -1:
         num3 = int(input("Digite a medida da aresta C: "))
         print("Área de Paralelepípedo de arestas {} x {} x {}U.C = {}U.V.".format(num1,num2,num3, paralArea(num1,num2,num3)))
     elif op ==17:
-        print("\n14) Volume de Paralelepípedo")
+        print("\n17) Volume de Paralelepípedo")
         num1 = int(input("Digite a medida da aresta A: "))
         num2 = int(input("Digite a medida da aresta B: "))
         num3 = int(input("Digite a medida da aresta C: "))
         print("Volume de Paralelepípedo de arestas {} x {} x {}U.C = {}U.V.".format(num1,num2,num3, paralVol(num1,num2,num3)))
+    elif op == 18:
+        print("18) Volume de Prisma")
+        num1 = int(input("Digite a área da base: "))
+        num1 = int(input("Digite a altura: "))
+        print("Volume de Prisma de área da base {} x altura {} = {}U.V.".format(num1,num2, prisVol(num1,num2)))
+    elif op == 19:
+        print("19) Volume de Pirâmide")
+        num1 = int(input("Digite a área da base: "))
+        num2 = int(input("Digite a altura: "))
+        print("Volume de Pirâmide de área da base {} x altura {} = {}U.V.".format(num1,num2, pirVol(num1,num2)))
+
 
     elif op ==-2:
         menu()
