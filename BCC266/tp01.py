@@ -10,7 +10,6 @@ memoriaInstrucoes = np.empty((1000, 4)) #mudar 100
 def iniciaRAM():
     for i in range(100):
         RAM[i] = random.randint(0, 1000)
-        #print("meu deus parece q essa ram nao tem é nada uai\n")
         
 def maquinaInt(umaInstrucao):
     opcode = umaInstrucao[0];
@@ -37,6 +36,8 @@ def maquinaInt(umaInstrucao):
     elif opcode == 3: #trazer
         end = int(umaInstrucao[2])
         retorno = RAM[end]
+
+        #0 soma; 1 subtrai; 2 leva; 3 traz
         
 def maquina():
     PC = 0 #primeira instrução a ser processada
@@ -287,7 +288,7 @@ def fat(num1):
     
     ram0 = trazMemo(0)
     
-    for i in range(1,num1+1): #tentar criar uma funcao pra ficar aqui dentro
+    for i in range(1,num1+1): 
         ram0 = multip(ram0, i)
         print(ram0)
         
@@ -297,9 +298,9 @@ def fat(num1):
     memoriaInstrucoes[0] = umaInstrucao
      
     umaInstrucao = [-1] * 4 #halt
-    memoriaInstrucoes[1] = umaInstrucao #multiplicador pq i vai ate ele +2
+    memoriaInstrucoes[1] = umaInstrucao 
 
-    maquina() #maquina leva pra memoria. sem parametro pq e variavel global
+    maquina() 
     
     resultado = trazMemo(0)
     maquinaInt(umaInstrucao)
@@ -529,11 +530,66 @@ def pirVol(num1,num2):
 
 # ========================================== MATRIZES ==================================================================
 def matQuaNula(num1):
+    umaInstrucao = instLevaPMemo(0, 20)#leva o valor 0 pra posicao 20
+    memoriaInstrucoes[0] = umaInstrucao
+
+    maquinaInt(umaInstrucao)
+
+    ram0 = trazMemo(20)
+
     for i in range(num1):
         for j in range(num1):
-            print('0\t', end="")
+            print(ram0,"\t", end="")
         print()
 
+
+def matQuaId(num1):
+    umaInstrucao = instLevaPMemo(0, 20)#leva o valor 0 pra posicao 20
+    memoriaInstrucoes[0] = umaInstrucao
+
+    maquinaInt(umaInstrucao)
+
+    ram0 = trazMemo(20)
+
+    umaInstrucao = instLevaPMemo(1, 24)#leva o valor 1 pra posicao 24
+
+    memoriaInstrucoes[0] = umaInstrucao
+
+    maquinaInt(umaInstrucao)
+
+    ram1 = trazMemo(24)
+
+    for i in range(num1):
+        for j in range(num1):
+            if(i==j):
+                print(ram1,"\t", end="")
+            else:
+                print(ram0,"\t", end="")
+        print()
+
+def matQuaRand(num1):
+    for i in range(num1):
+        for j in range(num1):
+            ram0 = trazMemo(random.randint(0, 99)) #ENDEREÇO Aleatorio
+            print(ram0,"\t", end="")
+        print()
+
+def matQuaDiag(num1):
+    umaInstrucao = instLevaPMemo(0, 50)#leva o valor 0 pra posicao 50
+    memoriaInstrucoes[0] = umaInstrucao
+
+    maquinaInt(umaInstrucao)
+
+    ram0 = trazMemo(50)
+
+    for i in range(num1):
+        for j in range(num1):
+            ram1 = trazMemo(random.randint(0, 99))
+            if(i==j):
+                print(ram1,"\t", end="")
+            else:
+                print(ram0,"\t", end="")
+        print()
 
 def menu():
     print("\t\t+-+-+-+-+-+-+-+ +-+-+-+")
@@ -568,6 +624,12 @@ def menu():
     print("18) Volume de Prisma")
     print("19) Volume de Pirâmide\n")
 
+
+    print("============= Impressões: Matrizes =====================")
+    print("20) Matriz Nula AxA")
+    print("21) Matriz Identidade AxA")
+    print("22) Matriz Aleatória AxA")
+    print("23) Matriz Diagonal Aleatória AxA\n")
  
     
     print("============= Opções da Máquina ========================")
@@ -682,8 +744,22 @@ while op != -1:
         num1 = int(input("Digite a área da base: "))
         num2 = int(input("Digite a altura: "))
         print("Volume de Pirâmide de área da base {} x altura {} = {}U.V.".format(num1,num2, pirVol(num1,num2)))
-
-
+    elif op==20:
+        print("20) Matriz Nula AxA")
+        num1 = int(input("Digite o valor de A: "))
+        matQuaNula(num1)
+    elif op==21:
+        print("20) Matriz Identidade AxA")
+        num1 = int(input("Digite o valor de A: "))
+        matQuaId(num1)
+    elif op==22:
+        print("21) Matriz Aleatória AxA")
+        num1 = int(input("Digite o valor de A: "))
+        matQuaRand(num1)
+    elif op==23:
+        print("23) Matriz Diagonal Aleatória AxA")
+        num1 = int(input("Digite o valor de A: "))
+        matQuaDiag(num1)
     elif op ==-2:
         menu()
     else:
