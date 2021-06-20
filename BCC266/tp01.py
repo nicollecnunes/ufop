@@ -66,6 +66,11 @@ def montarInstAleatorias():
     memoriaInstrucoes[99] = umaInstrucao
     #print(memoriaInstrucoes[99])
     
+    for i in range(10):
+        for j in range(4):
+            print(memoriaInstrucoes[i][j])
+        print()
+    
     maquina()
 
 # =============================================== OPERAÇÕES BÁSICAS ===================================
