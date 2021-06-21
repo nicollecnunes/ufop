@@ -2,13 +2,13 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-long long fibonacci(int n, TADfib *f, int i){
+long long fibonacci(int n, TADfib *f){
 	long long aux;
 	if (n <= 1){
     	return n;
 	}
- 	f[i].chamadas = f[i].chamadas +2;
- 	aux = fibonacci(n - 1, f,i) + fibonacci(n - 2, f,i);
+ 	f->chamadas = f->chamadas +2;
+ 	aux = fibonacci(n - 1, f) + fibonacci(n - 2, f);
   	return aux;
 }
 
@@ -38,7 +38,7 @@ void lerCasos(TADfib *f, int qtd){
   for (i=0; i <qtd; i++){
   	scanf("%d", &f[i].n);
   	f[i].chamadas=0;
-  	f[i].resultado = fibonacci(f[i].n, f,i);
+  	f[i].resultado = fibonacci(f[i].n, &f[i]);
   }
 }
 

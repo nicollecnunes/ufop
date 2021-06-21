@@ -7,7 +7,7 @@ typedef struct{
   long long chamadas;
 } TADfib;
 
-long long fibonacci(int n, TADfib *f, int i);
+long long fibonacci(int n, TADfib *f);
 
 void lerQuantidade(int *qtd);
 

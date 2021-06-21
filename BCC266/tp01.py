@@ -313,6 +313,7 @@ def fat(num1):
     return resultado
 
 def quadrArea(num1):
+    #lxl
     umaInstrucao = instLevaPMemo(multip(num1,num1), 7)#leva o valor da multp pra posicao 7
     memoriaInstrucoes[0] = umaInstrucao
 
@@ -330,6 +331,7 @@ def quadrArea(num1):
     return resultado
 
 def retArea(num1, num2):
+    #axb
     umaInstrucao = instLevaPMemo(multip(num1,num2), 12)#leva o valor da multp pra posicao 12
     memoriaInstrucoes[0] = umaInstrucao
 
@@ -348,6 +350,7 @@ def retArea(num1, num2):
 
 
 def paralelArea(num1, num2):
+    #lxl
     umaInstrucao = instLevaPMemo(multip(num1,num2), 12)#leva o valor da multp pra posicao 12
     memoriaInstrucoes[0] = umaInstrucao
 
@@ -365,6 +368,7 @@ def paralelArea(num1, num2):
     return resultado
 
 def triArea(num1, num2):
+    #(bxh)/2
     umaInstrucao = instLevaPMemo(multip(num1,num2), 12)#leva o valor da multp bxh pra posicao 12
     memoriaInstrucoes[0] = umaInstrucao
 
@@ -389,6 +393,7 @@ def triArea(num1, num2):
 
 
 def losangArea(num1, num2):
+    #d*D)/2
     umaInstrucao = instLevaPMemo(multip(num1,num2), 12)#leva o valor da multp bxh pra posicao 12
     memoriaInstrucoes[0] = umaInstrucao
 
@@ -411,7 +416,8 @@ def losangArea(num1, num2):
 
     return resultado
 
-def trapezArea(num1, num2, num3): 
+def trapezArea(num1, num2, num3):
+    #(b+B)*h)/2
     umaInstrucao = instLevaPMemo(somar(num1,num2), 9)#leva o valor da soma pra posicao 9
     memoriaInstrucoes[0] = umaInstrucao
 
@@ -438,6 +444,7 @@ def trapezArea(num1, num2, num3):
 
 # ========================================== GEOMETRIA ESPACIAL ======================================================
 def cubArea(num1):
+    #6a^2
     umaInstrucao = instLevaPMemo(multip(num1,num1), 14)#leva o valor l^2 da soma pra posicao 14
     memoriaInstrucoes[0] = umaInstrucao
 
@@ -455,6 +462,7 @@ def cubArea(num1):
     return resultado
 
 def cubVol(num1):
+    #a^3
     umaInstrucao = instLevaPMemo(pot(num1,3), 90)#leva o valor da soma pra posicao 90
     memoriaInstrucoes[0] = umaInstrucao
 
@@ -464,6 +472,8 @@ def cubVol(num1):
     return resultado
 
 def paralVol(num1,num2,num3):
+    #a*b*c
+    
     umaInstrucao = instLevaPMemo(multip(num1,num2), 25)#leva o valor da multp pra posicao 12
     memoriaInstrucoes[0] = umaInstrucao
 
@@ -480,7 +490,7 @@ def paralVol(num1,num2,num3):
     return resultado
 
 def paralArea(num1,num2,num3):
-
+    #2(a*b + b*c + a*c)
     ram0 = multip(num1,num2)
     ram1 = multip(num1,num3)
     ram2 = multip(num2,num3)
@@ -500,6 +510,7 @@ def paralArea(num1,num2,num3):
     return resultado
 
 def prisVol(num1, num2):
+    
     umaInstrucao = instLevaPMemo(multip(num1,num2), 12)#leva o valor da multp pra posicao 12
     memoriaInstrucoes[0] = umaInstrucao
 
@@ -517,6 +528,7 @@ def prisVol(num1, num2):
     return resultado
 
 def pirVol(num1,num2):
+    #a*b/3
     umaInstrucao = instLevaPMemo(prisVol(num1,num2), 12)#leva o valor pra posicao 12
     memoriaInstrucoes[0] = umaInstrucao
 
