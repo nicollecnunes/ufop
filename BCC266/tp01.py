@@ -4,7 +4,7 @@ import numpy as np
 
 INT_MAX = sys.maxsize
 RAM = [0] * 100
-retorno = 0
+#retorno = 0
 memoriaInstrucoes = np.empty((1000, 4)) #mudar 100
 
 def iniciaRAM():
@@ -35,6 +35,7 @@ def maquinaInt(umaInstrucao):
         RAM[end] = conteudo
     elif opcode == 3: #trazer
         end = int(umaInstrucao[2])
+        global retorno
         retorno = RAM[end]
 
         #0 soma; 1 subtrai; 2 leva; 3 traz
@@ -82,10 +83,7 @@ def instLevaPMemo(x, end):
 def trazMemo(end):
     umaInstrucao = [3,-1,end,-1]
     maquinaInt(umaInstrucao)
-    
-    end = umaInstrucao[2]
-    res = RAM[end]
-    return res
+    return retorno #veio da maq
 
 
 def somar(num1, num2):
@@ -154,7 +152,7 @@ def multip(num1, num2):
     memoriaInstrucoes[1] = umaInstrucao
     
 
-    for i in range(abs(num2)): #tentar criar uma funcao pra ficar aqui dentro
+    for i in range(abs(num2)): 
         umaInstrucao = [0,0,1,1] #vai montar 0 | 0 | 1 | 1
         #print(i)
         # somar | end0 tem o num1 | end1 inicialmente tem 0 | é pra onde vai o resultado (substituir). nas outras vezes do for, ja vai reaproveitar    
@@ -165,7 +163,7 @@ def multip(num1, num2):
 
     maquina()
 
-    resultado = trazMemo(1)
+    resultado = trazMemo(1) #3/-1/1/-1
     maquinaInt(umaInstrucao)
 
     if(((num1>=0) and (num2>=0)) or ((num1<=0) and (num2<=0))):
