@@ -51,8 +51,7 @@ def maquina():
         
         maquinaInt(umaInstrucao)
         PC = PC +1
-
-        
+       
 def montarInstAleatorias():
     umaInstrucao = [0] * 4
     for i in range(99):#mudar pra 99
@@ -85,7 +84,6 @@ def trazMemo(end):
     maquinaInt(umaInstrucao)
     return retorno #veio da maq
 
-
 def somar(num1, num2):
 
     umaInstrucao = instLevaPMemo(num1, 0) #leva o num1 pra memoria no end 0
@@ -115,8 +113,7 @@ def somar(num1, num2):
     maquinaInt(umaInstrucao)
     
     return resultado
-    
-    
+      
 def subtrair(num1, num2):
     umaInstrucao = instLevaPMemo(num1, 0)
     memoriaInstrucoes[0] = umaInstrucao
@@ -269,7 +266,6 @@ def raizq(num1):
         ram2 = somar(ram2, 1)
         
         umaInstrucao = instLevaPMemo(ram2, 0)#leva o valor ram2 pra posicao 0
-        memoriaInstrucoes[0] = umaInstrucao
         
         maquinaInt(umaInstrucao)
         if (ram1==ram0):
@@ -279,13 +275,9 @@ def raizq(num1):
             print("Não é um quadrado perfeito.")
             return "∄ em N"
 
-
-        
-
 # ========================================== GEOMETRIA PLANA ======================================================
 def fat(num1):
     umaInstrucao = instLevaPMemo(1, 0)#leva o valor 1 pra posicao 0
-    memoriaInstrucoes[0] = umaInstrucao
     
     maquinaInt(umaInstrucao)
     
@@ -346,7 +338,6 @@ def retArea(num1, num2):
 
     return resultado
 
-
 def paralelArea(num1, num2):
     #lxl
     umaInstrucao = instLevaPMemo(multip(num1,num2), 12)#leva o valor da multp pra posicao 12
@@ -388,7 +379,6 @@ def triArea(num1, num2):
     resultado = trazMemo(5)
 
     return resultado
-
 
 def losangArea(num1, num2):
     #d*D)/2
@@ -439,7 +429,6 @@ def trapezArea(num1, num2, num3):
     
     return resultado
     
-
 # ========================================== GEOMETRIA ESPACIAL ======================================================
 def cubArea(num1):
     #6a^2
@@ -461,7 +450,7 @@ def cubArea(num1):
 
 def cubVol(num1):
     #a^3
-    umaInstrucao = instLevaPMemo(pot(num1,3), 90)#leva o valor da soma pra posicao 90
+    umaInstrucao = instLevaPMemo(pot(num1,3), 90)#leva o valor da pot pra posicao 90
     memoriaInstrucoes[0] = umaInstrucao
 
     maquinaInt(umaInstrucao)
@@ -556,7 +545,6 @@ def matQuaNula(num1):
         for j in range(num1):
             print(ram0,"\t", end="")
         print()
-
 
 def matQuaId(num1):
     umaInstrucao = instLevaPMemo(0, 20)#leva o valor 0 pra posicao 20
