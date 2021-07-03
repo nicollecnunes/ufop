@@ -36,31 +36,13 @@ int ehVazia(TADListaD *A){
 
 }
 
-void inFirst(TADListaD *A, int x){
+void insere(TADListaD *A, TADItem *X){
     TADCelula *novo = (TADCelula *) malloc(sizeof(TADCelula));
-    novo->item.info = x;
-    novo->next = A->first->next;
-    novo->prev = NULL;
-    A->first->prev = novo->prev;
-}
 
-void imprime(TADListaD *A){
-    while(0<1){
-        if(A->last->next == NULL){
-            break;
-        }
-        printf("%d\n", A->first->next->item.info);
-    }
-}
+    novo->next = A->last->next;
+    novo->prev = A->first->prev;
 
-int main(){
-
-    TADListaD A;
-    
-    iniVazia(&A);
-    ehVazia(&A);
-    inFirst(&A, 5);
-    imprime(&A);
-
-    return 0;
+    A->first->next = novo->next;
+    A->last->prev = novo->prev;
+    novo->item = *X;
 }
