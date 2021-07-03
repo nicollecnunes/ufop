@@ -37,9 +37,20 @@ void divide(TADLista *A, TADLista *parte1, TADLista *parte2, int x){
     printf("o parte2 last é %d\n", A->last-x);
 }
 
+void copia(TADLista *A, TADLista *C){
+    C->first = inicio;
+    C->last = A->last;
+
+    for (int i=inicio; i<A->last; i++){
+        C->item[i].key = A->item[i].key;
+        printf("C na posicao [%d] recebe o numero %d que estava na posicao %d de A\n", i, A->item[i].key, i);
+    }
+
+}
+
 int main()
 {
-    TADLista A, B, parte1, parte2;
+    TADLista A, B, parte1, parte2, C;
     printf("linha 21\n");
 
     A.first = 0;
@@ -77,6 +88,9 @@ int main()
 
     printf("\n\nparte 2: \n");
     imprime(&parte2);
+
+    copia(&A, &C);
+    imprime(&C);
 
 
     return 0;//nao remova
