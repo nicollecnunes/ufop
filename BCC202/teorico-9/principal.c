@@ -48,6 +48,17 @@ void copia(TADLista *A, TADLista *C){
 
 }
 
+int pesquisa(TADLista *A, int x){
+    for (int i=0; i<A->last; i++){
+        if(A->item[i].key == x){
+            printf("%d esta na posição [%d]!\n", x, i);
+            return 0;
+        }
+    }
+    printf("%d não existe no array :(\n", x);
+    return 0;
+}
+
 int main()
 {
     TADLista A, B, parte1, parte2, C;
@@ -91,6 +102,10 @@ int main()
 
     copia(&A, &C);
     imprime(&C);
+
+    pesquisa(&A, 5);
+    pesquisa(&A, 56);
+
 
 
     return 0;//nao remova
