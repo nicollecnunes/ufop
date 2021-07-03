@@ -17,10 +17,29 @@ void imprime(TADLista *A){
     }
 }
 
+void divide(TADLista *A, TADLista *parte1, TADLista *parte2, int x){
+    for (int i = inicio; i<x; i++){
+        parte1->item[i].key = A->item[i].key;
+        printf("p1 na posicao [%d] recebe o numero %d que estava na posicao %d de A\n", i, A->item[i].key, i);
+    }
+    parte1->first = 0;
+    parte1->last = x;
+    printf("o parte1 last é %d\n", x);
+
+    int j=0;
+    for (int i = x; i<A->last; i++){
+        parte2->item[j].key = A->item[i].key;
+        printf("p2 na posicao [%d] recebe o numero %d que estava na posicao %d de A\n", j, A->item[i].key, i);
+        j++;
+    }
+    parte2->first = 0;
+    parte2->last = A->last-x;
+    printf("o parte2 last é %d\n", A->last-x);
+}
 
 int main()
 {
-    TADLista A, B;
+    TADLista A, B, parte1, parte2;
     printf("linha 21\n");
 
     A.first = 0;
@@ -49,6 +68,16 @@ int main()
     concatena(&A, &B);
 
     imprime(&A);
+
+    printf("agora vamos dividir\n");
+    divide(&A, &parte1, &parte2, 5);
+
+    printf("parte 1: \n");
+    imprime(&parte1);
+
+    printf("\n\nparte 2: \n");
+    imprime(&parte2);
+
 
     return 0;//nao remova
 }
