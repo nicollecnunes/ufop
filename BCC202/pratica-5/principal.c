@@ -1,20 +1,18 @@
 #include "lista.h"
 #include<stdio.h>
 #include<string.h>
-//tamanho maximo de uma string
 #define MAX_STR 1200
-int main()
-{
+
+int main(){
     TLista original, nova;
     char str[MAX_STR], str2[MAX_STR], str3[20];
     char* token;
     TItem x;
+    int i = 0;
 
     //iniciar listas
 
-    //le a primeira linha
     fgets (str, MAX_STR, stdin);
-    //remove o \n incluido pelo fgets
     str[strcspn(str, "\n")] = 0;
 
     //tokenizacao da string original, divide em strings delimitadas por espaco em branco
@@ -22,17 +20,37 @@ int main()
 
     while (token != NULL) {
       strcpy(x.nome, token);
-      //inserir o item na lista adequada
+      original.item[i].nome = x.nome;
       token = strtok(NULL, " ");
+      i++;
+    }
+    original.pUltimo.item = i;
+
+    fgets (str2, MAX_STR, stdin);
+    str2[strcspn(str2, "\n")] = 0;
+
+    //tokenizacao da string original, divide em strings delimitadas por espaco em branco
+    token = strtok(str2, " ");
+
+    i=0;
+    while (token != NULL) {
+      strcpy(x.nome, token);
+      nova.item[i].nome = x.nome;
+      token = strtok(NULL, " ");
+      i++;
+    }
+    nova.pUltimo.item = i;
+
+    scanf("%s", str3);
+    if(*str3 == 'nao'){
+    	TLista_append(&original, &nova);
+    }else{
+    	TLista_include(&original, &nova, str3);
     }
 
-    //ler a segunda linha, igual a primeira e preencher a segunda lista
+    TLista_Imprime(&original);
 
-    //ler a terceira linha, usando apenas scanf
 
-    //dependendo se ha indicacao ou nao, manipular as listas de acordo
-
-    //imprimir a lista final
 
     //ao final as duas listas estarao unificadas, entao basta esvaziar a original
 

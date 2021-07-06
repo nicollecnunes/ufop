@@ -2,15 +2,15 @@
 # define lista_h
 
 #define inicio 0
-#define MAXTAM 10
+#define MAXTAM 100
 
 typedef struct {
-    char[200] nome;
+    char nome[200];
 } TItem;
 
 typedef struct celula {
     struct celula * pProx ;
-	TItem item;
+	TItem item[MAXTAM];
 } TCelula;
 
 typedef struct {

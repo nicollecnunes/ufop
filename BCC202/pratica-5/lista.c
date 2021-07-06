@@ -18,14 +18,14 @@ int TLista_EhVazia(TLista *pLista) {
 int TLista_InsereFinal(TLista *pLista, TItem x) {
 	TCelula * novo = ( TCelula *) malloc ( sizeof ( TCelula ));
 
-	novo -> Item = x;
-	novo -> pProx = NULL ;
+	novo->item[0] = x;
+	novo->pProx = NULL;
 	if ( TLista_EhVazia ( pLista )) {
 		pLista -> pPrimeiro = novo ;
 		pLista -> pUltimo = novo ;
 	} else {
-		pLista -> pUltimo - > pProx = novo ;
-		pLista -> pUltimo = novo ;
+		pLista->pUltimo -> pProx = novo ;
+		pLista->pUltimo = novo ;
 	}
 
 }
@@ -36,9 +36,9 @@ int TLista_RetiraPrimeiro(TLista *pLista, TItem *pX) {
 		return 0;
 	}
 	TCelula * pAux ;
-	pAux = pLista - > pPrimeiro -> pProx ;
+	pAux = pLista -> pPrimeiro -> pProx ;
 	* pX = pAux -> item ;
-	pLista -> pPrimeiro -> pProx = pAux - > pProx ;
+	pLista -> pPrimeiro -> pProx = pAux -> pProx ;
 	free ( pAux );
 	return 1;
 
@@ -46,15 +46,14 @@ int TLista_RetiraPrimeiro(TLista *pLista, TItem *pX) {
 
 // Imprime os elementos da lista
 void TLista_Imprime(TLista *pLista) {
-	int i;
-	for (i = pLista -> primeiro ; i < pLista - > ultimo ; i ++){
-		printf ("%d\n", pLista -> item [i]. chave );
+	for (int i = 0; i<pLista->pUltimo->item; i ++){
+		printf ("%d\n", pLista->item[i].nome );
 	}
 }
 
 //Remove cada elemento de uma lista e libera a memória
 void TLista_Esvazia(TLista *pLista) {
-	for (int i=0; i<pLista1->pUltimo; i++){
+	for (int i=0; i<pLista->pUltimo->item; i++){
 		free(TCelula);
 	}
 	free(pLista);
@@ -64,12 +63,12 @@ void TLista_Esvazia(TLista *pLista) {
 // Acrescenta o conteudo de uma lista ao final de outra, apenas manipulando ponteiros
 void TLista_append(TLista *pLista1, TLista *pLista2){
 	int j=0;
-    for (int i = pLista1->pUltimo; i<(pLista1->pUltimo + pLista2->pUltimo); i++){
+    for (int i = pLista1->pUltimo->item; i<(pLista1->pUltimo->item + pLista2->pUltimo->item); i++){
         pLista1->item[i].nome = pLista2->item[j].nome;
         printf("A na posicao [%d] recebe o nome %c que estava na posicao %d de B\n", i, pLista2->item[j].nome, j);
         j++;
     }
-    pLista1->pUltimo = A->pUltimo + B->pUltimo;
+    pLista1->pUltimo = pLista1->pUltimo + pLista2->pUltimo;
 }
 
 // Inclui o conteudo de uma lista em outra, na posicao anterior a str, apenas manipulando ponteiros
@@ -79,7 +78,7 @@ void TLista_include(TLista *pLista1, TLista *pLista2, char *str){
 		Aux->item[i].nome = pLista1->item[i].nome;
         if(pLista1->item[i].nome == x){
             printf("%d esta na posição [%d]!\n", x, i);
-            TLista_append(&Aux, &pLista2)
+            TLista_append(&Aux, &pLista2);
         }
     }
 
