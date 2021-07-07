@@ -4,85 +4,107 @@
 #include <string.h>
 
 // Inicia as variaveis da lista
-void TLista_Inicia(TLista *pLista) {
-	pLista -> pPrimeiro = NULL ;
-	pLista -> pUltimo = NULL ;
+void TLista_Inicia(TLista *pLista) { //ok
+	pLista->pPrimeiro = (TCelula*) malloc (sizeof (TCelula));
+	pLista->pUltimo = pLista->pPrimeiro;
+	pLista->pPrimeiro->pProx = NULL;
+
 }
 
 //Retorna se a lista esta vazia
-int TLista_EhVazia(TLista *pLista) {
-	return ( pLista -> pPrimeiro == NULL );
+int TLista_EhVazia(TLista *pLista) { //ok
+	return (pLista->pPrimeiro == pLista->pUltimo);
 }
 
 // Insere um item no final da lista
 int TLista_InsereFinal(TLista *pLista, TItem x) {
-	TCelula * novo = ( TCelula *) malloc ( sizeof ( TCelula ));
 
-	novo->item[0] = x;
-	novo->pProx = NULL;
-	if ( TLista_EhVazia ( pLista )) {
-		pLista -> pPrimeiro = novo ;
-		pLista -> pUltimo = novo ;
-	} else {
-		pLista->pUltimo -> pProx = novo ;
-		pLista->pUltimo = novo ;
-	}
+	pLista->pUltimo->pProx = (TCelula*)malloc(sizeof(TCelula));
+	pLista->pUltimo = pLista->pUltimo->pProx;
+	pLista->pUltimo->item = x;
+	pLista->pUltimo->pProx = NULL;
 
+	return 1;
 }
 
 // Retira o primeiro item da lista
 int TLista_RetiraPrimeiro(TLista *pLista, TItem *pX) {
-	if ( TLista_EhVazia ( pLista )){
+	/*if ( TLista_EhVazia ( pLista )){
 		return 0;
 	}
-	TCelula * pAux ;
-	pAux = pLista -> pPrimeiro -> pProx ;
-	* pX = pAux -> item ;
-	pLista -> pPrimeiro -> pProx = pAux -> pProx ;
-	free ( pAux );
-	return 1;
+
+	TCelula *pAux;
+
+	pAux = pLista->pPrimeiro->pProx;
+	pAux = pLista->pPrimeiro->pAnt;
+
+	*pX = pAux->item;
+
+	pLista->pPrimeiro->pProx = pAux-> pProx;
+	pLista->pPrimeiro->pAnt = pAux-> pAnt;
+
+	free (pAux);
+    pLista->TAM--;
+
+    return 1;*/
 
 }
 
 // Imprime os elementos da lista
 void TLista_Imprime(TLista *pLista) {
-	for (int i = 0; i<pLista->pUltimo->item; i ++){
-		printf ("%d\n", pLista->item[i].nome );
-	}
+	TCelula *atual;
+	atual = pLista->pPrimeiro->pProx;
+
+    while(atual != pLista->pUltimo) {
+        printf("%s\n", atual->item.nome);
+        atual = atual->pProx;
+    }
+
+    printf("%s\n", atual->item.nome);
 }
 
 //Remove cada elemento de uma lista e libera a memória
 void TLista_Esvazia(TLista *pLista) {
-	for (int i=0; i<pLista->pUltimo->item; i++){
-		free(TCelula);
-	}
-	free(pLista);
 //preencher
 }
 
 // Acrescenta o conteudo de uma lista ao final de outra, apenas manipulando ponteiros
 void TLista_append(TLista *pLista1, TLista *pLista2){
-	int j=0;
-    for (int i = pLista1->pUltimo->item; i<(pLista1->pUltimo->item + pLista2->pUltimo->item); i++){
-        pLista1->item[i].nome = pLista2->item[j].nome;
-        printf("A na posicao [%d] recebe o nome %c que estava na posicao %d de B\n", i, pLista2->item[j].nome, j);
-        j++;
+	TCelula *atual;
+	atual = pLista2->pPrimeiro->pProx;
+
+
+    while(atual != pLista2->pUltimo) {
+    	TLista_InsereFinal(pLista1, atual->item);
+        atual = atual->pProx;
     }
-    pLista1->pUltimo = pLista1->pUltimo + pLista2->pUltimo;
+    TLista_InsereFinal(pLista1, atual->item);
 }
 
 // Inclui o conteudo de uma lista em outra, na posicao anterior a str, apenas manipulando ponteiros
 void TLista_include(TLista *pLista1, TLista *pLista2, char *str){
-	TLista Aux;
-	for (int i=0; i<pLista1->pUltimo; i++){
-		Aux->item[i].nome = pLista1->item[i].nome;
-        if(pLista1->item[i].nome == x){
-            printf("%d esta na posição [%d]!\n", x, i);
-            TLista_append(&Aux, &pLista2);
-        }
+	TCelula *aux, *aux2;
+	aux = pLista1->pPrimeiro->pProx;
+	aux2 = aux->pProx;
+
+    while((strcmp(str, aux->pProx->item.nome)!=0)){
+    	TLista_InsereFinal(pLista1, aux->item);
+    	aux = aux->pProx;
+    	aux2 = aux2->pProx;
+    }
+    
+    aux->pProx = pLista2->pPrimeiro->pProx;
+
+
+    pLista2->pUltimo->pProx = aux2;
+    pLista1->pUltimo = pLista2->pUltimo;
+
+ 
+    while(aux2->pProx!=NULL){
+    	TLista_InsereFinal(pLista1, aux2->item);
+    	aux2 = aux2->pProx;
     }
 
-    for (int i=0; i<Aux->pUltimo; i++){
-		pLista1->item[i].nome = Aux->item[i].nome;
-    }
+    TLista_Imprime(pLista1);
+
 }

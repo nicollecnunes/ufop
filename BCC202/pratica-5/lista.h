@@ -5,16 +5,17 @@
 #define MAXTAM 100
 
 typedef struct {
-    char nome[200];
+    char nome[20];
 } TItem;
 
 typedef struct celula {
-    struct celula * pProx ;
-	TItem item[MAXTAM];
+    struct celula *pProx ;
+	TItem item;
 } TCelula;
 
 typedef struct {
-	TCelula * pPrimeiro , * pUltimo ;
+	TCelula *pPrimeiro;
+	TCelula *pUltimo;
 } TLista;
 
 //Inicializa a lista
