@@ -29,25 +29,20 @@ int TLista_InsereFinal(TLista *pLista, TItem x) {
 
 // Retira o primeiro item da lista
 int TLista_RetiraPrimeiro(TLista *pLista, TItem *pX) {
-	/*if ( TLista_EhVazia ( pLista )){
+	if(TLista_EhVazia( pLista )){
 		return 0;
 	}
 
-	TCelula *pAux;
+	TCelula *aux;
 
-	pAux = pLista->pPrimeiro->pProx;
-	pAux = pLista->pPrimeiro->pAnt;
+	aux = pLista->pPrimeiro->pProx;
 
-	*pX = pAux->item;
+	*pX = aux->item;
 
-	pLista->pPrimeiro->pProx = pAux-> pProx;
-	pLista->pPrimeiro->pAnt = pAux-> pAnt;
+	pLista->pPrimeiro->pProx = aux->pProx;
+	free(aux);
 
-	free (pAux);
-    pLista->TAM--;
-
-    return 1;*/
-
+	return 1;
 }
 
 // Imprime os elementos da lista
@@ -56,7 +51,7 @@ void TLista_Imprime(TLista *pLista) {
 	atual = pLista->pPrimeiro->pProx;
 
     while(atual != pLista->pUltimo) {
-        printf("%s\n", atual->item.nome);
+        printf("%s ", atual->item.nome);
         atual = atual->pProx;
     }
 
@@ -65,6 +60,10 @@ void TLista_Imprime(TLista *pLista) {
 
 //Remove cada elemento de uma lista e libera a memória
 void TLista_Esvazia(TLista *pLista) {
+	TItem asd;
+	while(!(TLista_EhVazia(pLista))){
+		TLista_RetiraPrimeiro(pLista, &asd);
+	}
 //preencher
 }
 
@@ -87,23 +86,36 @@ void TLista_include(TLista *pLista1, TLista *pLista2, char *str){
 	aux = pLista1->pPrimeiro->pProx;
 	aux2 = aux->pProx;
 
-    while((strcmp(str, aux->pProx->item.nome)!=0)){
-    	TLista_InsereFinal(pLista1, aux->item);
-    	aux = aux->pProx;
-    	aux2 = aux2->pProx;
+	if(strcmp(str, aux->item.nome)==0){
+		TLista_append(pLista2, pLista1);
+		pLista1 = pLista2;
+
+	}else{
+		//printf("entrando aqui com AUX1 em %s e AUX2 em %s\n", aux->item.nome, aux2->item.nome);
+		while((strcmp(str, aux->pProx->item.nome)!=0)){
+			//printf("INSERINDO AUX1 em %s e AUX2 em %s\n", aux->item.nome, aux2->item.nome);
+    		TLista_Imprime(pLista1);
+    		printf("\n\n");
+    		TLista_InsereFinal(pLista1, aux->item);
+    		aux = aux->pProx;
+    		aux2 = aux2->pProx;
     }
     
-    aux->pProx = pLista2->pPrimeiro->pProx;
+    	aux->pProx = pLista2->pPrimeiro->pProx;
 
 
-    pLista2->pUltimo->pProx = aux2;
-    pLista1->pUltimo = pLista2->pUltimo;
+    	pLista2->pUltimo->pProx = aux2;
+    	pLista1->pUltimo = pLista2->pUltimo;
 
  
-    while(aux2->pProx!=NULL){
-    	TLista_InsereFinal(pLista1, aux2->item);
-    	aux2 = aux2->pProx;
-    }
+    	while(aux2->pProx!=NULL){
+    		TLista_InsereFinal(pLista1, aux2->item);
+    		aux2 = aux2->pProx;
+   		}
+
+	}
+
+    
 
     TLista_Imprime(pLista1);
 

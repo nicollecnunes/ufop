@@ -40,22 +40,19 @@ int main(){
 
     while (token != NULL) {
       strcpy(x.nome, token);
-      //printf("nome NOVO: %s\n", x.nome);
       TLista_InsereFinal(&nova, x);
       token = strtok(NULL, " ");
     }
 
-    //TLista_Imprime(&nova);
 
     scanf("%s", str3);
 
     if((strcmp(str3,"nao")==0)){
     	TLista_append(&original, &nova);
+    	TLista_Imprime(&original);
     }else{
     	TLista_include(&original, &nova, str3);
     }
-
-    //TLista_Imprime(&original);
 
 
 
