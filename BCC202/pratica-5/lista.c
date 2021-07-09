@@ -94,12 +94,11 @@ void TLista_include(TLista *pLista1, TLista *pLista2, char *str){
 		//printf("entrando aqui com AUX1 em %s e AUX2 em %s\n", aux->item.nome, aux2->item.nome);
 		while((strcmp(str, aux->pProx->item.nome)!=0)){
 			//printf("INSERINDO AUX1 em %s e AUX2 em %s\n", aux->item.nome, aux2->item.nome);
-    		TLista_Imprime(pLista1);
-    		printf("\n\n");
+    		//printf("\n\n");
     		TLista_InsereFinal(pLista1, aux->item);
     		aux = aux->pProx;
     		aux2 = aux2->pProx;
-    }
+   		 }
     
     	aux->pProx = pLista2->pPrimeiro->pProx;
 
@@ -112,6 +111,8 @@ void TLista_include(TLista *pLista1, TLista *pLista2, char *str){
     		TLista_InsereFinal(pLista1, aux2->item);
     		aux2 = aux2->pProx;
    		}
+
+   		TLista_InsereFinal(pLista1, aux2->item);
 
 	}
 
