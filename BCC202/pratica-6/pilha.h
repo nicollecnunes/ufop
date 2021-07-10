@@ -6,11 +6,13 @@ typedef struct {
 } Item;
 
 typedef struct celula {
-//preencher
+	Item item;
+	struct celula *pProx;
 } Celula;
 
 typedef struct {
-    //preencher
+    Celula *pHead;
+    int tamanho;
 } Pilha;
 
 //Inicializa a lista
@@ -23,4 +25,6 @@ int Pilha_Push(Pilha *pilha, Item item);
 int Pilha_Pop(Pilha *pilha, Item *item);
 // Remove cada elemento de uma lista e libera a memória
 void Pilha_Esvazia(Pilha *pilha);
+
+void TLista_Imprime(Pilha *pilha);
 # endif

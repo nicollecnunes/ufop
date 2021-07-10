@@ -10,9 +10,21 @@ int main()
 
         Pilha_Inicia(&pilha);
 
-        while (scanf("%c", &ch)!=EOF){
+        item.key= 'a';
+        Pilha_Push(&pilha, item);
+        TLista_Imprime(&pilha);
+
+        item.key= 'b';
+        Pilha_Push(&pilha, item);
+        TLista_Imprime(&pilha);
+
+        item.key= 'c';
+        Pilha_Push(&pilha, item);
+        TLista_Imprime(&pilha);
+
+       // while (scanf("%c", &ch)!=EOF){
           //processar cada elemento lido
-        }
+        //}
 
         //determinar o resultado
 
