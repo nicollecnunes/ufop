@@ -4,21 +4,6 @@
 #include <string.h>
 
 
-
-/*typedef struct {
-    char key;
-} Item;
-
-typedef struct celula {
-	Item item;
-	struct celula *pProx;
-} Celula;
-
-typedef struct {
-    Celula *pHead;
-} Pilha;
-*/
-
 // Inicia as variaveis da pilha
 void Pilha_Inicia(Pilha *pilha) {
 	pilha->pHead = (Celula *) malloc(sizeof(Celula));
@@ -68,8 +53,8 @@ int Pilha_Pop(Pilha *pilha, Item *item) {
 		}
 		aux2 = aux;
 		aux = aux ->pProx;
-		printf("foi removido o item %s \n", &aux->item.key);
-		printf("o ultimo é %s \n", &aux2->item.key);
+		//printf("foi removido o item %s \n", &aux->item.key);
+		//printf("o ultimo é %s \n", &aux2->item.key);
 		free(aux);
 		aux2->pProx = NULL;
 		pilha->tamanho = pilha->tamanho - 1;
@@ -92,7 +77,7 @@ void Pilha_Esvazia(Pilha *pilha) {
 
 }
 
-void TLista_Imprime(Pilha *pilha) {
+/*void TLista_Imprime(Pilha *pilha) {
 	Celula *atual;
 	atual = pilha->pHead->pProx;
 
@@ -101,16 +86,6 @@ void TLista_Imprime(Pilha *pilha) {
 		atual = atual->pProx;
 	}
 	printf("\n");
-}
+}*/
 
 
-
-
-/*
-Celula *aux = pilha->pheado->prox
-int tamanho  = 0;
-while(aux!=NULL){
-	tamanho ++;
-	aux = aux ->pprox;
-} o
-*/
