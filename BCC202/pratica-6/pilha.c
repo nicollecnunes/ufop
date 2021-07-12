@@ -50,7 +50,7 @@ int Pilha_Push(Pilha *pilha, Item item) {
 	new -> pProx = NULL;
 
 	pilha->tamanho = pilha->tamanho + 1;
-	printf("foi adicionado o item %s \n", new->item.key);
+	//printf("foi adicionado o item %s \n", &new->item.key);
 	
 	return 1;
 }
@@ -62,14 +62,20 @@ int Pilha_Pop(Pilha *pilha, Item *item) {
     }else{
     	Celula *aux = pilha->pHead;
 		Celula *aux2;
-    	for (int i = 0; i<pilha->tamanho; i++){
+    	for (int i = 0; i<pilha->tamanho-1; i++){
 			aux = aux ->pProx;
+			//printf("estou aqui %s \n", &aux->item.key);
 		}
 		aux2 = aux;
+		aux = aux ->pProx;
+		printf("foi removido o item %s \n", &aux->item.key);
+		printf("o ultimo é %s \n", &aux2->item.key);
 		free(aux);
 		aux2->pProx = NULL;
+		pilha->tamanho = pilha->tamanho - 1;
+		
 		return 1;
-		printf("foi removido o item %s \n", item->key);
+		
     }
 }
 
@@ -91,10 +97,10 @@ void TLista_Imprime(Pilha *pilha) {
 	atual = pilha->pHead->pProx;
 
 	for (int i = 0; i<pilha->tamanho; i++){
-		printf(" - %s ", atual->item.key);
+		printf(" - %s ", &atual->item.key);
 		atual = atual->pProx;
 	}
-	printf("%s \n", atual->item.key);
+	printf("\n");
 }
 
 

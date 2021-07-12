@@ -10,21 +10,30 @@ int main()
 
         Pilha_Inicia(&pilha);
 
-        item.key= 'a';
-        Pilha_Push(&pilha, item);
-        TLista_Imprime(&pilha);
+        while (scanf(" %c", &ch)!=EOF){
+            //printf("acabei de ler o %s\n", &ch);
+            if((strcmp(&ch, "("))==0){
+                printf("adicionando x\n");
+                item.key= 'x';
+                Pilha_Push(&pilha, item);
+            }else if((strcmp(&ch, ")"))==0){
+                if(Pilha_EhVazia(&pilha)){
+                    Pilha_Push(&pilha, item);
+                    break;
+                }
+                printf("removendo x\n");
+                item.key= 'x';
+                Pilha_Push(&pilha, item);
 
-        item.key= 'b';
-        Pilha_Push(&pilha, item);
-        TLista_Imprime(&pilha);
+            }
+        }
 
-        item.key= 'c';
-        Pilha_Push(&pilha, item);
-        TLista_Imprime(&pilha);
+        if(Pilha_EhVazia(&pilha)){
+            printf("correto\n");
+        }else{
+            printf("incorreto\n");
 
-       // while (scanf("%c", &ch)!=EOF){
-          //processar cada elemento lido
-        //}
+        }
 
         //determinar o resultado
 
