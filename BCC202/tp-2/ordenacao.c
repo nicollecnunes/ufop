@@ -86,6 +86,42 @@ void ordenaLista(TLista *lista, TPais *novo){
      
 }
 
+
+
+void insertionOuro(Tlista **lista, TPais *pais){
+    TCelula *atual, *novo, *anterior;
+    int x = pais->ouro;
+
+    novo = (TCelula *) malloc(sizeof(TCelula));
+
+    atual = *p;
+    anterior = NULL;
+
+    novo->pais.ouro = x;
+
+    if(atual == NULL){
+        novo->prox = NULL;
+        *p = novo;
+    } else{
+        while(atual != NULL && atual->valor < num){
+            anterior = atual;
+            atual = atual->prox;
+        }
+
+        novo->prox = atual;
+
+        if(anterior == NULL){
+            *p = novo;
+        } else{
+            anterior->prox = novo;
+        }
+    }
+}
+
+
+
+
+
 void TLista_Imprime(TLista *lista) {
 	TCelula *atual;
 	atual = lista->pHead->pProx;
