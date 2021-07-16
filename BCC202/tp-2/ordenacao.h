@@ -37,6 +37,8 @@ void insertionPrata(TLista *lista, TPais *pais);
 
 void insertionBronze(TLista *lista, TPais *pais);
 
+void insertionAlfab(TLista *lista, TPais *pais);
+
 void TLista_Imprime(TLista *lista);
 
 

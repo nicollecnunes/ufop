@@ -22,6 +22,7 @@ void lerLista(TLista *lista, int qtd){
 		insertionOuro(lista, &x);
         insertionPrata(lista, &x);
         insertionBronze(lista, &x);
+        insertionAlfab(lista, &x);
 	}
 
 }
@@ -167,6 +168,29 @@ void insertionBronze(TLista *lista, TPais *pais){
 	}
 }
 
+void insertionAlfab(TLista *lista, TPais *pais){
+    TCelula *novo;
+    novo = (TCelula *) malloc(sizeof(TCelula));
+
+    novo->pais = *pais;
+
+    TCelula *atual, *anterior;
+	atual = lista->pHead->pProx;  
+	anterior = lista->pHead;
+
+	for (int i = 0; i<lista->tamanho; i++){
+		if((atual->pais.ouro == novo->pais.ouro) && (strcmp(atual->pais.nome, novo->pais.nome) != 0) && (atual->pais.prata == novo->pais.prata) && (atual->pais.bronze == novo->pais.bronze) ){
+			//printf("tudo de %s(%d)(%d) sao iguais aos de %s(%d)(%d)\n", atual->pais.nome, atual->pais.ouro, atual->pais.prata, atual->pais.bronze, novo->pais.nome, novo->pais.ouro, novo->pais.prata, novo->pais.bronze);
+			if((strcmp(atual->pais.nome, novo->pais.nome) > 0)){
+				printf("%s vem antes q %s\n", novo->pais.nome, atual->pais.nome);
+				anterior->pProx = novo;
+				novo->pProx = atual;
+			}
+			anterior = atual;
+			atual = atual->pProx;	
+		}
+	}
+}
 
 
 
