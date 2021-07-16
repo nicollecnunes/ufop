@@ -3,7 +3,7 @@
 
 
 typedef struct {
-    char nome[20];
+    char nome[50];
   	int ouro;
   	int prata;
   	int bronze;
@@ -21,17 +21,23 @@ typedef struct {
 } TLista;
 
 
+void lerQuantidade(int *qtd);
+
+void lerLista(TLista *lista, int qtd);
 
 void listaInicia(TLista *lista);
 
 int listaEhVazia(TLista *lista);
 
-void listaIncludeAntes(TLista *lista, TPais pais, char *str);
-
 void listaIncludeFinal(TLista *lista, TPais pais);
 
-void ordenaLista(TLista *lista, TPais *novo);
+void insertionOuro(TLista *lista, TPais *pais);
+
+void insertionPrata(TLista *lista, TPais *pais);
+
+void insertionBronze(TLista *lista, TPais *pais);
 
 void TLista_Imprime(TLista *lista);
+
 
 # endif

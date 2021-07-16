@@ -6,45 +6,14 @@
 
 int main(){
     TLista lista;
-    char str[MAX_STR];
-    char* token;
-    TPais x;
+    int qtd;
 
     listaInicia(&lista);
+    lerQuantidade(&qtd);
 
-    fgets (str, MAX_STR, stdin);
-    str[strcspn(str, "\n")] = 0;
+    lerLista(&lista, qtd);
 
-    printf("EU LI ISSO AQUI: %s\n", str);
-
-    //tokenizacao da string original, divide em strings delimitadas por espaco em branco
-    token = strtok(str, " ");
-
-    while (token != NULL) {
-        printf("passando o %s para nome..\n", token);
-     	strcpy(x.nome, token);
-        token = strtok(NULL, " ");
-
-
-        printf("passando o %s para ouro..\n", token);
-        x.ouro = atoi(token);
-        token = strtok(NULL, " ");
-
-        printf("passando o %s para prata..\n", token);
-        x.prata = atoi(token);
-        token = strtok(NULL, " ");
-
-        printf("passando o %s para bronze..\n", token);
-        x.bronze = atoi(token);
-        token = strtok(NULL, " ");
-
-        ordenaLista(&lista, &x);
-        TLista_Imprime(&lista);
-    }
-
-    printf("final: ");
     TLista_Imprime(&lista);
-    printf("\n");
 
     return 0;
 }
