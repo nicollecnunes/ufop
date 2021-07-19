@@ -1,45 +1,19 @@
 # ifndef ordenacao_h
 # define ordenacao_h
 
-
-typedef struct {
-    char nome[50];
-  	int ouro;
-  	int prata;
-  	int bronze;
-} TPais;
-
-typedef struct celula {
-	TPais pais;
-	struct celula *pProx;
-} TCelula;
-
-typedef struct {
-    TCelula *pHead;
-    TCelula *pTail;
-    int tamanho;
-} TLista;
-
+typedef struct pais TPais;
 
 void lerQuantidade(int *qtd);
 
-void lerLista(TLista *lista, int qtd);
+TPais *alocaPaises(TPais *P, int qtd);
 
-void listaInicia(TLista *lista);
+void lerLista(TPais *P, int qtd);
 
-int listaEhVazia(TLista *lista);
+void ordenaTudo(TPais *P, int qtd);
 
-void listaIncludeFinal(TLista *lista, TPais pais);
+void imprimePaises(TPais *P, int qtd);
 
-void insertionOuro(TLista *lista, TPais *pais);
-
-void insertionPrata(TLista *lista, TPais *pais);
-
-void insertionBronze(TLista *lista, TPais *pais);
-
-void insertionAlfab(TLista *lista, TPais *pais);
-
-void TLista_Imprime(TLista *lista);
+TPais *desalocaPaises(TPais *P);
 
 
 # endif

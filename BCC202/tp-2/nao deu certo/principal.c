@@ -5,17 +5,15 @@
 #define MAX_STR 1200
 
 int main(){
-    TPais *P;
-    P = NULL;
+    TLista lista;
     int qtd;
 
+    listaInicia(&lista);
     lerQuantidade(&qtd);
-    P = alocaPaises(P, qtd);
-    lerLista(P, qtd);
-    ordenaTudo(P, qtd);
-    imprimePaises(P, qtd);
-    P = desalocaPaises(P);
 
+    lerLista(&lista, qtd);
+
+    TLista_Imprime(&lista);
 
     return 0;
 }
