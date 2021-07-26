@@ -8,11 +8,11 @@ int main (){
 	int n, movimentos;
 
 	while(scanf("%d", &n), n){
-		if(n == 0){
-			break;
-		}
 		vetor = alocaVetor(vetor, n);
 		preenche(vetor, n);
+		//printf("preenchido\n");
+		movimentos = 0;
+		//printf("Valor de N == %d\n", n);
 		ordenacao(vetor, n, &movimentos);
 		//printf("qtd de movimentos: %d", movimentos);
 		vencedor(movimentos);
