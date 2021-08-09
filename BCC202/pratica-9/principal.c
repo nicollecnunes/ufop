@@ -3,48 +3,46 @@
 
 int main ()
 {
-	int n, m, index = 0, demorado = 0;
+	int n, m, c, aux=0;
+
 	TipoCaixa *heap = NULL;
-	int timeMax = 0, tAtual = 0;
 
-	//ler n e m
+	int timeMax = 0; 
+
 	scanf("%d %d", &n, &m);
-	//alocar o vetor para o heap com tamanho n
 	heap = alocaVetor(heap, n);
-	int cesta[m];
+	leitor(heap, n);
+	
 
-	//ler o tempo de atendimento de cada caixa
-	//criar a fila de prioridades
-	//a principio, cada caixa esta disponivel no tempo zero
-	Heap_Constroi(heap, n);
-
-	for (int i =0; i<m; i++){
-		scanf("%d", &cesta[i]);
-	}
-
-	for (int x = 0; x<m; x++){
-		if(x < n){
-			heap[x].livre = 0;
-			heap[x].timeused = heap[x].timeused + cesta[x] * heap[x].time;
-			//printf("1) colocando o funcionario %d ocupado. o tempo dele eh %d e a cesta tem %d itens... == %d\n", x, heap[x].time, cesta[x], heap[x].timeused);
-			index = x;
+	while(m--){
+		scanf("%d", &c);
+		if(aux < n){
+			heap[aux].timeused = heap[aux].timeused + (c * heap[aux].time);
+			//printf("colocando o funcionario %d ocupado. o tempo dele eh %d e a cesta tem %d itens... == %d\n",aux, heap[aux].time, c, heap[aux].timeused);
+			if(heap[aux].timeused > timeMax){
+				timeMax = heap[aux].timeused;
+			}
 		}else{
-			index = Heap_Refaz(heap, n);
-			heap[index].timeused = heap[index].timeused + cesta[x] * heap[index].time;
-			//printf("2) foi para o caixa %d que agora tem tempo %d\n", index, heap[index].timeused);
-		}
+			Heap_Constroi(heap, n);	
 
-		if(timeMax < heap[index].timeused){
-			timeMax =  heap[index].timeused;
-			//printf("demorou mt, o novo tempo maximo agora eh esse ai (%d)\n", timeMax);
-			tAtual = timeMax;
+			
+
+			//imprime(heap, n);
+	
+			//printf("o 1st a acabar durou %d min. \n",heap[0].timeused);
+			heap[0].timeused = heap[0].timeused + (c * heap[0].time);
+			//printf("ocupando. o tempo dele eh %d e a cesta tem %d itens... == %d\n",heap[0].time, c, heap[0].timeused);
+
+			//printf("LINHA 40\n");
+			if(heap[0].timeused > timeMax){
+				timeMax = heap[0].timeused;
+			}
 		}
+	aux = aux +1;
 	}
 
-	//desalocar o vetor do heap
 	heap = desalocaVetor(heap);
 	
-	//imprimir a resposta
 	printf("%d\n",timeMax);
 	return 0;
 }
