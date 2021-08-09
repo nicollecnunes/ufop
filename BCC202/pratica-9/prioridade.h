@@ -17,5 +17,5 @@ TipoCaixa *desalocaVetor(TipoCaixa *heap);
 //Manter como especificado
 void Heap_Constroi(TipoCaixa *heap, int n);
 
-int Heap_Refaz(TipoCaixa *heap, int n, int *tAtual);
+int Heap_Refaz(TipoCaixa *heap, int n);
 # endif

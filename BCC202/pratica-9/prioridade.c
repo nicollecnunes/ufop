@@ -25,20 +25,16 @@ void Heap_Constroi(TipoCaixa *heap, int n){
   	}
 }
 
-int Heap_Refaz(TipoCaixa *heap, int n, int *tAtual){
+int Heap_Refaz(TipoCaixa *heap, int n){
 	//printf("procurando o primeiro a ficar livre\n");
-	int first, aux = *tAtual;
+	int first = 0;
+	int tAtual = heap[0].timeused;
 	for (int i = 0; i < n; i++){
-		if (heap[i].timeused < *tAtual){
-			if(heap[i].timeused < aux){
-				first = i;
-			}
-			aux = heap[i].timeused;	
-		}
-		else{
-			first = 0;
-		}
-		
+		if (heap[i].timeused < tAtual){
+			//printf("parece que o que acabou primeiro foi %d, com %dmin\n", i, heap[i].timeused);
+			first = i;
+			tAtual = heap[i].timeused;	
+		}		
 	}
 	//heap[first].timeused = heap[first].timeused + 
 	return first;

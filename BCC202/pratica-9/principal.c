@@ -29,7 +29,7 @@ int main ()
 			//printf("1) colocando o funcionario %d ocupado. o tempo dele eh %d e a cesta tem %d itens... == %d\n", x, heap[x].time, cesta[x], heap[x].timeused);
 			index = x;
 		}else{
-			index = Heap_Refaz(heap, n, &tAtual);
+			index = Heap_Refaz(heap, n);
 			heap[index].timeused = heap[index].timeused + cesta[x] * heap[index].time;
 			//printf("2) foi para o caixa %d que agora tem tempo %d\n", index, heap[index].timeused);
 		}
