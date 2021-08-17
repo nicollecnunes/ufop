@@ -6,7 +6,6 @@ int main ()
 	int n, no;
 	TArvore *arvore;
 	TItem AuxItem;
-	TNo *pRaiz;
 
 	//ler n
 	scanf("%d", &n);
@@ -16,27 +15,27 @@ int main ()
 	AuxItem.chave = no;
 	//pRaiz = TNo_Cria(AuxItem);
 
-	TArvore_Inicia (&pRaiz);
-	TArvore_Insere_Raiz (&pRaiz, AuxItem);
+	TArvore_Inicia (arvore);
+	TArvore_Insere_Raiz (arvore, AuxItem);
 
 	for(int i = 1; i<n; i++) {
 		//ler o no
 		scanf("%d", &no);
 		AuxItem.chave = no;
 		//inserir na arvore	
-		TArvore_Insere (&pRaiz,AuxItem);					
+		TArvore_Insere (arvore,AuxItem);					
 	}
 
 
 	//gerar percurso em ordem prefixa
 	printf("PREFIXA:");
-	Prefixa(pRaiz);
+	Prefixa(*arvore);
 	//gerar percurso em ordem infixa
 	printf("\nINFIXA:");
-	Infixa(pRaiz);
+	Infixa(*arvore);
 	//gerar percurso em ordem posfixa
 	printf("\nPOSFIXA:");
-	Posfixa(pRaiz);
+	Posfixa(*arvore);
 	
 	
 	
