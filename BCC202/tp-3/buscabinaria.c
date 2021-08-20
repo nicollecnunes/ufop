@@ -4,36 +4,40 @@
 #include <string.h>
 
 
-long long *alocaVetor(long long *vetor, int n){
-	vetor = (long long *) malloc (n * sizeof(long long));
+int *alocaVetor(int *vetor, int n){
+	vetor = (int *) malloc (n * sizeof(int));
 	return vetor;
 }
 
-long long *desalocaVetor(long long *vetor){
+int *desalocaVetor(int *vetor){
 	free(vetor);
 	return vetor;
 }
 
-int VetorBusca(long long *vetor, long x, int TAM){
-	return BuscaBinaria(vetor, 0, TAM-1, x);
+double BuscaBinaria(int *vetor, int a, int n){
+	double i, esq = 0, dir = vetor[n-1];
+
+	do{
+		double area = 0;
+		i = (esq + dir) / 2;
+
+		for(int j = 0; j < n; j++){
+			if(vetor[j] > i){
+				area = area + (vetor[j] - i);
+			}
+		}
+
+		if (area > a){
+			esq = i + 0.000001;
+		}else{
+			dir = i - 0.000001;
+		} 
+	}while (esq <= dir);
+
+	return i;
 }
 
-int BuscaBinaria(long long *vetor, int esq, int dir, int x){
-	int meio = (esq + dir) / 2;
-
-	if((vetor[meio] != x) && (esq == dir)){
-		return -1;
-	}else if(vetor[meio] < x){
-		return BuscaBinaria(vetor, meio+1, dir, x);
-	}else if(vetor[meio] > x){
-		return BuscaBinaria(vetor, esq, meio-1, x);
-	}else{
-		return meio;
-	}
-}
-
-
-void mergesort(long long *vetor, int l, int r) {
+void mergesort(int *vetor, int l, int r) {
 	int m;
 	if(l < r) {
 		m = (l + r) / 2;
@@ -44,13 +48,13 @@ void mergesort(long long *vetor, int l, int r) {
 }
 
 
-void merge(long long *vetor, int l, int m, int r) {
+void merge(int *vetor, int l, int m, int r) {
 	int size_l = m - l + 1;
 	int size_r = r - m;
 
 
-	long long *vet_l = malloc (size_l * sizeof (long long)) ;
-	long long *vet_r = malloc (size_r * sizeof (long long)) ;
+	int *vet_l = malloc (size_l * sizeof (int)) ;
+	int *vet_r = malloc (size_r * sizeof (int)) ;
 
 
 	for(int i=0; i<size_l; i++){
@@ -80,6 +84,6 @@ void merge(long long *vetor, int l, int m, int r) {
 	free(vet_r);
 }
 
-void ordenacao(long long *vetor, int n){
+void ordenacao(int *vetor, int n){
 	mergesort(vetor, 0, n-1);
 }
