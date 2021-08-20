@@ -14,27 +14,34 @@ int *desalocaVetor(int *vetor){
 	return vetor;
 }
 
-double BuscaBinaria(int *vetor, int a, int n){
-	double i, esq = 0, dir = vetor[n-1];
-
-	do{
-		double area = 0;
-		i = (esq + dir) / 2;
-
-		for(int j = 0; j < n; j++){
-			if(vetor[j] > i){
-				area = area + (vetor[j] - i);
+double AreaAcima(int *vetor, double meio, int n){
+	double areaAcima = 0;
+	for(int j = 0; j < n; j++){
+			if(vetor[j] > meio){
+				areaAcima = areaAcima + (vetor[j] - meio);
 			}
-		}
+	}
 
+	return areaAcima;
+}
+
+double BuscaBinaria(int *vetor, int a, int n){
+	double meio;
+	double esq = 0;
+	double dir = vetor[n-1];
+
+	while(esq <= dir){
+		meio = (esq + dir) / 2;
+		double area = AreaAcima(vetor, meio, n);
+		
 		if (area > a){
-			esq = i + 0.000001;
+			esq = meio + 0.000001;
 		}else{
-			dir = i - 0.000001;
+			dir = meio - 0.000001;
 		} 
-	}while (esq <= dir);
+	}
 
-	return i;
+	return meio;
 }
 
 void mergesort(int *vetor, int l, int r) {

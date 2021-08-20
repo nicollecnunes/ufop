@@ -7,6 +7,8 @@ int *desalocaVetor(int *vetor);
 
 double BuscaBinaria(int *vetor, int a, int n);
 
+double AreaAcima(int *vetor, double meio, int n);
+
 void mergesort(int *vetor, int l, int r);
 
 void merge(int *vetor, int l, int m, int r);

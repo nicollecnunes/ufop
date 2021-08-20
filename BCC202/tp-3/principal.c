@@ -11,7 +11,6 @@ int main(){
 		areaTiras = 0;
 
 		scanf("%d", &n);
-
 		vetor = alocaVetor(vetor, n);
 
 		scanf("%d", &a);
@@ -21,14 +20,11 @@ int main(){
 		}
 
 		for(int i = 0; i<n; i++){
-
 			scanf("%d", &vetor[i]);
-
 			areaTiras = areaTiras + vetor[i];
 		}
 
 		ordenacao(vetor, n);
-
 
 		if(areaTiras < a){
 			printf("-.-\n");
