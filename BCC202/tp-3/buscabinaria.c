@@ -25,7 +25,7 @@ double AreaAcima(int *vetor, double meio, int n){
 	return areaAcima;
 }
 
-double BuscaBinaria(int *vetor, int a, int n){
+void BuscaBinaria(int *vetor, int a, int n){
 	double meio;
 	double esq = 0;
 	double dir = vetor[n-1];
@@ -41,7 +41,7 @@ double BuscaBinaria(int *vetor, int a, int n){
 		} 
 	}
 
-	return meio;
+	printf("%.4lf\n", meio);
 }
 
 void mergesort(int *vetor, int l, int r) {
@@ -93,4 +93,24 @@ void merge(int *vetor, int l, int m, int r) {
 
 void ordenacao(int *vetor, int n){
 	mergesort(vetor, 0, n-1);
+}
+
+int inicializa(int *n, int *a){
+	scanf("%d", n);
+
+	scanf("%d", a);
+
+	if((*a == 0) || (*n == 0)){
+		return 0;
+	}else{
+		return 1;
+	}		
+}
+
+void leitoresoma(int *vetor, int n, int *area){
+	for(int i = 0; i<n; i++){
+			scanf("%d", &vetor[i]);
+			*area = *area + vetor[i];
+		}
+
 }

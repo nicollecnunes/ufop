@@ -3,27 +3,14 @@
 
 int main(){
 
-	int n = 1, a = 1;
-	int *vetor, areaTiras;
-	double resultado;
+	int n, a, areaTiras, run = 1;
+	int *vetor;
+	run = inicializa(&n, &a);
 
-	while(0<1){
-		areaTiras = 0;
-
-		scanf("%d", &n);
+	do{
 		vetor = alocaVetor(vetor, n);
 
-		scanf("%d", &a);
-
-		if((a == 0) || (n == 0)){
-			break;
-		}
-
-		for(int i = 0; i<n; i++){
-			scanf("%d", &vetor[i]);
-			areaTiras = areaTiras + vetor[i];
-		}
-
+		leitoresoma(vetor, n, &areaTiras);
 		ordenacao(vetor, n);
 
 		if(areaTiras < a){
@@ -31,14 +18,13 @@ int main(){
 		}else if(areaTiras == a){
 			printf(":D\n");
 		}else{
-			resultado = BuscaBinaria(vetor, a, n);
-			printf("%.4lf\n", resultado);
+			BuscaBinaria(vetor, a, n);
 		}
 
 		vetor = desalocaVetor(vetor);
-	}
+		run = inicializa(&n, &a);
 
-
+	}while(run);
 
 	return 0;
 }
