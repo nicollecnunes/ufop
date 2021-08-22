@@ -8,6 +8,7 @@ int main(){
 	run = inicializa(&n, &a);
 
 	do{
+		areaTiras = 0;
 		vetor = alocaVetor(vetor, n);
 
 		leitoresoma(vetor, n, &areaTiras);
