@@ -2,18 +2,19 @@
 # define hash_h
 
 // TAD lista
-typedef ??? TChave;
+typedef int TChave;
 
 typedef struct {
-//definir
+	TChave chave;
 } TItem;
 
 typedef struct celula {
-//definir
+	struct celula *pProx;
+	TItem item;
 } TCelula;
 
 typedef struct {
-  //definir
+	TCelula *pPrimeiro , *pUltimo;
 } TLista;
 
 void TLista_Inicia(TLista *pLista);
@@ -23,7 +24,9 @@ int TLista_Insere(TLista *pLista , TItem x);
 //TAD hash
 
 typedef struct {
-  //definir
+	int n; // numero de itens na hash
+	int nro_listas; // tamanho do array de listas
+	TLista *v; // array de listas
 } THash ;
 
 //Manter como especificado
@@ -34,5 +37,11 @@ int THash_H(THash *hash, TChave chave);
 TCelula *THash_PesquisaCelula(THash *hash, TChave chave);
 //Manter como especificado
 int THash_Insere (THash *hash, TItem x);
+
+void Leitor(THash *hash, int *n, int *c);
+
+void Imprime(THash *hash, int n);
+
+void TLista_Imprime(TLista *pLista);
 
 # endif
