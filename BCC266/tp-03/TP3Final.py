@@ -68,6 +68,11 @@ class TP3:
                 if(bloco.atualizado):
                     RAM[i] = bloco.palavra
                     i = i + 1
+        for conj in RAM:
+            for bloco in conj.blocos:
+                if(bloco.atualizado):
+                    f = open('MemoriaExterna.bin', mode='wb')
+                    f.write(bloco.palavra)
         
                 
     def maquina(self, programa):
