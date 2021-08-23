@@ -143,22 +143,7 @@ class TP3:
                     self.missC3 += 1
                     self.missRAM += 1
 
-                if ((opcode == 0) and (programa=="P")):
-                    chance = random.randint(0, 5) #20% de chance
-                    if chance == 0:
-                        numInterrInternas += 1
-                        print('Iniciando Tratador de Interrupções...')
-
-                        fileNameIntr = './interruptions/INTR'
-                        tamanho = random.randint(20, self.tamanhoProgramaInterrupcao)
-                        generator('./interruptions/INTR', tamanho, 10, 70)
-                        self.montarProgramaGeradorComTamanho(fileNameIntr, tamanho)
-                        self.maquina("I")
-
-                        print('Finalizando Tratador de Interrupções...')
-                        self.montarProgramaGerador(self.fileName)
-
-                elif(opcode==1):
+                if(opcode==1):
                     print(dadoMemoriaAdd1.palavra)
                     print(dadoMemoriaAdd2.palavra)
                     conteudo1 = dadoMemoriaAdd1.palavra[umaInstrucao.add1.endPalavra]
