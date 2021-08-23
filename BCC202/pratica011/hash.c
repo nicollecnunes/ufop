@@ -92,7 +92,7 @@ void Leitor(THash *hash, int *n, int *c){
 
 void Imprime(THash *hash, int n){
 	for (int i = 0; i<n; i++){
-		printf("%d -> ", i);
+		printf("\n%d -> ", i);
 		TLista_Imprime(&(hash->v[i]));
 	}
 
@@ -100,7 +100,7 @@ void Imprime(THash *hash, int n){
 
 void TLista_Imprime(TLista *pLista) {
 	if (TLista_EhVazia(pLista)){
-		printf("\\\n\r");
+		printf("\\");
 	}else{
 		TCelula *atual;
 		atual = pLista->pPrimeiro->pProx;
@@ -110,6 +110,6 @@ void TLista_Imprime(TLista *pLista) {
 	        atual = atual->pProx;
 	    }
 
-	    printf("%d -> \\\n\r", atual->item.chave);
+	    printf("%d -> \\", atual->item.chave);
 	}
 }

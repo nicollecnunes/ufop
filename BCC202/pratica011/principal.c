@@ -18,6 +18,7 @@ int main(){
 
 	//imprimir a tabela hash de acordo com a especificacao da saida
 	Imprime(hash, n);
+	printf("\n");
 
    return 0;
 }
