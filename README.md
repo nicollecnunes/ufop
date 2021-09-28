@@ -1,7 +1,11 @@
 # BCC201 = Introdução à Programação
-# BCC265 = Eletrônica para Computação
 # BCC202 = Estrutura de Dados I
-# BCC266 = Organização de Computadores
-# BCC222 = Programação Funcional
+# BCC203 = Estrutura de Dados II
 # BCC221 = Programação Orientada a Objetos
+# BCC222 = Programação Funcional
+# BCC265 = Eletrônica para Computação
+# BCC266 = Organização de Computadores
+
+
+
 

@@ -7,6 +7,20 @@ class Carro{
     string placa;
     public:
     // metodos publicos sem retorno
+
+    //construtor
+    Carro()
+    {
+        placa = "";
+        velocidade = 0;  
+    }
+
+    Carro(string _placa, int _velocidade)
+    {
+        placa = _placa;
+        velocidade = _velocidade; 
+    }
+
     void acelerar()
     {
         velocidade = velocidade + 10;
