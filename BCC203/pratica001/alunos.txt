@@ -1,0 +1,4 @@
+4001 Nicolle Canuto Nunes           8.9  8.9  8.9  10
+4002 Maria Maria Maria              5.2  5.2  5.2  50
+4003 Pedro Pedro Pedro              6.6  6.6  6.6  50
+4004 Lucas Lucas Lucas              4.4  4.4  4.4  00
