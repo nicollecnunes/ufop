@@ -12,8 +12,10 @@ data Layout = Vertical [Layout]
 
 minimizeAll :: Layout -> Layout
 minimizeAll (Single (App n _ _)) = Single (App n 1 1)
-minimizeAll (Vertical [(Single (App n _ _)), Horizontal [(Single (App n2 _ _))]]) = Vertical [Single (App n 1 1), Horizontal [Single (App n2 1 1)]]
-minimizeAll (Horizontal [(Single (App n _ _)), Vertical [(Single (App n2 _ _))]]) = Horizontal [Single (App n 1 1), Vertical [Single (App n2 1 1)]]
+minimizeAll (Vertical [Single (App n _ _), Horizontal [x]]) = Vertical [(Single (App n 1 1)), Horizontal [(minimizeAll x)]]
+minimizeAll (Horizontal [Single (App n _ _), Vertical [x]]) = Horizontal [(Single (App n 1 1)), Vertical [(minimizeAll x)]]
+minimizeAll (Vertical [x]) = Vertical [(minimizeAll x)]
+minimizeAll (Horizontal [x]) = Horizontal [(minimizeAll x)]
 
 -- em todos os casos, o nome é retornado da mesma forma, e, independentemente dos valores de Width e Height, eles serão sempre substituídos por 1. por isso
 -- não são variáveis nomeadas, e sim um _
