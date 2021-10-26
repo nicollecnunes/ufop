@@ -110,9 +110,9 @@ Questão 1. Escreva a função
 >        if odd x then x*x : question01 xs
 >        else x:question01 xs
 
-> -- a funcao verifica se a cabeca da lista é impar, se sim, a eleva o quadrado
-> -- e chama recursivamente a funcao question01 para a cauda da lista, repetindo o passo
-> -- caso nao seja impar, retorna-se o próprio numero (cabeca da lista) e tambem faz a chamada
+> -- a funcao verifica se a cabeca da lista é impar, se sim, a eleva o quadrado, coloca na cabeça da lista que está sendo formada
+> -- e chama recursivamente a funcao question01 para a cauda da lista, repetindo o passo ate que a cauda seja vazia
+> -- caso nao seja impar, retorna-se o próprio numero (cabeca da lista que está sendo formada) e tambem faz a chamada
 > -- recursiva para a cauda da lista
 > -- quando a lista é vazia, retorna-se uma lista vazia, finalizando o loop recursivo
 
@@ -146,8 +146,9 @@ Sua tarefa é implementar a função:
 > question02 One (x,y,z) = (z,x,y)
 > question02 Two xs = question02 One (question02 One xs)
 
-> -- dependendo do valor de Times passado, a funcao retorna o valor alterado
-> -- ou chama recursivamente o caso One até que tenha sido trocado o número de vezes necessário
+> -- dependendo do valor de Times passado, a funcao retorna o valor alterado. no caso One, foi feita manualmente.
+> -- e esse caso é usado para definir o caso Two
+> -- o caso Two chama recursivamente o caso One até que tenha sido trocado o número de vezes necessário, ou seja, duas vezes
 
 que a partir de um valor do tipo `Times` e uma tripla
 de valores de tipo `a`, retorna uma tripla na qual os
@@ -191,25 +192,28 @@ maior que 3.
 Com base nessas informações, desenvolva a função:
 
 > -- verifica se, ao manter somente os caracteres de 'A' a 'Z' ou 'a' a 'z' ou iguais a espaço, o nome alterado == nome
-> -- e se o tamanho da string é maior que 3. se satisfaz essas duas condições, significa que é um nome valido
+> -- se sim, significa que a string é formada apenas por esses caracteres (A..Z ou a..z ou espaço). após isso,
+> -- verifica-se se o tamanho da string é maior que 3. se satisfaz essas duas condições, significa que é um nome valido
+> -- caso contrario, retorna falso
 > testNome :: Name -> Bool
 > testNome n = if [c | c <- n, c `elem` ['A'..'Z'] || c `elem` ['a' .. 'z'] || c == ' '] == n 
 >    then if length n > 3 then True else False
 >    else False
 
 > -- verifica se, ao manter somente os caracteres de '0' a '9', a string p alterada permanece == string p original
-> -- se sim, nada foi removido, logo, o telefome é válido
+> -- se sim, significa que a string é formada apenas por esses caracteres (0...9). logo, o telefome é válido
 > testPhone :: Phone -> Bool
 > testPhone p = if [c | c <- p, c `elem` ['0'..'9']] == p then True else False
 
-> -- verifica se, ao manter somente o "@", a string alterada finaliza como "@" e se a string inicial tem tamanho > 3
-> -- se sim, significa que o email contem "@", e, então, é valido
+> -- verifica se, ao manter somente o "@", a string alterada finaliza como "@". se sim, significa que havia um "@" na string inicial.
+> -- após isso, verifica-se se a string inicial tem tamanho > 3. caso essas duas condições forem verdadeiras, o email é valido
 > testEmail :: Email -> Bool
 > testEmail e = if [c | c <- e, c == '@'] == ['@'] 
 >     then if length e > 3 then True else False
 >     else False
 
-> -- checa se todas as funcoes acima sao verdadeiras usando o operador "&&"
+> -- checa se todas as funcoes de teste acima sao verdadeiras. (nome, telefone e email sao validos) usando o operador "&&", ou seja,
+> -- retorna True apenas se TODAS as partes forem True
 > question03 :: Client -> Bool
 > question03 (Client n p e) = testNome n && testPhone p && testEmail e
 
@@ -259,17 +263,20 @@ representa uma falha de validação e armazena uma lista dos erros encontrados.
 
 Com base no apresentado, implemente a função.
 
-> -- o mesmo de testNome da questão anterior, porem pode retornar Nothing quando está tudo OK ou um erro
+> -- o mesmo de testNome da questão anterior, porem pode retornar Nothing quando está tudo OK ou um erro.
+> -- podendo ser NameLengthError caso o tamanho seja <=3 ou NameCharactersError caso haja números ou caracteres não alfabéticos no nome
 > testNomeq4 :: Name -> Maybe Error
 > testNomeq4 n = if [c | c <- n, c `elem` ['A'..'Z'] || c `elem` ['a' .. 'z'] || c == ' '] == n 
 >     then if length n > 3 then Nothing else Just NameLengthError
 >     else Just NameCharactersError
 
-> -- o mesmo de testPhone da questão anterior, porem pode retornar Nothing quando está tudo OK ou um erro
+> -- o mesmo de testPhone da questão anterior, porem pode retornar Nothing quando está tudo OK ou um erro.
+> -- podendo ser apenas PhoneError, que ocorre quando a string do telefone possui caracteres não numéricos
 > testPhoneq4 :: Phone -> Maybe Error
 > testPhoneq4 p = if [c | c <- p, c `elem` ['0'..'9']] == p then Nothing else Just PhoneError
 
 > -- o mesmo de testEmail da questão anterior, porem pode retornar Nothing quando está tudo OK ou um erro
+> -- podendo ser EmailSizeError caso o tamanho do email seja <=3 ou EmailCharError caso não haja um "@" no email
 > testEmailq4 :: Email -> Maybe Error
 > testEmailq4 e = if [c | c <- e, c == '@'] == ['@'] 
 >     then if length e > 3 then Nothing else Just EmailSizeError
@@ -337,8 +344,13 @@ Seu objetivo é implementar a função:
 
 > minimizeAll :: Layout -> Layout
 > minimizeAll (Single (App n _ _)) = Single (App n 1 1)
+> minimizeAll (Vertical [x]) = Vertical [minimizeAll x]
+> minimizeAll (Horizontal [x]) = Horizontal [minimizeAll x]
 > minimizeAll (Vertical [(Single (App n _ _)), Horizontal [(Single (App n2 _ _))]]) = Vertical [Single (App n 1 1), Horizontal [Single (App n2 1 1)]]
 > minimizeAll (Horizontal [(Single (App n _ _)), Vertical [(Single (App n2 _ _))]]) = Horizontal [Single (App n 1 1), Vertical [Single (App n2 1 1)]]
+> minimizeAll (Vertical []) = Vertical []
+> minimizeAll (Horizontal []) = Horizontal []
+
 
 > -- em todos os casos, o nome é retornado da mesma forma, e, independentemente dos valores de Width e Height, eles serão sempre substituídos por 1. por isso
 > -- não são variáveis nomeadas, e sim um _
