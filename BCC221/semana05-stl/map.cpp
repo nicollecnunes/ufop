@@ -50,7 +50,7 @@ int main(){
         cout << "Not found\n";
     }
 
-    popMap.clear();
+    popMap.clear(); //apaga tudo
     
 
     return 0;
