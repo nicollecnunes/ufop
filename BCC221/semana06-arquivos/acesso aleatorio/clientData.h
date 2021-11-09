@@ -1,5 +1,5 @@
-#ifndef CLIENTDATA_H
-#define CLIENTDATA_H
+#ifndef ClientData_H
+#define ClientData_H
 
 #include <string>
 using std::string;

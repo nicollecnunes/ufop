@@ -1,5 +1,12 @@
-#include "clientData.h"
+#include "ClientData.h"
 using std::string;
+#include <cstring>
+#include <iomanip>
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <string>
+#include <iomanip>
 
 // construtor padrao
 ClientData :: ClientData(int _accountNumber, string _lastName, string _firstName, double _balance){
@@ -36,4 +43,4 @@ void ClientData::setFirstName(string _n){
 }
 
 double ClientData::getBalance() const { return balance; }
-void ClientData::setBalance(double _b) {balance = _b};
+void ClientData::setBalance(double _b) {balance = _b;}
