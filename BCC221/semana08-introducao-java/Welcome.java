@@ -1,4 +1,4 @@
-public class Welcome1
+public class Welcome
 {
     // static indica que sera executado sem instanciar
     public static void main(String args[])

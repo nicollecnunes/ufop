@@ -1,6 +1,6 @@
 import javax.swing.JOptionPane;
 
-public class Welcome4
+public class WelcomeGUI
 {
     public static void main(String args[])
     {
