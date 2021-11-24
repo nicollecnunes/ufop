@@ -585,10 +585,13 @@ Monad para o seguinte tipo de dados.
 >   = RoseNode a [Rose a]
 >   | RoseLeaf
 
-> instance Functor Rose where
+> instance Functor (Rose) where
 >		fmap _ RoseLeaf = RoseLeaf
->		fmap f (RoseNode a ts) = RoseNode (f a) (fmap f <$> ts)
+>		fmap f (RoseNode a ts)
+>        = RoseNode (f a)
+>           (fmap f <$> ts)
 
->	instance Applicative Rose where
+>	instance Applicative (Rose) where
 >	pure a = RoseNode x ts
->  (<*>) (RoseNode f tfs) (RoseNode a tf) = Node (f a) (zipWith (<*>) tfs tf)
+>  (<*>) (RoseNode f tfs) (RoseNode a tf)
+>        = Node (f a) (zipWith (<*>) tfs tf)
