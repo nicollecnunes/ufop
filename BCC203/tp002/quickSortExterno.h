@@ -5,45 +5,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 
-#define TAMANHOAREA 20
+#define TAMANHOAREAPIVO 10
 #define FALSE 0
 #define TRUE 1
 
-void quickSortExterno(FILE **arqLi, FILE **arqEi, FILE **arqLEs, int esq, int dir);
+typedef struct area
+{
+    Aluno *areaAlunos;
+    int tamanho;
+} Area;
 
-void leSuperior(FILE **arqLEs, Aluno *ultimoLido, int *ls, short *ondeLer);
 
-void leInferior(FILE **arqLi, Aluno *ultimoLido, int *li, short *ondeLer);
+void quickSortExterno(FILE **arqLi, FILE **arqEi, FILE **arqLEs, int esq, int dir, Analise *a);
 
-void inserirArea(Aluno *area, Aluno *ultimoLido, int *nArea);
+void leSuperior(FILE **arqLEs, Aluno *ultimoLido, int *ls, short *deveLerSuperior, Analise *a);
 
-void escreveMax(FILE **arqLEs, Aluno *R, int *es);
+void leInferior(FILE **arqLi, Aluno *ultimoLido, int *li, short *deveLerSuperior, Analise *a);
 
-void escreveMin(FILE **arqEi, Aluno *R, int *ei);
+void inserirAluno(Area *area, Aluno *ultimoLido, int *nAluno, Analise *a);
 
-void retiraMax(Aluno *area, Aluno *R, int *nArea);
+void escreveSup(FILE **arqLEs, Aluno R, int *es, Analise *a);
 
-void retiraMin(Aluno *area, Aluno *R, int *nArea);
+void escreveInf(FILE **arqEi, Aluno R, int *ei, Analise *a);
 
-void particao(FILE **arqLi, FILE **arqEi, FILE **arqLEs, Aluno *area, int esq, int dir, int *i, int *j);
+void retiraMax(Area *area, Aluno *R, int *nAluno, Analise *a);
 
-void criaAreaVazia(Aluno *area);
+void retiraMin(Area *area, Aluno *R, int *nAluno, Analise *a);
 
-void insereItem(Aluno ultimoLido, Aluno *area);
+void particao(FILE **arqLi, FILE **arqEi, FILE **arqLEs, Area area, int esq, int dir, int *i, int *j, Analise *a);
 
-int obterNumCelulasOcupadas(Aluno *area);
+void criaAlunoVazia(Aluno *aluno);
 
-void retiraUltimo(Aluno *area, Aluno *R);
+void insereItem(Aluno ultimoLido, Area *area, Analise *a);
 
-void retiraPrimeiro(Aluno *area, Aluno *R);
+void retiraUltimo(Area *area, Aluno *R, Analise *a);
 
-void imprimirArea(Aluno *area);
+void retiraPrimeiro(Area *area, Aluno *R, Analise *a);
 
 #endif
-
-
-
-
-
-

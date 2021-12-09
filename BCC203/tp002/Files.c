@@ -66,10 +66,9 @@ void criarArquivos(FILE** arqLEs, FILE** arqLi, FILE** arqEi, FILE** arqTxt, int
 		case 3:
 		{ // 3 - arquivo desordenado aleatoriamente
 			if((arqBin = fopen("PROVAO3.bin", "wb")) == NULL){
-                printf("Erro com o arquivo PROVAO3.bin\n");
+        		printf("Erro com o arquivo PROVAO3.bin\n");
 				exit(1);
 			}
-
             // converte o .txt em .bin
 			txt2Bin(*arqTxt, arqBin, n);
 			fclose(arqBin);
@@ -117,6 +116,7 @@ void txt2Bin(FILE* txtOrigem, FILE* binFinal, int n){
 		strcpy(aluno->estado, estado);
 		strcpy(aluno->cidade, cidade);
 		strcpy(aluno->curso, curso);
+		// aluno->isMarked = 0;
 
 		fwrite(aluno, sizeof(Aluno), 1, binFinal);
 		free(aluno);
@@ -134,12 +134,9 @@ void bin2Txt(FILE* binOrigem, FILE* txtFinal, int n){
 	char curso[31];
 
 	int i = 0;
+    Aluno* aluno = malloc(sizeof(Aluno));
 
-	while(i < n){
-		Aluno* aluno = malloc(sizeof(Aluno));
-
-		fread(aluno, sizeof(Aluno), 1, binOrigem);
-
+	while(fread(aluno, sizeof(Aluno), 1, binOrigem) == 1){
 		nroInscricao = aluno->inscricao;
 		nota = aluno->nota;
 		strcpy(estado, aluno->estado);
@@ -150,14 +147,32 @@ void bin2Txt(FILE* binOrigem, FILE* txtFinal, int n){
         formatNota(nota, 1, txtFinal);
 
 		fprintf(txtFinal, "%-s %-s %-s\n", estado, cidade, curso);
-		
-		free(aluno);
-
 		i++;
 	}
 	//fclose(binOrigem);
 
+    free(aluno);
 	remove("PROVAO.bin");
 	remove("PROVAO1.bin");
 	remove("PROVAO2.bin");
+}
+
+void transformaFitas(FitasPrimeiroMetodo *fitas, int quantidade){
+    char nome_arquivo[50];
+    char nome_arquivo_leitura[50];
+    
+    //Leitura das fitas binarias, passando para txt
+    FILE *fitas_entradas_leitura[QUANTIDADE_FITAS];
+    for (int i = 0; i < QUANTIDADE_FITAS; ++i) {
+        sprintf(nome_arquivo, "fitaEntrada%d.bin", i + 1);
+        fitas->fita_entrada[i] = fopen(nome_arquivo, "rb");
+        strcpy(nome_arquivo_leitura, "");
+        sprintf(nome_arquivo_leitura, "fitaEntradaLeitura%d.txt", i + 1);
+        fitas_entradas_leitura[i] = fopen(nome_arquivo_leitura, "w");
+        bin2Txt(fitas->fita_entrada[i], fitas_entradas_leitura[i], quantidade);
+    }
+    for (int i = 0; i < QUANTIDADE_FITAS; ++i) {
+        fclose(fitas->fita_entrada[i]);
+        fclose(fitas_entradas_leitura[i]);
+    }
 }

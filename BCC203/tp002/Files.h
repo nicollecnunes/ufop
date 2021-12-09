@@ -13,4 +13,6 @@ void txt2Bin(FILE* txtOrigem, FILE* binFinal, int n);
 
 void bin2Txt(FILE* binOrigem, FILE* txtFinal, int n);
 
+void transformaFitas(FitasPrimeiroMetodo *fitas, int quantidade);
+
 #endif

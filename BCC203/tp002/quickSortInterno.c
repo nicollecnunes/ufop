@@ -1,7 +1,7 @@
 #include "quickSortInterno.h"
 
 // Escolha do pivo numa mediana de 3 valores
-void pivo_mediana(Aluno *v, int esquerda, int direita)
+void pivo_mediana(Aluno *v, int esquerda, int direita, Analise *an)
 {
     //procura a mediana entre esquerda, meio e direita
     int meio = (esquerda + direita) / 2;
@@ -13,35 +13,42 @@ void pivo_mediana(Aluno *v, int esquerda, int direita)
     int indice_do_meio; //índice da mediana
 
     // compara para saber qual o maior elemento. Menor elemento. E o elemento do meio.
+    novaComparacao(an);
     if (a < b) 
     {
+        novaComparacao(an);
         if (b < c) 
         {
             indice_do_meio = meio; // a < b < c
 
         } else 
         {
+            novaComparacao(an);
             if (a < c) 
             {
                 indice_do_meio = direita; //a < c < b
 
             } else 
             {
+                novaComparacao(an);
                 indice_do_meio = esquerda; //c < a < b
 
             }
         }
     } else 
     {
+        novaComparacao(an);
         if (c < b) 
         {
             indice_do_meio = meio; //c < b < a 
         } else 
         {
+            novaComparacao(an);
             if (c < a) 
             {
                 indice_do_meio = direita; // b < c < a 
             } else {
+                novaComparacao(an);
                 indice_do_meio = esquerda; // b < a < c
             }
         }
@@ -52,26 +59,26 @@ void pivo_mediana(Aluno *v, int esquerda, int direita)
 }
 
 //Quicksort MEDIANA
-void quickSort_mediana(Aluno *v, int esquerda, int direita)
+void quickSort_mediana(Aluno *v, int esquerda, int direita, Analise *a)
 {
     while(esquerda < direita)
     {
         if(direita - esquerda <= 10)
         {
-            insertionSort(v, esquerda, direita);
+            insertionSort(v, esquerda, direita, a);
             break;
         }
         else
         {
-            int pivo = particao_mediana(v, esquerda, direita);
+            int pivo = particao_mediana(v, esquerda, direita, a);
 
             if(pivo - esquerda < direita - pivo) // esquerda
             {
-                quickSort_mediana(v, esquerda, pivo - 1);
+                quickSort_mediana(v, esquerda, pivo - 1, a);
                 esquerda = pivo + 1;
             }
             else{
-                quickSort_mediana(v, pivo + 1, direita); // direita
+                quickSort_mediana(v, pivo + 1, direita, a); // direita
                 direita = pivo - 1;
             }
         }
@@ -79,9 +86,9 @@ void quickSort_mediana(Aluno *v, int esquerda, int direita)
 }
 
 // Particao do quicksort
-int particao_mediana(Aluno *v, int esquerda, int direita) 
+int particao_mediana(Aluno *v, int esquerda, int direita, Analise *a) 
 {
-    pivo_mediana(v, esquerda, direita);
+    pivo_mediana(v, esquerda, direita, a);
 
     double pivo = v[direita].nota; // colocamos o pivo no ultimo elemento
     int i = esquerda - 1;
@@ -90,6 +97,7 @@ int particao_mediana(Aluno *v, int esquerda, int direita)
     // Os elementos que são menores ou iguais ao pivo, serão colocados do lado esquerdo
     for (j = esquerda; j <= direita - 1; j++) // da esquerda para a direita 
     {
+        novaComparacao(a);
         if (v[j].nota <= pivo) 
         {
             i = i + 1;
@@ -117,7 +125,8 @@ void troca(Aluno *v, int x, int y)
 
 void imprimir(Aluno *v, int tam) 
 {
-    for (int i = 0; i < tam; i++) 
+    int i;
+    for (i = 0; i < tam; i++) 
     {
         printf("%lf ", v[i].nota);
     }
@@ -125,20 +134,21 @@ void imprimir(Aluno *v, int tam)
 }
 
 // Implementação do insertionSort
-void insertionSort(Aluno *v, int esquerda, int direita)
+void insertionSort(Aluno *v, int esquerda, int direita, Analise *a)
 {
     // Um número compara com o seu antecessor
     // Caso for maior, troca de posição e compara com todos os elementos que antecedem sucessivamente
-    int j;
+    int i, j;
     Aluno aux;
 
-    for(int i = esquerda + 1; i <= direita; i++)
+    for(i = esquerda + 1; i <= direita; i++)
     {
         aux = v[i];
         j = i;
         
         while(j > esquerda && v[j-1].nota > aux.nota)
         {
+            novaComparacao(a);
             v[j] = v[j-1];
             j--;
         }
@@ -147,49 +157,3 @@ void insertionSort(Aluno *v, int esquerda, int direita)
     }
 }
 
-// Prenchee o vetor com números aleatorios de 0 a MAX
-void sortear(int *v, int tam)
-{
-    srand(time(NULL));
-
-    printf("\nVocê deseja números de 0 até quanto?\n");
-    int max;
-    scanf("%d", &max);
-
-    for (int i = 0; i < tam; i++)
-    {
-        v[i] = rand() % max;
-    }
-}
-
-// Pede o usuario para digitar os valores para preecher o vetor
-void escolherValores(int *v, int tam)
-{
-    printf("\nDigite os valores que você deseja: ");
-    for (int i = 0; i < tam; i++)
-    {
-        scanf("%d", &v[i]);
-    }
-}
-
-// Opcode para prencheer o vetor com numeros aleatorios a escolha do usuario
-void preencher_vetor(int *vetor, int tam, int opcode)
-{
-    if (opcode == 1)
-    {
-        sortear(vetor, tam);
-    }
-    else if (opcode == 2)
-    {
-        escolherValores(vetor, tam);
-    }
-
-    printf("\n************************************************************\n");
-
-}
-
-// Define se o pivo vai ser por meio aleatorio ou por mediana
-void escolhaPivoMediana(Aluno *vetor, int tamanho_vetor)
-{
-    quickSort_mediana(vetor, 0, tamanho_vetor - 1);
-}
