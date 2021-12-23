@@ -1,0 +1,23 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package cadastro;
+
+import telas.TelaPrincipal;
+
+/**
+ *
+ * @author DPCDTI
+ */
+public class Cadastro {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        System.out.print("Sistema online");
+        new TelaPrincipal().setVisible(true);
+    }
+    
+}
