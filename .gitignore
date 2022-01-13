@@ -268,3 +268,5 @@ cython_debug/
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/c++,visualstudiocode,python,java,haskell
+/BCC221/semana12-swing/Cadastro/nbproject/private/
+/BCC221/semana12-swing/proba/nbproject/private/

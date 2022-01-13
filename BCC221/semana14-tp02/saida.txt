@@ -1,0 +1,481 @@
+Kurt Turnbull
+270000,00
+The Lawns
+West Cardoon
+Mobile
+365
+1
+100,00
+true
+false
+
+Tyrell Tang
+315000,00
+Back Road
+King Point
+Thompson
+494
+1
+true
+
+Niyah Lewis
+550000,00
+Blenheim Close
+Larch Gardens
+Orford
+88
+2
+true
+
+Libbie Reilly
+280000,00
+Rose Street
+Prospect Place
+Hoquiam
+53
+2
+150,00
+true
+true
+
+Szymon Gallegos
+800000,00
+Seymour Road
+Saddle Forest
+Saint Boniface
+72
+true
+true
+true
+true
+true
+
+Lila Ellison
+195000,00
+Orchard Way
+Ripple Point
+Chulmleigh
+1
+2
+70,00
+true
+false
+
+Tomi French
+160000,00
+Waverley Road
+Fort Nutmeg
+Newton-le-Willows
+32
+1
+50,00
+false
+false
+
+Amani Riley
+300000,00
+Broadway
+Teal Square
+Penrith
+146
+1
+true
+
+Menaal Keeling
+600000,00
+Laburnum Grove
+Mount Woodruff
+Higham Ferrers
+55
+true
+false
+false
+true
+false
+
+Darragh Benton
+180000,00
+Bridge Street
+Annatto City
+Staunton
+13
+2
+60,00
+false
+false
+
+Damien Boyce
+900000,00
+Elm Close
+Sallow Plains
+Great Dunmow
+98
+3
+true
+
+Nina Hunter
+500000,00
+Parsonage Lane
+Maroon Hook
+Cherokee
+186
+5
+200,00
+true
+true
+
+Simone Ashley
+255000,00
+Wisdom
+Parsonage Lane
+Penrith
+22
+1
+false
+
+Millie-Mae Carr
+265000,00
+Mary Street
+Myers Falls
+Eastchester
+10
+3
+120,00
+true
+true
+
+Lila Ellison
+236000,00
+Back Road
+Saddle Forest
+Orford
+69
+false
+false
+true
+false
+true
+
+Kendall Muir
+200000,00
+Kings Road
+Amethyst Point
+Shiprock
+68
+2
+95,00
+true
+false
+
+Georgina Hendrix
+290000,00
+Woodhouse Lane
+Queen Bay
+Busselton
+35
+1
+false
+
+Simone Ashley
+770000,00
+Windmill Lane
+Teal Wharf
+Uckfield
+11
+2
+true
+
+Simone Ashley
+455000,00
+Winterfield
+
+Eastchester
+79
+1
+true
+
+Amani Riley
+100000,00
+Back Road
+Saddle Forest
+Saint Boniface
+69
+false
+false
+false
+false
+false
+
+Amani Riley
+670000,00
+Seymour Road
+West Cardoon
+Great Dunmow
+313
+3
+200,00
+true
+false
+
+Lila Ellison
+275000,00
+Stark Road
+Ripple Park
+Hoquiam
+111
+2
+220,00
+true
+false
+
+Lila Ellison
+170000,00
+Fisher Square
+Hansa Plaza
+Staunton
+778
+1
+40,00
+false
+false
+
+Georgina Hendrix
+332000,00
+Hoffman Road
+West Cardoon
+Staunton
+356
+3
+100,00
+true
+false
+
+Darragh Benton
+355000,00
+Columbus Ave
+Denton
+Eastchester
+97
+1
+true
+
+Tomi French
+615000,00
+Norton
+Lower Byzantine
+Chulmleigh
+339
+1
+true
+
+Tomi French
+421000,00
+Seymour Road
+West Cardoon
+Great Dunmow
+200
+3
+200,00
+true
+false
+
+Simone Ashley
+295000,00
+Amazon
+Cobalt Walk
+Mobile
+81
+1
+false
+
+Nina Hunter
+333000,00
+Sailor Field
+Lower Byzantine
+Busselton
+913
+3
+80,00
+true
+false
+
+Nina Hunter
+743000,00
+Square Park
+West Cardoon
+Great Dunmow
+14
+3
+200,00
+true
+true
+
+Libbie Reilly
+223000,00
+Turton
+
+Uckfield
+41
+1
+true
+
+Szymon Gallegos
+245000,00
+
+
+Chulmleigh
+53
+1
+true
+
+Darragh Bentong
+333000,00
+Blue Lake
+Snow Neck
+Hoquiam
+64
+true
+false
+false
+true
+false
+
+Libbie Reilly
+628000,00
+Seymour Road
+West Cardoon
+Busselton
+99
+3
+200,00
+true
+true
+
+Nina Hunter
+272000,00
+Seymour Road
+Fiddlehead City
+Busselton
+22
+3
+80,00
+false
+true
+
+Amani Riley
+329000,00
+Seymour Road
+West Cardoon
+Great Dunmow
+66
+3
+55,00
+true
+false
+
+Nina Hunter
+666000,00
+Heathan Forest
+Mount Woodruff
+Higham Ferrers
+58
+true
+false
+false
+true
+true
+
+Simone Ashley
+655000,00
+West road
+
+Newton-le-Willows
+24
+2
+true
+
+Georgina Hendrix
+455000,00
+Winterfield
+
+Orford
+38
+1
+true
+
+Kurt Turnbull
+1000000,00
+Groove Park
+Fawn Neck
+Higham Ferrers
+265
+true
+true
+true
+true
+true
+
+Libbie Reilly
+462000,00
+Tatton Road
+Amber Plaza
+Great Dunmow
+15
+3
+200,00
+true
+true
+
+Menaal Keeling
+916000,00
+Laburnum Grove
+Mount Woodruff
+Higham Ferrers
+613
+true
+false
+true
+true
+false
+
+Niyah Lewis
+743000,00
+Laburnum Grove
+Mount Cornflower
+Higham Ferrers
+333
+true
+false
+false
+true
+false
+
+Niyah Lewis
+888000,00
+Seymour Road
+Indigo Village
+Newton-le-Willows
+65
+3
+240,00
+true
+true
+
+Kurt Turnbull
+1555000,00
+Winterfield
+Upper Sunrise
+Orford
+68
+3
+true
+
+Simone Ashley
+255000,00
+Winland
+Sun Knigth
+Orford
+23
+1
+true
+
