@@ -5,6 +5,7 @@
 <a href="https://github.com/nicollecnunes/ufop/tree/main/BCC203"> BCC203 Estrutura de Dados II </a><br>
 <a href="https://github.com/nicollecnunes/ufop/tree/main/BCC221"> BCC221 Programação Orientada a Objetos </a><br>
 <a href="https://github.com/nicollecnunes/ufop/tree/main/BCC222"> BCC222 Programação Funcional </a><br>
+<a href="https://github.com/nicollecnunes/ufop/tree/main/BCC264"> BCC264 Redes de Computadores </a><br>
 <a href="https://github.com/nicollecnunes/ufop/tree/main/BCC265"> BCC265 Eletrônica para Computação </a><br>
 <a href="https://github.com/nicollecnunes/ufop/tree/main/BCC266"> BCC266 Organização de Computadores </a><br>
 
