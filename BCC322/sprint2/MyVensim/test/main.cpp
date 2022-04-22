@@ -6,6 +6,7 @@
 using namespace std;
 
 int main(){
+    int sair;
 
     cout << "INICIANDO TESTES FUNCIONAIS\n";
     cout << "==============================================\n\n";
@@ -14,10 +15,7 @@ int main(){
     logisticalFuncionalTest();
     complexFuncionalTest();
 
-    cout << "FINALIZANDO TESTES FUNCIONAIS\n";
-    cout << "==============================================\n\n";
-
-    cout << "\n\nINICIANDO TESTES UNITARIOS\n";
+    cout << "\nINICIANDO TESTES UNITARIOS\n";
     cout << "==============================================\n\n";
 
     exponentialUnitTest();
@@ -26,6 +24,9 @@ int main(){
 
     cout << "\nFINALIZANDO TESTES UNITARIOS\n";
     cout << "==============================================\n\n";
+
+    cout << "Pressione 0 para sair" << endl;
+    cin >> sair;
 
     return true;
 }
