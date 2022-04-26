@@ -6,19 +6,6 @@
 
 using namespace std;
 
-class Aresta
-{
-    public:
-        int id;
-        int origem;
-        int destino;
-        double peso;
-        int foiVisitada;
-
-        Aresta(int id, int origem, int destino, double peso, int foiVisitada);
-        ~Aresta();
-};
-
 class Vertice
 {
     public:
@@ -43,23 +30,20 @@ class InfoArestas
 class Grafo
 {
     public:
-        int verticeInicial;
         int qtdVertices;
         int qtdArestas;
-        int indice;
         int ehDirecionado;
+        int verticeInicial;
 
-        vector<Aresta> listaArestas;
         vector<Vertice> listaVertices;
         vector<vector<InfoArestas>> listaVizinhanca;
 
-        Grafo();
+        Grafo(int qtdVertices, int qtdArestas, int ehDirecionado, int verticeInicial);
         ~Grafo();
 
         void criaGrafo();
-        void buscaEmProfundidade(int verticeInicial, vector<int> *ordemDeVisitacao);
+        void buscaEmProfundidade(int verticeInicial, vector<int> *ordemFinal);
         void iniciaListaVizinhanca();
-        bool existeVizinhoNaoVisitado(int vOrigem, int vDestino);
 };
 
 #endif
