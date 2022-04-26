@@ -1,3 +1,10 @@
+/**
+* @file Flow.cpp
+* @author Nicolle Nunes
+* @date 26 April 2022
+* @brief Arquivo que define os métodos da entidade Fluxo
+**/
+
 #include "Flow.h"
 #include "System.h"
 

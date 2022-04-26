@@ -1,3 +1,10 @@
+/**
+* @file FlowClasses.cpp
+* @author Nicolle Nunes
+* @date 26 April 2022
+* @brief Arquivo que define as classes herdeiras de Fluxo (especializadas)
+**/
+
 #include "../src/Flow.h"
 #include "../src/Model.h"
 #include "../src/System.h"

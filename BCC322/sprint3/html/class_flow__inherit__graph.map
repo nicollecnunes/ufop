@@ -1,6 +1,6 @@
 <map id="Flow" name="Flow">
-<area shape="rect" id="node1" title=" " alt="" coords="159,5,279,259"/>
-<area shape="rect" id="node2" href="$class_flow_complex.html" title=" " alt="" coords="5,307,125,399"/>
-<area shape="rect" id="node3" href="$class_flow_exponential.html" title=" " alt="" coords="150,307,287,399"/>
-<area shape="rect" id="node4" href="$class_flow_logistic.html" title=" " alt="" coords="312,307,427,399"/>
+<area shape="rect" id="node1" title=" " alt="" coords="164,5,213,32"/>
+<area shape="rect" id="node2" href="$class_flow_complex.html" title=" " alt="" coords="5,80,105,107"/>
+<area shape="rect" id="node3" href="$class_flow_exponential.html" title=" " alt="" coords="130,80,247,107"/>
+<area shape="rect" id="node4" href="$class_flow_logistic.html" title=" " alt="" coords="272,80,367,107"/>
 </map>

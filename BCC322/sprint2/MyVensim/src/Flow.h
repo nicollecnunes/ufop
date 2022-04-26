@@ -1,3 +1,10 @@
+/**
+* @file Flow.h
+* @author Nicolle Nunes
+* @date 26 April 2022
+* @brief Arquivo header da entidade que representa o fluxo.
+**/
+
 #ifndef FLOW_HPP
 #define FLOW_HPP
 

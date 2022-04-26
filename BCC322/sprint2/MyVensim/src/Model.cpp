@@ -1,3 +1,10 @@
+/**
+* @file Model.cpp
+* @author Nicolle Nunes
+* @date 26 April 2022
+* @brief Arquivo que define os métodos da entidade Modelo
+**/
+
 #include "Model.h"
 #include "Flow.h"
 #include "System.h"

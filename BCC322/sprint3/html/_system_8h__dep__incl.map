@@ -1,9 +1,9 @@
 <map id="C:/ufop/BCC322/sprint2/MyVensim/src/System.h" name="C:/ufop/BCC322/sprint2/MyVensim/src/System.h">
-<area shape="rect" id="node1" title=" " alt="" coords="466,5,637,47"/>
-<area shape="rect" id="node2" href="$_flow_8cpp.html" title=" " alt="" coords="5,95,172,136"/>
-<area shape="rect" id="node3" href="$_model_8cpp.html" title=" " alt="" coords="196,95,371,136"/>
-<area shape="rect" id="node4" href="$_system_8cpp.html" title=" " alt="" coords="395,95,579,136"/>
+<area shape="rect" id="node1" title="Arquivo header da entidade que define o sistema." alt="" coords="466,5,637,47"/>
+<area shape="rect" id="node2" href="$_flow_8cpp.html" title="Arquivo que define os métodos da entidade Fluxo." alt="" coords="5,95,172,136"/>
+<area shape="rect" id="node3" href="$_model_8cpp.html" title="Arquivo que define os métodos da entidade Modelo." alt="" coords="196,95,371,136"/>
+<area shape="rect" id="node4" href="$_system_8cpp.html" title="Arquivo que define os métodos da entidade Sistema." alt="" coords="395,95,579,136"/>
 <area shape="rect" id="node5" href="$_flow_classes_8h.html" title=" " alt="" coords="654,95,857,136"/>
-<area shape="rect" id="node6" href="$_test_f_8cpp.html" title=" " alt="" coords="566,184,742,225"/>
-<area shape="rect" id="node7" href="$_test_u_8cpp.html" title=" " alt="" coords="785,184,963,225"/>
+<area shape="rect" id="node6" href="$_test_f_8cpp.html" title="Testes Funcionais." alt="" coords="566,184,742,225"/>
+<area shape="rect" id="node7" href="$_test_u_8cpp.html" title="Testes Unitários." alt="" coords="785,184,963,225"/>
 </map>

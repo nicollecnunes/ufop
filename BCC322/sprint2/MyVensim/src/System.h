@@ -1,3 +1,11 @@
+
+/**
+* @file System.h
+* @author Nicolle Nunes
+* @date 26 April 2022
+* @brief Arquivo header da entidade que define o sistema
+**/
+
 #ifndef SYSTEM_HPP
 #define SYSTEM_HPP
 
