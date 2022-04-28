@@ -10,26 +10,26 @@
 
 Flow::Flow()
 {
-    nock = NULL;
+    origin = NULL;
     target = NULL;
 }
 
 Flow::Flow(System *n, System *t)
 {
-    this->nock = n;
+    this->origin = n;
     this->target = t;
 }
 
 Flow::~Flow(){}
 
-System * Flow::getNock(void) const
+System * Flow::getOrigin(void) const
 {
-    return nock;
+    return origin;
 }
 
-void Flow::setNock(System *n)
+void Flow::setOrigin(System *n)
 {
-    this->nock = n;
+    this->origin = n;
 }
 
 
@@ -60,7 +60,7 @@ Flow* Flow::operator=(const Flow *f)
         return this;
     }
 
-    this->nock = f->nock;
+    this->origin = f->origin;
     this->target = f->target;
     this->flowValue = f->flowValue;
 

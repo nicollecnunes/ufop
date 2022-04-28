@@ -10,7 +10,7 @@
 
     void unit_Flow_constructor(void);
     void unit_Flow_destructor(void);
-    void unit_Flow_setNock(void);
+    void unit_Flow_setOrigin(void);
     void unit_Flow_setTarget(void);
     void unit_Flow_runExponential(void);
     void unit_Flow_runLogistic(void);

@@ -16,18 +16,18 @@ class System;
 class Flow 
 {
     protected:
-        System *nock;
+        System *origin;
         System *target;
         double flowValue;
     public:
         Flow();
-        Flow(System *nock, System *target);
+        Flow(System *origin, System *target);
         virtual ~Flow();
 
         virtual double run() = 0;
 
-        System *getNock(void) const;
-        void setNock(System *n);
+        System *getOrigin(void) const;
+        void setOrigin(System *n);
 
         System *getTarget(void) const;
         void setTarget(System *t);

@@ -20,8 +20,8 @@ class Flow
 
         virtual double run() = 0;
 
-        virtual ISystem *getNock(void) const = 0;
-        virtual void setNock(ISystem *n);
+        virtual ISystem *getOrigin(void) const = 0;
+        virtual void setOrigin(ISystem *n);
 
         virtual ISystem *getTarget(void) const = 0;
         void setTarget(ISystem *t);

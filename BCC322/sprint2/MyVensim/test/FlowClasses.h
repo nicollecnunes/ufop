@@ -15,7 +15,7 @@ class FlowExponential : public Flow
         FlowExponential(): Flow(){}
 
         double run(){
-            return 0.01 * getNock()->getSystemValue();
+            return 0.01 * getOrigin()->getSystemValue();
         }
 };
 
@@ -35,7 +35,7 @@ class FlowComplex: public Flow
         FlowComplex(): Flow(){}
 
         double run(){
-            return 0.01 * getNock()->getSystemValue();
+            return 0.01 * getOrigin()->getSystemValue();
         }
 };
 

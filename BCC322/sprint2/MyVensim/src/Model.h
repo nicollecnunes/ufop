@@ -11,6 +11,7 @@ class Model {
 protected:
     double time = 0;
     list<Flow *> listFlow;
+    list<System *> listSystem;
 
     Model* operator=(const Model* m);
 public:
@@ -19,6 +20,7 @@ public:
 
     void run(double s = 0, double e = 0, double i = 0);
     void add(Flow *f = NULL);
+    void add(System *s = NULL);
 };
 
 #endif

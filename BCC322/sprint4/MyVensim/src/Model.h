@@ -10,7 +10,8 @@ class Model : public IModel
 {
     protected:
         double time = 0;
-        list<Flow *> listFlow;
+        list<IFlow *> listFlow;
+        list<ISystem *> listSystem;
 
         Model* operator=(const Model* m);
     public:
@@ -19,6 +20,7 @@ class Model : public IModel
 
         void run(double s = 0, double e = 0, double i = 0);
         void add(IFlow *f = NULL);
+        void add(ISystem *s = NULL);
 };
 
 #endif

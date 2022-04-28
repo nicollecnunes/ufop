@@ -17,6 +17,11 @@ void Model::add(Flow *f)
     listFlow.push_back(f);
 }
 
+void Model::add(System *s)
+{
+    listSystem.push_back(s);
+}
+
 void Model::run(double start, double end, double increment)
 {
     for(double i = start; i < end; i+=increment) 
@@ -29,11 +34,11 @@ void Model::run(double start, double end, double increment)
 
         for(auto it = listFlow.begin(); it != listFlow.end(); it++)
         {
-            System *nock = (*it)->getNock();
+            System *origin = (*it)->getOrigin();
             System *target = (*it)->getTarget();
-            if(nock != NULL)
+            if(origin != NULL)
             {
-                nock->setSystemValue(nock->getSystemValue() - (*it)->getFlowValue());
+                origin->setSystemValue(origin->getSystemValue() - (*it)->getFlowValue());
             }
 
             if(target != NULL) 

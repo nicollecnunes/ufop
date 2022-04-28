@@ -16,18 +16,18 @@ using namespace std;
 class Flow : public IFlow
 {
     protected:
-        ISystem *nock;
+        ISystem *origin;
         ISystem *target;
         double flowValue;
     public:
         Flow();
-        Flow(ISystem *nock, ISystem *target);
+        Flow(ISystem *origin, ISystem *target);
         virtual ~Flow();
 
         virtual double run() = 0;
 
-        ISystem *getNock(void) const;
-        void setNock(ISystem *n);
+        ISystem *getOrigin(void) const;
+        void setOrigin(ISystem *n);
 
         ISystem *getTarget(void) const;
         void setTarget(ISystem *t);

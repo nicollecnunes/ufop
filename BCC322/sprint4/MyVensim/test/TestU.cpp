@@ -27,7 +27,7 @@ void exponentialUnitTest()
     System *sPop2 = new System(0);
 
     FlowExponential *fExponencial = new FlowExponential();
-    fExponencial->setNock(sPop1);
+    fExponencial->setOrigin(sPop1);
     fExponencial->setTarget(sPop2);
     mExponencial->add(fExponencial);
 
@@ -55,7 +55,7 @@ void logisticalUnitTest()
     System *sPop2 = new System(10);
 
     FlowLogistic *fLogistica = new FlowLogistic();
-    fLogistica->setNock(sPop1);
+    fLogistica->setOrigin(sPop1);
     fLogistica->setTarget(sPop2);
     mLogistica->add(fLogistica);
 
@@ -85,32 +85,32 @@ void complexUnitTest()
     System *sQ5 = new System(0);
 
     FlowComplex *fF = new FlowComplex();
-    fF->setNock(sQ1);
+    fF->setOrigin(sQ1);
     fF->setTarget(sQ2);
     mComplexo->add(fF);
 
     FlowComplex *fG = new FlowComplex();
-    fG->setNock(sQ1);
+    fG->setOrigin(sQ1);
     fG->setTarget(sQ3);
     mComplexo->add(fG);
 
     FlowComplex *fT = new FlowComplex();
-    fT->setNock(sQ2);
+    fT->setOrigin(sQ2);
     fT->setTarget(sQ3);
     mComplexo->add(fT);
 
     FlowComplex *fR = new FlowComplex();
-    fR->setNock(sQ2);
+    fR->setOrigin(sQ2);
     fR->setTarget(sQ5);
     mComplexo->add(fR);
 
     FlowComplex *fU = new FlowComplex();
-    fU->setNock(sQ3);
+    fU->setOrigin(sQ3);
     fU->setTarget(sQ4);
     mComplexo->add(fU);
 
     FlowComplex *fV = new FlowComplex();
-    fV->setNock(sQ4);
+    fV->setOrigin(sQ4);
     fV->setTarget(sQ1);
     mComplexo->add(fV);
 
