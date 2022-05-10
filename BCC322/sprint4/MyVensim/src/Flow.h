@@ -16,12 +16,17 @@ class ISystem;
 /**
 * Representa o fluxo da simulação. [CONCRETA]
 */
-class Flow : public IFlow
+class Flow    : public IFlow
 {
+    private:
+    /*!
+        Construtor copia da classe Flow
+    */
+        Flow(const Flow &flow);
     protected:
         ISystem *origin; /*!< Ponteiro para o sistema de entrada do fluxo */
         ISystem *target; /*!< Ponteiro para o sistema de saída do fluxo */
-        double flowValue; /*!< Valor atual do fluxo em determinado tempo */
+        double value; /*!< Valor atual do fluxo em determinado tempo */
     public:
     /*!
         Construtor padrão da classe Flow
@@ -79,14 +84,14 @@ class Flow : public IFlow
         Retorna o valor atual do fluxo.
         \return double - valor atual do fluxo.
     */
-        double getFlowValue() const;
+        double getValue() const;
 
         
     /*!
         Define o valor atual do fluxo
         \param value - novo valor atual do fluxo.
     */
-        void setFlowValue(double value);
+        void setValue(double value);
 
         
 

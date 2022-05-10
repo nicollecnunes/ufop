@@ -64,14 +64,14 @@ class IFlow
         Retorna o valor atual do fluxo.
         \return double - valor atual do fluxo.
     */
-        virtual double getFlowValue() const = 0;
+        virtual double getValue() const = 0;
 
         
     /*!
         Define o valor atual do fluxo
         \param value - novo valor atual do fluxo.
     */
-        virtual void setFlowValue(double value) = 0;
+        virtual void setValue(double value) = 0;
 
 };
 

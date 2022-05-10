@@ -3,7 +3,7 @@
 
 #include "IModel.h"
 
-#include <list>
+#include <vector>
 #include <cstddef>
 using namespace std;
 
@@ -12,7 +12,7 @@ using namespace std;
 /**
 * Representa o modelo geral da simulação, contém as estruturas necessárias para a simulação e sua execução.
 */
-class Model : public IModel
+class Model    : public IModel
 {
     protected:
         double time = 0; /*!< Tempo atual da simulação */
@@ -30,8 +30,16 @@ class Model : public IModel
     Model(const Model* model);
 
     public:
-        list<IFlow *> listFlow; /*!< Lista de fluxos do modelo */
-        list<ISystem *> listSystem; /*!< Lista de sistemas do modelo */
+        typedef vector<ISystem *>::iterator systemIterator;
+        typedef vector<IFlow *>::iterator flowIterator;
+
+        systemIterator beginSystems();
+        systemIterator endSystems(); 
+        flowIterator beginFlows(); 
+        flowIterator endFlows();
+
+        vector<IFlow *> listFlow; /*!< Lista de fluxos do modelo */
+        vector<ISystem *> listSystem; /*!< Lista de sistemas do modelo */
         /*!
             Construtor padrão da classe Model
         */
@@ -55,13 +63,13 @@ class Model : public IModel
             Adiciona um fluxo ao Model
             \param flow ponteiro para o fluxo a ser adicionado ao modelo.
         */
-        void addToModel(IFlow *flow = NULL);
+        void add(IFlow *flow = NULL);
 
         /*!
             Adiciona um sistema ao Model
             \param system ponteiro para o sistema a ser adicionado ao modelo.
         */
-        void addToModel(ISystem *system = NULL);
+        void add(ISystem *system = NULL);
 
         double getTime();
 };

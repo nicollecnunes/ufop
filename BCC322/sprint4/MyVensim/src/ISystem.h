@@ -29,14 +29,14 @@ class ISystem
             Define o valor armazenado pelo sistema
             \param value valor a ser armazenado
         */
-        virtual void setSystemValue(double value) = 0;
+        virtual void setValue(double value) = 0;
 
 
          /*!
             Retorna o valor atual do sistema
             \return double valor armazenado
         */
-        virtual double getSystemValue() const = 0;
+        virtual double getValue() const = 0;
 
 
 

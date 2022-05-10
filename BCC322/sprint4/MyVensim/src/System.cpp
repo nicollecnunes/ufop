@@ -9,22 +9,22 @@
 
 System::System()
 {
-    setSystemValue(0);
+    value = 0;
 }
 
-System::System(double value)
+System::System(double v)
 {
-    setSystemValue(value);
+    value = v;
 }
 
 System::~System(){}
 
-void System::setSystemValue(double value)
+void System::setValue(double v)
 {
-    this->value = value;
+    value = v;
 }
 
-double System::getSystemValue() const
+double System::getValue() const
 {
     return value;
 }
@@ -36,7 +36,7 @@ System* System::operator=(const System* system)
         return this;
     }
 
-    this->value = system->value;
+    value = system->value;
 
     return this;
 }

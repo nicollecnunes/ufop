@@ -9,22 +9,29 @@
 #include "IFlow.h"
 #include "ISystem.h"
 
-Model::~Model(){}
-Model::Model(){}
 
-void Model::addToModel(IFlow *f)
+Model::~Model(){}
+
+Model::Model()
+{
+    time = 0;
+    listSystem.clear();
+    listFlow.clear();
+}
+
+void Model::add(IFlow *f)
 {
     listFlow.push_back(f);
 }
 
-void Model::addToModel(ISystem *s)
+void Model::add(ISystem *s)
 {
     listSystem.push_back(s);
 }
 
 double Model::getTime()
 {
-    return this->time;
+    return time;
 }
 
 void Model::run(double start, double end, double increment)
@@ -33,7 +40,7 @@ void Model::run(double start, double end, double increment)
     {
         for(auto it = listFlow.begin(); it != listFlow.end(); it++)
         {
-            (*it)->setFlowValue((*it)->run());
+            (*it)->setValue((*it)->run());
         }
     
 
@@ -43,15 +50,49 @@ void Model::run(double start, double end, double increment)
             ISystem *target = (*it)->getTarget();
             if(origin != NULL)
             {
-                origin->setSystemValue(origin->getSystemValue() - (*it)->getFlowValue());
+                origin->setValue(origin->getValue() - (*it)->getValue());
             }
 
             if(target != NULL) 
             {
-                target->setSystemValue(target->getSystemValue() + (*it)->getFlowValue());
+                target->setValue(target->getValue() + (*it)->getValue());
             }
         }
         
         time += increment;
     }
+}
+
+Model* Model::operator=(const Model *m)
+{
+    if (m == this)
+    {
+        return this;
+    }
+
+    time = m->time;
+    listFlow = m->listFlow;
+    listSystem = m->listSystem;
+
+    return this;
+}
+
+Model::systemIterator Model::beginSystems()
+{
+    return listSystem.begin();
+}
+
+Model::systemIterator Model::endSystems()
+{
+    return listSystem.end();
+}
+
+Model::flowIterator Model::beginFlows()
+{
+    return listFlow.begin();
+}
+
+Model::flowIterator Model::endFlows()
+{
+    return listFlow.end();
 }

@@ -16,7 +16,7 @@ using namespace std;
 /**
 * Representa o sistema/estoque da simulação.
 */
-class System: public ISystem
+class System   : public ISystem
 {
     protected:
         double value; /*!< Valor atual armazenado no sistema */
@@ -53,14 +53,14 @@ class System: public ISystem
             Define o valor armazenado pelo sistema
             \param value valor a ser armazenado
         */
-        void setSystemValue(double value);
+        void setValue(double value);
 
 
          /*!
             Retorna o valor atual do sistema
             \return double valor armazenado
         */
-        double getSystemValue() const;
+        double getValue() const;
 
 
         /*!

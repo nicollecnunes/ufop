@@ -12,12 +12,20 @@ Flow::Flow()
 {
     origin = NULL;
     target = NULL;
+    value = 0;
 }
 
 Flow::Flow(ISystem *origin, ISystem *target)
 {
-    this->origin = origin;
-    this->target = target;
+    origin = origin;
+    target = target;
+}
+
+Flow::Flow(const Flow &flow)
+{
+    value = flow.value;
+    origin = flow.origin;
+    target = flow.target;
 }
 
 Flow::~Flow(){}
@@ -27,9 +35,9 @@ ISystem * Flow::getOrigin(void) const
     return origin;
 }
 
-void Flow::setOrigin(ISystem *origin)
+void Flow::setOrigin(ISystem *o)
 {
-    this->origin = origin;
+    origin = o;
 }
 
 
@@ -38,19 +46,19 @@ ISystem * Flow::getTarget(void) const
     return target;
 }
 
-void Flow::setTarget(ISystem *target)
+void Flow::setTarget(ISystem *t)
 {
-    this->target = target;
+    target = t;
 }
 
-double Flow::getFlowValue() const
+double Flow::getValue() const
 {
-    return flowValue;
+    return value;
 }
 
-void Flow::setFlowValue(double value)
+void Flow::setValue(double v)
 {
-    this->flowValue = value;
+    value = v;
 }
 
 Flow* Flow::operator=(const Flow *flow)
@@ -60,9 +68,9 @@ Flow* Flow::operator=(const Flow *flow)
         return this;
     }
 
-    this->origin = flow->origin;
-    this->target = flow->target;
-    this->flowValue = flow->flowValue;
+    origin = flow->origin;
+    target = flow->target;
+    value = flow->value;
 
     return this;
 }

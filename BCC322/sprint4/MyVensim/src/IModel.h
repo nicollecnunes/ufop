@@ -1,7 +1,7 @@
 #ifndef IMODEL_H
 #define IMODEL_H
 
-#include <list>
+#include <vector>
 using namespace std;
 
 class IFlow;
@@ -14,8 +14,16 @@ class ISystem;
 class IModel
 {
     public:
-        list<IFlow *> listFlow; /*!< Lista de fluxos do modelo */
-        list<ISystem *> listSystem; /*!< Lista de sistemas do modelo */
+        vector<IFlow *> listFlow; /*!< Lista de fluxos do modelo */
+        vector<ISystem *> listSystem; /*!< Lista de sistemas do modelo */
+
+        typedef vector<ISystem*>::iterator systemIterator;
+        typedef vector<IFlow*>::iterator flowIterator;
+        
+        virtual systemIterator beginSystems() = 0;
+        virtual systemIterator endSystems() = 0; 
+        virtual flowIterator beginFlows() = 0; 
+        virtual flowIterator endFlows() = 0;
 
         /*!
         Destrutor padrão da classe IModel
@@ -35,13 +43,13 @@ class IModel
             Adiciona um fluxo ao IModel
             \param flow ponteiro para o fluxo a ser adicionado ao modelo.
         */
-        virtual void addToModel(IFlow *flow = NULL) = 0;
+        virtual void add(IFlow *flow = NULL) = 0;
 
         /*!
             Adiciona um sistema ao IModel
             \param system ponteiro para o sistema a ser adicionado ao modelo.
         */
-        virtual void addToModel(ISystem *system = NULL) = 0;
+        virtual void add(ISystem *system = NULL) = 0;
 
         virtual double getTime() = 0;
 };
