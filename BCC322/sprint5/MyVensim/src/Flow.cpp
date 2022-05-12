@@ -2,22 +2,23 @@
 * @file Flow.cpp
 * @author Nicolle Nunes
 * @date 26 April 2022
-* @brief Arquivo que define os métodos da entidade Fluxo
+* @brief Arquivo que define os Metodos da entidade Fluxo
 **/
 
 #include "Flow.h"
-#include "System.h"
+#include "ISystem.h"
 
 Flow::Flow()
 {
     origin = NULL;
     target = NULL;
+    value = 0;
 }
 
-Flow::Flow(System *n, System *t)
+Flow::Flow(ISystem *origin, ISystem *target)
 {
-    origin = n;
-    target = t;
+    origin = origin;
+    target = target;
 }
 
 Flow::Flow(const Flow &flow)
@@ -29,23 +30,23 @@ Flow::Flow(const Flow &flow)
 
 Flow::~Flow(){}
 
-System * Flow::getOrigin(void) const
+ISystem * Flow::getOrigin(void) const
 {
     return origin;
 }
 
-void Flow::setOrigin(System *n)
+void Flow::setOrigin(ISystem *o)
 {
-    origin = n;
+    origin = o;
 }
 
 
-System * Flow::getTarget(void) const
+ISystem * Flow::getTarget(void) const
 {
     return target;
 }
 
-void Flow::setTarget(System *t)
+void Flow::setTarget(ISystem *t)
 {
     target = t;
 }
@@ -60,16 +61,16 @@ void Flow::setValue(double v)
     value = v;
 }
 
-Flow* Flow::operator=(const Flow *f)
+Flow* Flow::operator=(const Flow *flow)
 {
-    if (f == this)
+    if (flow == this)
     {
         return this;
     }
 
-    origin = f->origin;
-    target = f->target;
-    value = f->value;
+    origin = flow->origin;
+    target = flow->target;
+    value = flow->value;
 
     return this;
 }

@@ -16,6 +16,8 @@ using namespace std;
 
 class System
 {
+    private:
+        System(const System &system);
     protected:
         double value;
     public:
@@ -23,8 +25,8 @@ class System
         System(double value);
         virtual ~System();
 
-        void setSystemValue(double v);
-        double getSystemValue() const;
+        void setValue(double v);
+        double getValue() const;
 
         System* operator=(const System* s);
 };

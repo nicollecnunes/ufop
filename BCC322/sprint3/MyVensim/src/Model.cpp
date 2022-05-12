@@ -9,8 +9,28 @@
 #include "Flow.h"
 #include "System.h"
 
-Model::~Model(){}
-Model::Model(){}
+Model::~Model()
+{
+    listSystem.clear();
+    listFlow.clear();
+}
+Model::Model()
+{
+    time = 0;
+    listSystem.clear();
+    listFlow.clear();
+}
+
+Model::Model(const Model &model)
+{   
+    time = model.time;
+
+    listSystem.clear();
+    listFlow.clear();
+
+    listSystem = model.listSystem;
+    listFlow = model.listFlow;
+}
 
 void Model::add(Flow *f)
 {
@@ -28,7 +48,7 @@ void Model::run(double start, double end, double increment)
     {
         for(auto it = listFlow.begin(); it != listFlow.end(); it++)
         {
-            (*it)->setFlowValue((*it)->run());
+            (*it)->setValue((*it)->run());
         }
     
 
@@ -38,15 +58,29 @@ void Model::run(double start, double end, double increment)
             System *target = (*it)->getTarget();
             if(origin != NULL)
             {
-                origin->setSystemValue(origin->getSystemValue() - (*it)->getFlowValue());
+                origin->setValue(origin->getValue() - (*it)->getValue());
             }
 
             if(target != NULL) 
             {
-                target->setSystemValue(target->getSystemValue() + (*it)->getFlowValue());
+                target->setValue(target->getValue() + (*it)->getValue());
             }
         }
         
         time += increment;
     }
+}
+
+Model* Model::operator=(const Model *m)
+{
+    if (m == this)
+    {
+        return this;
+    }
+
+    time = m->time;
+    listFlow = m->listFlow;
+    listSystem = m->listSystem;
+
+    return this;
 }

@@ -1,3 +1,6 @@
+#ifndef FLOWCLASSES_H
+#define FLOWCLASSES_H
+
 /**
 * @file FlowClasses.cpp
 * @author Nicolle Nunes
@@ -5,27 +8,27 @@
 * @brief Arquivo que define as classes herdeiras de Fluxo (especializadas)
 **/
 
-#include "../src/Flow.h"
-#include "../src/Model.h"
-#include "../src/System.h"
+#include "../../src/Flow.h"
+#include "../../src/Model.h"
+#include "../../src/System.h"
 
 //! Class FlowExponential
 /**
 * Herda a classe Flow e implementa a execucao de forma especializada
 */
-class FlowExponential : public Flow
+class FlowExponential    : public Flow
 {
     public:
         /*!
             Construtor padrão
         */
-        FlowExponential(): Flow(){}
+        FlowExponential()   : Flow(){}
 
         /*!
-            Método run especializado com a equação do fluxo exponencial
+            Metodo run especializado com a equação do fluxo exponencial
         */
         double run(){
-            return 0.01 * getOrigin()->getSystemValue();
+            return 0.01 * getOrigin()->getValue();
         }
 };
 
@@ -34,20 +37,20 @@ class FlowExponential : public Flow
 /**
 * Herda a classe Flow e implementa a execucao de forma especializada
 */
-class FlowLogistic : public Flow
+class FlowLogistic    : public Flow
 {
     public:
         /*!
             Construtor padrão
         */
-        FlowLogistic(): Flow(){}
+        FlowLogistic()   : Flow(){}
 
 
         /*!
-            Método run especializado com a equação do fluxo logístico
+            Metodo run especializado com a equação do fluxo logístico
         */
         double run(){
-            return 0.01 * getTarget()->getSystemValue() * (1 - getTarget()->getSystemValue() / 70);
+            return 0.01 * getTarget()->getValue() * (1 - getTarget()->getValue() / 70);
         }
 };
 
@@ -56,20 +59,21 @@ class FlowLogistic : public Flow
 /**
 * Herda a classe Flow e implementa a execucao de forma especializada
 */
-class FlowComplex: public Flow
+class FlowComplex   : public Flow
 {
     public:
         /*!
             Construtor padrão
         */
-        FlowComplex(): Flow(){}
+        FlowComplex()   : Flow(){}
 
 
         /*!
-            Método run especializado com a equação do fluxo complexo
+            Metodo run especializado com a equação do fluxo complexo
         */
         double run(){
-            return 0.01 * getOrigin()->getSystemValue();
+            return 0.01 * getOrigin()->getValue();
         }
 };
 
+#endif

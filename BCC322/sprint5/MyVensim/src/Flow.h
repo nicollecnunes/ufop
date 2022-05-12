@@ -1,3 +1,6 @@
+#ifndef FLOW_H
+#define FLOW_H
+
 /**
 * @file Flow.h
 * @author Nicolle Nunes
@@ -5,22 +8,19 @@
 * @brief Arquivo header da entidade que representa o fluxo.
 **/
 
-#ifndef FLOW_HPP
-#define FLOW_HPP
 
-#include "string"
+#include "IFlow.h"
 using namespace std;
-
-class System;
+class ISystem;
 //! Class Flow
 /**
 * Representa o fluxo da simulação. [CONCRETA]
 */
-class Flow 
-{   private:
-/*!
+class Flow    : public IFlow
+{
+    private:
+    /*!
         Construtor copia da classe Flow
-        \param *&flow Fluxo a ser copiado
     */
         Flow(const Flow &flow);
     protected:
@@ -28,7 +28,7 @@ class Flow
         ISystem *target; /*!< Ponteiro para o sistema de saída do fluxo */
         double value; /*!< Valor atual do fluxo em determinado tempo */
     public:
-          /*!
+    /*!
         Construtor padrão da classe Flow
     */
         Flow();

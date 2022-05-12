@@ -2,18 +2,16 @@
 * @file Model.cpp
 * @author Nicolle Nunes
 * @date 26 April 2022
-* @brief Arquivo que define os métodos da entidade Modelo
+* @brief Arquivo que define os Metodos da entidade Modelo
 **/
 
 #include "Model.h"
-#include "Flow.h"
-#include "System.h"
+#include "IFlow.h"
+#include "ISystem.h"
 
-Model::~Model()
-{
-    listSystem.clear();
-    listFlow.clear();
-}
+
+Model::~Model(){}
+
 Model::Model()
 {
     time = 0;
@@ -21,25 +19,19 @@ Model::Model()
     listFlow.clear();
 }
 
-Model::Model(const Model &model)
-{   
-    time = model.time;
-
-    listSystem.clear();
-    listFlow.clear();
-
-    listSystem = model.listSystem;
-    listFlow = model.listFlow;
-}
-
-void Model::add(Flow *f)
+void Model::add(IFlow *f)
 {
     listFlow.push_back(f);
 }
 
-void Model::add(System *s)
+void Model::add(ISystem *s)
 {
     listSystem.push_back(s);
+}
+
+double Model::getTime()
+{
+    return time;
 }
 
 void Model::run(double start, double end, double increment)
@@ -54,8 +46,8 @@ void Model::run(double start, double end, double increment)
 
         for(auto it = listFlow.begin(); it != listFlow.end(); it++)
         {
-            System *origin = (*it)->getOrigin();
-            System *target = (*it)->getTarget();
+            ISystem *origin = (*it)->getOrigin();
+            ISystem *target = (*it)->getTarget();
             if(origin != NULL)
             {
                 origin->setValue(origin->getValue() - (*it)->getValue());
@@ -83,4 +75,24 @@ Model* Model::operator=(const Model *m)
     listSystem = m->listSystem;
 
     return this;
+}
+
+Model::systemIterator Model::beginSystems()
+{
+    return listSystem.begin();
+}
+
+Model::systemIterator Model::endSystems()
+{
+    return listSystem.end();
+}
+
+Model::flowIterator Model::beginFlows()
+{
+    return listFlow.begin();
+}
+
+Model::flowIterator Model::endFlows()
+{
+    return listFlow.end();
 }

@@ -7,33 +7,41 @@
 
 #include "System.h"
 
-System::System(){}
-
-System::System(double value)
+System::System()
 {
-    setSystemValue(value);
+    value = 0;
+}
+
+System::System(const System &system)
+{  
+    value = system.value;
+}
+
+System::System(double v)
+{
+    setValue(v);
 }
 
 System::~System(){}
 
-void System::setSystemValue(double value)
+void System::setValue(double v)
 {
-    this->value = value;
+    value = v;
 }
 
-double System::getSystemValue() const
+double System::getValue() const
 {
     return value;
 }
 
-System* System::operator=(const System* system)
+System* System::operator=(const System* s)
 {
-    if (system == this)
+    if (s == this)
     {
         return this;
     }
 
-    this->value = system->value;
+    value = s->value;
 
     return this;
 }

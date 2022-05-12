@@ -2,7 +2,7 @@
 * @file System.cpp
 * @author Nicolle Nunes
 * @date 26 April 2022
-* @brief Arquivo que define os métodos da entidade Sistema
+* @brief Arquivo que define os Metodos da entidade Sistema
 **/
 
 #include "System.h"
@@ -12,14 +12,9 @@ System::System()
     value = 0;
 }
 
-System::System(const System &system)
-{  
-    value = system.value;
-}
-
 System::System(double v)
 {
-    setValue(v);
+    value = v;
 }
 
 System::~System(){}
@@ -34,14 +29,14 @@ double System::getValue() const
     return value;
 }
 
-System* System::operator=(const System* s)
+System* System::operator=(const System* system)
 {
-    if (s == this)
+    if (system == this)
     {
         return this;
     }
 
-    value = s->value;
+    value = system->value;
 
     return this;
 }

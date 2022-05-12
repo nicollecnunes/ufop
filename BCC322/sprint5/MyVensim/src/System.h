@@ -1,3 +1,5 @@
+#ifndef SYSTEM_H
+#define SYSTEM_H
 
 /**
 * @file System.h
@@ -6,11 +8,7 @@
 * @brief Arquivo header da entidade que define o sistema
 **/
 
-#ifndef SYSTEM_HPP
-#define SYSTEM_HPP
-
-#include <vector>
-#include "string"
+#include "ISystem.h"
 
 using namespace std;
 
@@ -18,17 +16,18 @@ using namespace std;
 /**
 * Representa o sistema/estoque da simulação.
 */
-class System
+class System   : public ISystem
 {
-    private:
-    /*!
+    protected:
+        double value; /*!< Valor atual armazenado no sistema */
+
+    public:
+        /*!
             Construtor copia da classe System.
             \param system sistema para ser copiado
         */
-        System(const System &system);
-    protected:
-        double value; /*!< Valor atual armazenado no sistema */
-    public:
+        System(const System *system);
+
         /*!
             Construtor padrão da classe System.
         */
@@ -50,7 +49,7 @@ class System
         virtual ~System();
 
 
-        v /*!
+        /*!
             Define o valor armazenado pelo sistema
             \param value valor a ser armazenado
         */
@@ -63,10 +62,13 @@ class System
         */
         double getValue() const;
 
+
         /*!
             Operador de atribuição (=) sobrecarregado para a classe System.
         */
         System* operator=(const System* system);
+
+
 };
 
 #endif

@@ -5,9 +5,9 @@
 * @brief Arquivo que define as classes herdeiras de Fluxo (especializadas)
 **/
 
-#include "../src/Flow.h"
-#include "../src/Model.h"
-#include "../src/System.h"
+#include "../../src/Flow.h"
+#include "../../src/Model.h"
+#include "../../src/System.h"
 
 class FlowExponential : public Flow
 {
@@ -15,7 +15,7 @@ class FlowExponential : public Flow
         FlowExponential(): Flow(){}
 
         double run(){
-            return 0.01 * getOrigin()->getSystemValue();
+            return 0.01 * getOrigin()->getValue();
         }
 };
 
@@ -25,7 +25,7 @@ class FlowLogistic : public Flow
         FlowLogistic(): Flow(){}
 
         double run(){
-            return 0.01 * getTarget()->getSystemValue() * (1 - getTarget()->getSystemValue() / 70);
+            return 0.01 * getTarget()->getValue() * (1 - getTarget()->getValue() / 70);
         }
 };
 
@@ -35,7 +35,7 @@ class FlowComplex: public Flow
         FlowComplex(): Flow(){}
 
         double run(){
-            return 0.01 * getOrigin()->getSystemValue();
+            return 0.01 * getOrigin()->getValue();
         }
 };
 

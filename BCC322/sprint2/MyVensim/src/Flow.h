@@ -14,11 +14,12 @@ using namespace std;
 class System;
 
 class Flow 
-{
+{   private:
+        Flow(const Flow &flow);
     protected:
         System *origin;
         System *target;
-        double flowValue;
+        double value;
     public:
         Flow();
         Flow(System *origin, System *target);
@@ -32,8 +33,8 @@ class Flow
         System *getTarget(void) const;
         void setTarget(System *t);
 
-        double getFlowValue() const;
-        void setFlowValue(double v);
+        double getValue() const;
+        void setValue(double v);
 
         Flow* operator=(const Flow* f);
 };

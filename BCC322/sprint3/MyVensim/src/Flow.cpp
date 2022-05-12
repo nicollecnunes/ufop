@@ -14,10 +14,17 @@ Flow::Flow()
     target = NULL;
 }
 
-Flow::Flow(System *origin, System *target)
+Flow::Flow(System *n, System *t)
 {
-    this->origin = origin;
-    this->target = target;
+    origin = n;
+    target = t;
+}
+
+Flow::Flow(const Flow &flow)
+{
+    value = flow.value;
+    origin = flow.origin;
+    target = flow.target;
 }
 
 Flow::~Flow(){}
@@ -27,9 +34,9 @@ System * Flow::getOrigin(void) const
     return origin;
 }
 
-void Flow::setOrigin(System *origin)
+void Flow::setOrigin(System *n)
 {
-    this->origin = origin;
+    origin = n;
 }
 
 
@@ -38,31 +45,31 @@ System * Flow::getTarget(void) const
     return target;
 }
 
-void Flow::setTarget(System *target)
+void Flow::setTarget(System *t)
 {
-    this->target = target;
+    target = t;
 }
 
-double Flow::getFlowValue() const
+double Flow::getValue() const
 {
-    return flowValue;
+    return value;
 }
 
-void Flow::setFlowValue(double value)
+void Flow::setValue(double v)
 {
-    this->flowValue = value;
+    value = v;
 }
 
-Flow* Flow::operator=(const Flow *flow)
+Flow* Flow::operator=(const Flow *f)
 {
-    if (flow == this)
+    if (f == this)
     {
         return this;
     }
 
-    this->origin = flow->origin;
-    this->target = flow->target;
-    this->flowValue = flow->flowValue;
+    origin = f->origin;
+    target = f->target;
+    value = f->value;
 
     return this;
 }

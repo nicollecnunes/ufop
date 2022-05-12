@@ -1,10 +1,10 @@
 LATEX_CMD=pdflatex
 
-all: refman.pdf
+all   : refman.pdf
 
-pdf: refman.pdf
+pdf   : refman.pdf
 
-refman.pdf: clean refman.tex
+refman.pdf   : clean refman.tex
 	$(LATEX_CMD) refman
 	makeindex refman.idx
 	$(LATEX_CMD) refman

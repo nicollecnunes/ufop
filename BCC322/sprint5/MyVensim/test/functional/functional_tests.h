@@ -4,16 +4,16 @@
 /*!
     Teste do modelo exponencial
 */
-void exponentialFuncionalTest();
+void run_exponentialFuncionalTest();
 
 /*!
     Teste do modelo logístico
 */
-void logisticalFuncionalTest();
+void run_logisticalFuncionalTest();
 
 /*!
     Teste do modelo complexo
 */
-void complexFuncionalTest();
+void run_complexFuncionalTest();
 
 #endif

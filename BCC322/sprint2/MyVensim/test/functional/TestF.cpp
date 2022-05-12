@@ -11,13 +11,13 @@
 
 #include "FlowClasses.h"
 #include "TestF.h"
-#include "../src/Model.h"
-#include "../src/System.h"
-#include "../src/Flow.h"
+#include "../../src/Model.h"
+#include "../../src/System.h"
+#include "../../src/Flow.h"
 
-void exponentialFuncionalTest()
+void run_exponentialFuncionalTest()
 {
-    cout << "========= FLUXO EXPONENCIAL =========" << endl;
+    cout << "========= EXPONENTIAL =========" << endl;
     
     Model *mExponencial = new Model;
 
@@ -34,19 +34,19 @@ void exponentialFuncionalTest()
 
     mExponencial->run(0, 100, 1);
 
-    cout << ">> "<< "[sPop1] = " << sPop1->getSystemValue() << endl;
-    cout << ">> "<< "[sPop2] = " << sPop2->getSystemValue() << endl;
+    cout << ">> "<< "[sPop1] = " << sPop1->getValue() << endl;
+    cout << ">> "<< "[sPop2] = " << sPop2->getValue() << endl;
 
-    assert(abs((sPop1->getSystemValue() - 36.6032)) < 0.0001);
-    assert(abs((sPop2->getSystemValue() - 63.3968)) < 0.0001);
+    assert(abs((sPop1->getValue() - 36.6032)) < 0.0001);
+    assert(abs((sPop2->getValue() - 63.3968)) < 0.0001);
 
-    cout << "Resultado final OK\n" << endl;
+    cout << "OK\n" << endl;
 
 }
 
-void logisticalFuncionalTest()
+void run_logisticalFuncionalTest()
 {
-    cout << "========= FLUXO LOGISTICO =========" << endl;
+    cout << "========= LOGISTIC =========" << endl;
 
     Model *mLogistica = new Model;
 
@@ -63,17 +63,17 @@ void logisticalFuncionalTest()
 
     mLogistica->run(0, 100, 1);
 
-    cout << ">> "<< "[sPop1] = " << sPop1->getSystemValue() << endl;
-    cout << ">> "<< "[sPop2] = " << sPop2->getSystemValue() << endl;
+    cout << ">> "<< "[sPop1] = " << sPop1->getValue() << endl;
+    cout << ">> "<< "[sPop2] = " << sPop2->getValue() << endl;
     
-    assert(abs((sPop1->getSystemValue() - 88.2167)) < 0.0001);
-    assert(abs((sPop2->getSystemValue() - 21.7833)) < 0.0001);
+    assert(abs((sPop1->getValue() - 88.2167)) < 0.0001);
+    assert(abs((sPop2->getValue() - 21.7833)) < 0.0001);
 
-    cout << "Resultado final OK\n" << endl;
+    cout << "OK\n" << endl;
 }
 
-void complexFuncionalTest(){
-   cout << "========= FLUXO COMPLEXO =========" << endl;
+void run_complexFuncionalTest(){
+   cout << "========= COMPLEX =========" << endl;
 
     Model *mComplexo = new Model;
 
@@ -124,17 +124,17 @@ void complexFuncionalTest(){
 
     mComplexo->run(0, 100, 1);
 
-    cout << ">> "<< "[sQ1] = " << sQ1->getSystemValue() << endl;
-    cout << ">> "<< "[sQ1] = " << sQ2->getSystemValue() << endl;
-    cout << ">> "<< "[sQ3] = " << sQ3->getSystemValue() << endl;
-    cout << ">> "<< "[sQ3] = " << sQ4->getSystemValue() << endl;
-    cout << ">> "<< "[sQ5] = " << sQ5->getSystemValue() << endl;
+    cout << ">> "<< "[sQ1] = " << sQ1->getValue() << endl;
+    cout << ">> "<< "[sQ1] = " << sQ2->getValue() << endl;
+    cout << ">> "<< "[sQ3] = " << sQ3->getValue() << endl;
+    cout << ">> "<< "[sQ3] = " << sQ4->getValue() << endl;
+    cout << ">> "<< "[sQ5] = " << sQ5->getValue() << endl;
 
-    assert(abs((sQ1->getSystemValue() - 31.8513)) < 0.0001);
-    assert(abs((sQ2->getSystemValue() - 18.4003)) < 0.0001);
-    assert(abs((sQ3->getSystemValue() - 77.1143)) < 0.0001);
-    assert(abs((sQ4->getSystemValue() - 56.1728)) < 0.0001);
-    assert(abs((sQ5->getSystemValue() - 16.4612)) < 0.0001);
+    assert(abs((sQ1->getValue() - 31.8513)) < 0.0001);
+    assert(abs((sQ2->getValue() - 18.4003)) < 0.0001);
+    assert(abs((sQ3->getValue() - 77.1143)) < 0.0001);
+    assert(abs((sQ4->getValue() - 56.1728)) < 0.0001);
+    assert(abs((sQ5->getValue() - 16.4612)) < 0.0001);
 
-    cout << "Resultado final OK\n" << endl;
+    cout << "OK\n" << endl;
 }
