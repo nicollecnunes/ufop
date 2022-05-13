@@ -10,7 +10,9 @@ int main ()
     cin >> qtdVertices >> qtdArcos;
     cout << "Grafo de " << qtdVertices << " vertices e " << qtdArcos << " arcos" << endl;
 
-    
+    Grafo g = Grafo(qtdVertices, qtdArcos);
+    g.preencheListas();
+    g.FordFulkerson();
 
     return 0;
 }
