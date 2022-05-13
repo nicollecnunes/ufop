@@ -3,10 +3,7 @@
 #define DIRETO 1
 #define REVERSO -1
 
-#define SIM 1
-#define NAO 0
-
-Vertice:: Vertice(int i, int fR):id(i), foiRotulado(fR){}
+Vertice:: Vertice(int i, bool fR):id(i), foiRotulado(fR){}
 Vertice:: ~Vertice(){}
 
 InfoArcos::InfoArcos(){}
@@ -25,16 +22,21 @@ int InfoArcos::folgaInferior()
     return fluxo;
 }
 
+bool Grafo:: existeArco(int v1, int v2)
+{
+    return (listaVizinhanca[v1][v2].existeArco || listaVizinhanca[v2][v1].existeArco);
+}
+
 
 void Vertice:: rotular(int verticeAnterior, int tipoDeArco, int aumentoDeFluxo)
 {
     
-    cout << "Vertice "<< this->id << " rotulado com "<< verticeAnterior << ", " << tipoDeArco << ", " << aumentoDeFluxo << endl;
+    cout << "Vertice "<< this->id + 1<< " rotulado com "<< verticeAnterior + 1 << ", " << tipoDeArco << ", " << aumentoDeFluxo << endl;
     this->rotuloVerticeAnterior = verticeAnterior;
     this->rotuloTipoDeArco = tipoDeArco;
-    this->rotuloAumentoDeFluxo = aumentoDeFluxo;
+    this->rotuloCsi = aumentoDeFluxo;
 
-    this->foiRotulado = SIM;
+    this->foiRotulado = true;
 }
 
 int Vertice:: calcularCsi(int csiPai, int folga)
@@ -56,6 +58,37 @@ void Grafo:: iniciaListaVizinhanca()
     }
 }
 
+void Grafo:: cancelarRotulos()
+{
+    for (int i = 1; i < qtdVertices; i++)
+    {
+        listaVertices[i].foiRotulado = false;
+    }
+}
+
+void Grafo:: aumentarFluxo()
+{
+    int anterior, index = (listaCaminho.size());
+
+    for (int a = 0; a < listaCaminho.size() - 1; a ++)
+    {
+        index = listaCaminho[a];
+        anterior = listaCaminho[a + 1];
+
+        //cout << listaCaminho[a]+1 << endl;
+        if (listaVertices[index].rotuloTipoDeArco == DIRETO)
+        {
+            listaVizinhanca[anterior][index].fluxo = listaVizinhanca[anterior][index].fluxo + csiT;
+            cout << "somando csiT no arco direto" << anterior+1 <<  "-" << index+1 << endl;
+        }
+        else
+        {
+            listaVizinhanca[anterior][index].fluxo = listaVizinhanca[anterior][index].fluxo - csiT;
+            cout << "subtraindo csiT no arco direto" << anterior+1 <<  "-" << index+1 << endl;
+        }
+    }
+}
+
 void Grafo:: preencheListas()
 {
     int vOrigem, vDestino, limiteSuperior;
@@ -67,15 +100,18 @@ void Grafo:: preencheListas()
         //cout << "Digite a origem, destino e limite superior da arco numero " << i << endl;
         cin >> vOrigem >> vDestino >> limiteSuperior;
 
+        vOrigem = vOrigem - 1;
+        vDestino = vDestino - 1;
+
         //cout << "Existe um arco entre " << vOrigem - 1 << " e " << vDestino - 1 << " de limite " << limiteSuperior << endl;
-        listaVizinhanca[vOrigem - 1][vDestino - 1].existeArco = SIM;
-        listaVizinhanca[vOrigem - 1][vDestino - 1].limiteSuperior = limiteSuperior;
+        listaVizinhanca[vOrigem][vDestino].existeArco = true;
+        listaVizinhanca[vOrigem][vDestino].limiteSuperior = limiteSuperior;
     }
 
     //cout << "Inicializando lista de " << qtdVertices << " vertices." << endl;
     for (int i = 0; i < qtdVertices; i++)
     {
-        Vertice verticeAux = Vertice(i, NAO);
+        Vertice verticeAux = Vertice(i, false);
         listaVertices.push_back(verticeAux);
     }
 }
@@ -84,20 +120,16 @@ bool Grafo:: existeVerticeRotuladoComArcoUtilizavel()
 {
     for (int i = 0; i < qtdVertices; i++)
     {
-        if(listaVertices[i].foiRotulado == SIM)
+        if(listaVertices[i].foiRotulado)
         {
             for (int j = 0; j < qtdVertices; j++)
             {
-                if (i != j && (listaVertices[j].foiRotulado == NAO))
+                if (i != j && (!listaVertices[j].foiRotulado) && existeArco(i,j))
                 {
-                    if (listaVizinhanca[i][j].existeArco == SIM ||
-                        listaVizinhanca[j][i].existeArco == SIM);
-                    {
-                        vIncidente = j;
                         vAtual = i;
-                        cout << "arco utilizavel: V" << i << " para V" << j << endl;
+                        vIncidente = j;
+                        //cout << "arco utilizavel: V" << i+1 << " para V" << j+1 << endl;
                         return true;
-                    }
                 }
             }
         }
@@ -105,40 +137,66 @@ bool Grafo:: existeVerticeRotuladoComArcoUtilizavel()
     return false;
 }
 
+void Grafo:: constuirCaminhoECsi()
+{
+    listaCaminho.clear();
+
+    csiT = INT_MAX;
+    int index = listaVertices.size() - 1;
+    listaCaminho.push_back(index);
+    //cout << "aaaaaaaaa" << index + 1 << endl;
+
+    while (listaVertices[index].rotuloVerticeAnterior != INT_MIN)
+    {
+        listaCaminho.push_back(listaVertices[index].rotuloVerticeAnterior);
+        //cout << "aaaaaaaaa" << listaVertices[index].rotuloVerticeAnterior + 1 << endl;
+        index = listaVertices[index].rotuloVerticeAnterior;
+
+        csiT = min(csiT, listaVertices[index].rotuloCsi);
+    }  
+   // reverse(listaCaminho.begin(), listaCaminho.end());
+}
+
 void Grafo:: FordFulkerson()
 {
     int csiPai, folga, csiVIncidente;
-    listaVertices[0].rotular(INT_MIN, 0, INT_MAX); 
+    listaVertices[0].rotular(INT_MIN, 0, INT_MAX);
 
     while(existeVerticeRotuladoComArcoUtilizavel()){
-        cout << "fluxo VA VI: " << listaVizinhanca[vAtual][vIncidente].fluxo << endl;
-        cout << "fluxo VI VA: " << listaVizinhanca[vIncidente][vAtual].fluxo << endl;
-        if(listaVizinhanca[vAtual][vIncidente].existeArco == SIM
+        if(listaVizinhanca[vAtual][vIncidente].existeArco
             && listaVizinhanca[vAtual][vIncidente].fluxo < listaVizinhanca[vAtual][vIncidente].limiteSuperior)
         {
-            cout << "existe um arco direto de" << vAtual << " para " << vIncidente << endl;
-            csiPai = listaVertices[vAtual].csi;
+            //cout << "existe um arco direto de" << vAtual+1 << " para " << vIncidente+1 << endl;
+            csiPai = listaVertices[vAtual].rotuloCsi;
             folga = listaVizinhanca[vAtual][vIncidente].limiteSuperior - listaVizinhanca[vAtual][vIncidente].fluxo;
 
             csiVIncidente = listaVertices[vIncidente].calcularCsi(csiPai, folga);
 
             listaVertices[vIncidente].rotular(vAtual, DIRETO, csiVIncidente);
+            listaCaminho.push_back(vIncidente);
         }
         else
         {
-            if (listaVizinhanca[vIncidente][vAtual].existeArco == SIM
+            if (listaVizinhanca[vIncidente][vAtual].existeArco
                 && listaVizinhanca[vIncidente][vAtual].fluxo > 0)
             {
-                cout << "existe um arco de" << vIncidente << " para " << vAtual << endl;
-                csiPai = listaVertices[vAtual].csi;
+                //cout << "existe um arco de" << vIncidente << " para " << vAtual << " e fluxo maximo " << listaVizinhanca[vIncidente][vAtual].limiteSuperior<< endl;
+                csiPai = listaVertices[vAtual].rotuloCsi;
                 folga = listaVizinhanca[vAtual][vIncidente].fluxo;
 
                 csiVIncidente = listaVertices[vIncidente].calcularCsi(csiPai, folga);
 
                 listaVertices[vIncidente].rotular(vAtual, REVERSO, csiVIncidente);
+                listaCaminho.push_back(vIncidente);
             }
         }
-        cout << "continuar com se T rotulado" << endl;
+        if (listaVertices[listaVertices.size() - 1].foiRotulado)
+        {
+            constuirCaminhoECsi();
+            aumentarFluxo();
+            cancelarRotulos();
+            cout << "continuar com se T rotulado" << endl;
+            break;
+        }
     }
-
 }

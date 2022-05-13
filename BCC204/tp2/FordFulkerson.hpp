@@ -12,16 +12,16 @@ class Vertice
 {
     public:
         int id;
-        int foiRotulado = 0;
+        bool foiRotulado = false;
         
         int rotuloVerticeAnterior;
         int rotuloTipoDeArco = 1;
-        int rotuloAumentoDeFluxo;
+        int rotuloCsi;
 
         int csi;
 
 
-        Vertice(int id, int foiRotulado);
+        Vertice(int id, bool foiRotulado);
         ~Vertice();
         int calcularCsi(int csiPai, int folga);
         void rotular(int verticeAnterior, int tipoDeArco, int aumentoDeFluxo);
@@ -30,8 +30,7 @@ class Vertice
 class InfoArcos
 {
     public:
-        int existeArco = 0;
-        int utilizavel = 1;
+        bool existeArco = false;
         int fluxo = 0;
         int limiteSuperior;
 
@@ -51,8 +50,11 @@ class Grafo
         int vIncidente;
         int vAtual;
 
+        int csiT = INT_MAX;
+
         vector<Vertice> listaVertices;
         vector<vector<InfoArcos>> listaVizinhanca;
+        vector<int> listaCaminho;
 
         Grafo(int qtdVertices, int qtdArcos);
         ~Grafo();
@@ -60,8 +62,11 @@ class Grafo
         void preencheListas();
         void iniciaListaVizinhanca();
         bool existeVerticeRotuladoComArcoUtilizavel();
-        bool existeArcoUtilizavel(int vI, int vJ);
         void FordFulkerson();
+        bool existeArco(int v1, int v2);
+        void constuirCaminhoECsi();
+        void aumentarFluxo();
+        void cancelarRotulos();
 };
 
 
