@@ -31,6 +31,7 @@ class InfoArcos
 {
     public:
         bool existeArco = false;
+        int tipoArco = 1;
         int fluxo = 0;
         int limiteSuperior;
 
@@ -47,14 +48,14 @@ class Grafo
         int qtdVertices;
         int qtdArcos;
 
-        int vIncidente;
+        int vDestino;
         int vAtual;
 
         int csiT = INT_MAX;
 
         vector<Vertice> listaVertices;
         vector<vector<InfoArcos>> listaVizinhanca;
-        vector<int> listaCaminho;
+        deque<int> listaCaminho;
 
         Grafo(int qtdVertices, int qtdArcos);
         ~Grafo();
@@ -64,9 +65,10 @@ class Grafo
         bool existeVerticeRotuladoComArcoUtilizavel();
         void FordFulkerson();
         bool existeArco(int v1, int v2);
-        void constuirCaminhoECsi();
+        void constuirCaminho();
         void aumentarFluxo();
         void cancelarRotulos();
+        void imprimirResultado();
 };
 
 

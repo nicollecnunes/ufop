@@ -16,15 +16,12 @@ class Vertice
         ~Vertice();
 };
 
-class InfoArestas
+struct node
 {
-    public:
-        int existeAresta = 0;
-        int peso;
-        int foiVisitada = 0;
-
-        InfoArestas(int existeAresta = 0, int peso = 0, int foiVisitada = 0);
-        ~InfoArestas();
+    int vDestino;
+    int peso;
+    bool foiVisitada;
+    struct node* pProx;
 };
 
 class Grafo
@@ -35,15 +32,18 @@ class Grafo
         int ehDirecionado;
         int verticeInicial;
 
+        struct node** adjLists;
+
         vector<Vertice> listaVertices;
-        vector<vector<InfoArestas>> listaVizinhanca;
 
         Grafo(int qtdVertices, int qtdArestas, int ehDirecionado, int verticeInicial);
         ~Grafo();
 
         void criaGrafo();
+        bool existeAresta(int vOrigem, int vDestino);
+        bool arestaFoiVisitada(int vOrigem, int vDestino);
+        void visitacaoAresta(int vOrigem, int vDestino, bool resultVisitacao);
         void buscaEmProfundidade(int verticeInicial, vector<int> *ordemFinal);
-        void iniciaListaVizinhanca();
 };
 
 #endif
