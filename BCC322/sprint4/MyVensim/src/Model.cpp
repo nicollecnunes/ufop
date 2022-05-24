@@ -1,98 +1,78 @@
-/**
-* @file Model.cpp
-* @author Nicolle Nunes
-* @date 26 April 2022
-* @brief Arquivo que define os Metodos da entidade Modelo
-**/
+#include "Model.hpp"
+#include "ISystem.hpp"
+#include "IFlow.hpp"
 
-#include "Model.h"
-#include "IFlow.h"
-#include "ISystem.h"
-
+Model::Model(){
+    setTime(0);
+};
 
 Model::~Model(){}
 
-Model::Model()
-{
-    time = 0;
-    listSystem.clear();
-    listFlow.clear();
+void Model::add(IFlow * flow) {
+    flows.push_back(flow);
 }
 
-void Model::add(IFlow *f)
-{
-    listFlow.push_back(f);
+void Model::add(ISystem * system) {
+    systems.push_back(system);
 }
 
-void Model::add(ISystem *s)
+Model::iteratorFlow Model::beginFlows()
 {
-    listSystem.push_back(s);
+  return flows.begin();
 }
 
-double Model::getTime()
+Model::iteratorFlow Model::endFlows()
 {
+  return flows.end();
+}
+
+Model::iteratorSystem Model::beginSystems()
+{
+  return systems.begin();
+}
+
+Model::iteratorSystem Model::endSystems()
+{
+  return systems.end();
+}
+
+void Model::setTime(double time) {
+    this->time = time;
+}
+
+double Model::getTime() const{
     return time;
 }
+
+void Model::incrementTime(double increment) {
+    time += increment;
+}
+
 
 void Model::run(double start, double end, double increment)
 {
     for(double i = start; i < end; i+=increment) 
     {
-        for(auto it = listFlow.begin(); it != listFlow.end(); it++)
+        for(auto it = beginFlows(); it != endFlows(); it++)
         {
-            (*it)->setValue((*it)->run());
-        }
-    
+            (*it)->setCurrentValue((*it)->execute());
+        }    
 
-        for(auto it = listFlow.begin(); it != listFlow.end(); it++)
+        for(auto it = beginFlows(); it != endFlows(); it++)
         {
-            ISystem *origin = (*it)->getOrigin();
+            ISystem *source = (*it)->getSource();
             ISystem *target = (*it)->getTarget();
-            if(origin != NULL)
+            if(source != NULL)
             {
-                origin->setValue(origin->getValue() - (*it)->getValue());
+                source->setValue(source->getValue() - (*it)->getCurrentValue());
             }
 
             if(target != NULL) 
             {
-                target->setValue(target->getValue() + (*it)->getValue());
+                target->setValue(target->getValue() + (*it)->getCurrentValue());
             }
         }
         
-        time += increment;
+        incrementTime(increment);
     }
-}
-
-Model* Model::operator=(const Model *m)
-{
-    if (m == this)
-    {
-        return this;
-    }
-
-    time = m->time;
-    listFlow = m->listFlow;
-    listSystem = m->listSystem;
-
-    return this;
-}
-
-Model::systemIterator Model::beginSystems()
-{
-    return listSystem.begin();
-}
-
-Model::systemIterator Model::endSystems()
-{
-    return listSystem.end();
-}
-
-Model::flowIterator Model::beginFlows()
-{
-    return listFlow.begin();
-}
-
-Model::flowIterator Model::endFlows()
-{
-    return listFlow.end();
 }

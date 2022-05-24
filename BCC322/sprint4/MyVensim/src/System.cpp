@@ -1,27 +1,33 @@
-/**
-* @file System.cpp
-* @author Nicolle Nunes
-* @date 26 April 2022
-* @brief Arquivo que define os Metodos da entidade Sistema
-**/
+#include "System.hpp"
 
-#include "System.h"
-
-System::System()
-{
-    value = 0;
+System::System(){
+    setValue(0);
 }
 
-System::System(double v)
+System::System(const System *system)
 {
-    value = v;
+    if (system == this)
+        return;
+        
+    name = system->name;
+    value = system->value;
+}
+
+System::System(string name){
+    setValue(0);
+    setName(name);
+}
+
+System::System(string name, double value){
+    setName(name);
+    setValue(value);
 }
 
 System::~System(){}
 
-void System::setValue(double v)
+void System::setValue(double value)
 {
-    value = v;
+    this->value = value;
 }
 
 double System::getValue() const
@@ -29,13 +35,22 @@ double System::getValue() const
     return value;
 }
 
+string System::getName() const
+{
+    return name;
+}
+
+void System::setName(string name)
+{
+    this->name = name;
+}
+
 System* System::operator=(const System* system)
 {
     if (system == this)
-    {
         return this;
-    }
 
+    name = system->name;
     value = system->value;
 
     return this;

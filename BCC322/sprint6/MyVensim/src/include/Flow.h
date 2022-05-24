@@ -11,19 +11,19 @@
 #include "string"
 using namespace std;
 
-class ISystem;
+class System;
 
-//! Class IFlow
+//! Class Flow
 /**
 * Representa a interface do fluxo da simulação.
 */
-class IFlow 
+class Flow 
 {
    public:
     /*!
-        Destrutor padrão da classe IFlow
+        Destrutor padrão da classe Flow
     */
-        virtual ~IFlow(){};
+        virtual ~Flow(){};
 
         
     /*!

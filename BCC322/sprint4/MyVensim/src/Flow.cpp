@@ -1,76 +1,86 @@
-/**
-* @file Flow.cpp
-* @author Nicolle Nunes
-* @date 26 April 2022
-* @brief Arquivo que define os Metodos da entidade Fluxo
-**/
-
-#include "Flow.h"
-#include "ISystem.h"
+#include "Flow.hpp"
+#include "ISystem.hpp"
 
 Flow::Flow()
 {
-    origin = NULL;
+    source = NULL;
     target = NULL;
-    value = 0;
 }
 
-Flow::Flow(ISystem *origin, ISystem *target)
+Flow::Flow(const Flow* flow)
 {
-    origin = origin;
-    target = target;
+    if (flow == this)
+        return;
+
+    name = flow->name;
+    currentValue = flow->currentValue;
+    source = flow->source;
+    target = flow->target;
 }
 
-Flow::Flow(const Flow &flow)
+Flow::Flow(string name)
 {
-    value = flow.value;
-    origin = flow.origin;
-    target = flow.target;
+    source = NULL;
+    target = NULL;
+    setName(name);
 }
 
 Flow::~Flow(){}
 
-ISystem * Flow::getOrigin(void) const
+string Flow::getName() const
 {
-    return origin;
+    return name;
 }
 
-void Flow::setOrigin(ISystem *o)
+void Flow::setName(string name)
 {
-    origin = o;
+    this->name = name;
 }
 
+double Flow::getCurrentValue() const
+{
+    return currentValue;
+}
+
+void Flow::setCurrentValue(double value)
+{
+    currentValue = value;
+}
+
+ISystem * Flow::getSource(void) const
+{
+    return source;
+}
 
 ISystem * Flow::getTarget(void) const
 {
     return target;
 }
 
-void Flow::setTarget(ISystem *t)
+void Flow::setSource(ISystem * source)
 {
-    target = t;
+    this->source = source;
 }
 
-double Flow::getValue() const
+void Flow::setTarget(ISystem * target)
 {
-    return value;
+    this->target = target;
 }
 
-void Flow::setValue(double v)
+void Flow::connect(ISystem *source, ISystem* target)
 {
-    value = v;
+    setSource(source);
+    setTarget(target);
 }
 
-Flow* Flow::operator=(const Flow *flow)
+Flow* Flow::operator=(const Flow* flow)
 {
     if (flow == this)
-    {
         return this;
-    }
 
-    origin = flow->origin;
-    target = flow->target;
-    value = flow->value;
+    this->source = flow->source;
+    this->target = flow->target;
+    this->currentValue = flow->currentValue;
 
     return this;
 }

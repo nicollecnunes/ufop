@@ -4,21 +4,21 @@
 #include <vector>
 using namespace std;
 
-class IFlow;
-class ISystem;
+class Flow;
+class System;
 
-//! Class IModel
+//! Class Model
 /**
 * Representa o modelo geral da simulação, contém as estruturas necessárias para a simulação e sua execução.
 */
-class IModel
+class Model
 {
     public:
-        vector<IFlow *> listFlow; /*!< Lista de fluxos do modelo */
-        vector<ISystem *> listSystem; /*!< Lista de sistemas do modelo */
+        vector<Flow *> listFlow; /*!< Lista de fluxos do modelo */
+        vector<System *> listSystem; /*!< Lista de sistemas do modelo */
 
-        typedef vector<ISystem*>::iterator systemIterator;
-        typedef vector<IFlow*>::iterator flowIterator;
+        typedef vector<System*>::iterator systemIterator;
+        typedef vector<Flow*>::iterator flowIterator;
         
         virtual systemIterator beginSystems() = 0;
         virtual systemIterator endSystems() = 0; 
@@ -26,9 +26,9 @@ class IModel
         virtual flowIterator endFlows() = 0;
 
         /*!
-        Destrutor padrão da classe IModel
+        Destrutor padrão da classe Model
         */
-        virtual ~IModel(){};
+        virtual ~Model(){};
 
 
         /*!
@@ -40,16 +40,16 @@ class IModel
         virtual void run(double start = 0, double end = 0, double increment = 0) = 0;
 
          /*!
-            Adiciona um fluxo ao IModel
+            Adiciona um fluxo ao Model
             \param flow ponteiro para o fluxo a ser adicionado ao modelo.
         */
-        virtual void add(IFlow *flow = NULL) = 0;
+        virtual void add(Flow *flow = NULL) = 0;
 
         /*!
-            Adiciona um sistema ao IModel
+            Adiciona um sistema ao Model
             \param system ponteiro para o sistema a ser adicionado ao modelo.
         */
-        virtual void add(ISystem *system = NULL) = 0;
+        virtual void add(System *system = NULL) = 0;
 
         virtual double getTime() = 0;
 };
