@@ -1,17 +1,17 @@
-#include "functional/functional_tests.h"
+// #include "unit/unit_Flow.hpp"
+// #include "unit/unit_System.hpp"
+// #include "unit/unit_Model.hpp"
 
-#include "unit/unit_System.H"
-#include "unit/unit_Flow.H"
-#include "unit/unit_Model.H"
+// #include "functional/functional_tests.hpp"
 
-int main(){
-    run_exponentialFuncionalTest();
-    run_logisticalFuncionalTest();
-    run_complexFuncionalTest();
+// int main(){
+//     run_unit_tests_Flow();
+//     run_unit_tests_System();
+//     run_unit_tests_Model();
+//     exponentialFuncionalTest();
 
-    run_unit_tests_System();
-    run_unit_tests_Flow();
-    run_unit_tests_Model();
+//     logisticalFuncionalTest();
 
-    return true;
-}
+//     complexFuncionalTest();
+//     return true;
+// }
