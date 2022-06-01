@@ -1,10 +1,11 @@
-#ifndef DFS_HPP
-#define DFS_HPP
+#ifndef FF_HPP
+#define FF_HPP
 
 #include <iostream>
 #include <vector>
 #include <bits/stdc++.h>
 #include <algorithm>
+#include <string>
 
 using namespace std;
 
@@ -12,34 +13,29 @@ class Vertice
 {
     public:
         int id;
-        bool foiRotulado = false;
-        
-        int rotuloVerticeAnterior;
-        int rotuloTipoDeArco = 1;
-        int rotuloCsi;
+        bool foiRotulado;
+        bool foiVisitado;
 
-        int csi;
+        int rVerticeAnterior;
+        int rTipoDeArco = 1;
+        int rCsi;
 
-
-        Vertice(int id, bool foiRotulado);
+        Vertice(int id, int foiVisitado);
         ~Vertice();
-        int calcularCsi(int csiPai, int folga);
-        void rotular(int verticeAnterior, int tipoDeArco, int aumentoDeFluxo);
+
+        void rotular(int verticeAnterior, int tipoDeArco, int aumentoDeFluxo, int verticeT);
 };
 
-class InfoArcos
+struct node
 {
-    public:
-        bool existeArco = false;
-        int tipoArco = 1;
-        int fluxo = 0;
-        int limiteSuperior;
+    int vDestino;
+    int limiteSuperior;
+    int fluxoAtual;
+    int tipoDeArco;
 
-        InfoArcos();
-        ~InfoArcos();
+    int foiVisitada;
 
-        int folgaSuperior();
-        int folgaInferior();
+    struct node* pProx;
 };
 
 class Grafo
@@ -47,29 +43,36 @@ class Grafo
     public:
         int qtdVertices;
         int qtdArcos;
+        int csiT;
 
-        int vDestino;
-        int vAtual;
+        int tamanhoCaminho;
 
-        int csiT = INT_MAX;
-
+        struct node** adjLists;
         vector<Vertice> listaVertices;
-        vector<vector<InfoArcos>> listaVizinhanca;
-        deque<int> listaCaminho;
 
         Grafo(int qtdVertices, int qtdArcos);
         ~Grafo();
 
-        void preencheListas();
-        void iniciaListaVizinhanca();
-        bool existeVerticeRotuladoComArcoUtilizavel();
-        void FordFulkerson();
-        bool existeArco(int v1, int v2);
-        void constuirCaminho();
-        void aumentarFluxo();
-        void cancelarRotulos();
-        void imprimirResultado();
-};
+        void TEMPimprimirCaminho(vector<int> caminhoAteT);
 
+        void criaGrafo();
+        void FordFulkerson();
+
+        bool DFSArestaFoiVisitada(int vOrigem, int vDestino);
+        void DFSVisitacaoAresta(int vOrigem, int vDestino, bool resultVisitacao);
+        bool DFSExisteAresta(int vOrigem, int vDestino);
+        void DFSLimparVisitacoes();
+
+        void FFRotularVerticesEAtualizarAumento(Vertice *vOrigem, Vertice *vDestino);
+        bool FFFluxoMenorQueLimSup(Vertice vOrigem, Vertice vDestino);
+        bool FFFluxoMaiorQueLimInf(Vertice vOrigem, Vertice vDestino);
+        void FFCaminharEAumentarFluxo(vector<int> caminhoAteT);
+        int FFCalcularCsi(int verticeAnterior, int verticeAtual, int tipoDeArco, int csiPai);
+        void FFHandleFluxoAresta(int vOrigem, int vDestino);
+        int FFQualTipoDeArco(int vOrigem, int vDestino);
+        void FFOperacaoNoFluxo(int vOrigem, int vDestino, int valor, int operacao);
+
+        void buscaEmProfundidadeAdaptada(int verticeInicial, vector<int> *ordemFinal, bool *done);
+};
 
 #endif
