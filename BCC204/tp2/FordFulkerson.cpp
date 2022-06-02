@@ -54,6 +54,7 @@ struct node* criarNode(int vDestino, int limiteSuperior, int fluxoAtual, int tip
     nodeAux->fluxoAtual = fluxoAtual;
     nodeAux->foiVisitada = false;
     nodeAux->tipoDeArco = tipoDeArco;
+
     nodeAux->pProx = NULL;
 
     return nodeAux;
@@ -68,16 +69,15 @@ void Grafo:: criaGrafo()
 
     for (int i = 0; i < qtdVertices; i++)
     {
-        this->adjLists[i] = nodeAux;
-
         Vertice verticeAux = Vertice(i, false);
         listaVertices.push_back(verticeAux);
+
+        this->adjLists[i] = nodeAux;
     }
 
     for (int i = 0; i < qtdArcos; i++)
     {
         cin >> vOrigem >> vDestino >> limiteSuperior;
-        //cout << "  -> existe uma aresta entre " << vOrigem << " e " << vDestino << " de lim " << limiteSuperior << endl;
 
         vOrigem = vOrigem - 1;
         vDestino = vDestino - 1;
@@ -88,7 +88,7 @@ void Grafo:: criaGrafo()
     }
 }
 
-bool Grafo:: DFSExisteAresta(int vOrigem, int vDestino)
+bool Grafo:: existeAresta(int vOrigem, int vDestino)
 {
     struct node* nodeAux = this->adjLists[vOrigem];
     while (nodeAux)
@@ -102,51 +102,22 @@ bool Grafo:: DFSExisteAresta(int vOrigem, int vDestino)
     return false;
 }
 
-void Grafo:: DFSVisitacaoAresta(int vOrigem, int vDestino, bool resultVisitacao)
-{
-    struct node* nodeAux = this->adjLists[vOrigem];
-    while (nodeAux) {
-        if (nodeAux->vDestino == vDestino)
-        {
-            nodeAux->foiVisitada = resultVisitacao;
-            break;
-        }
-        nodeAux = nodeAux->pProx;
-    }
-}
-
-void Grafo:: DFSLimparVisitacoes()
+void Grafo:: limparVisitacoes()
 {
     for (int v = 0; v < this->qtdVertices; v++)
     {
         listaVertices[v].foiVisitado = false;
-        struct node* temp = this->adjLists[v];
-        while (temp)
+        struct node* nodeAux = this->adjLists[v];
+        while (nodeAux)
         {
-            temp->foiVisitada = false;
-            temp = temp->pProx;
+            nodeAux->foiVisitada = false;
+            nodeAux = nodeAux->pProx;
         }
     }
 }
 
-bool Grafo:: DFSArestaFoiVisitada(int vOrigem, int vDestino)
+void Grafo:: handleFluxo(int vOrigem, int vDestino, int valor, int operacao)
 {
-    struct node* nodeAux = this->adjLists[vOrigem];
-    while (nodeAux) {
-        if (nodeAux->vDestino == vDestino)
-        {
-            return nodeAux->foiVisitada;
-        }
-        nodeAux = nodeAux->pProx;
-    }
-    return false;
-}
-
-
-void Grafo:: FFOperacaoNoFluxo(int vOrigem, int vDestino, int valor, int operacao)
-{
-    //cout << vOrigem + 1 << "-" << vDestino+1;
-    //operacao == SOMA ? cout << ": somando " : cout << ": subtraindo: ";
     struct node* nodeAux = this->adjLists[vOrigem];
     while (nodeAux) {
         if (nodeAux->vDestino == vDestino)
@@ -165,22 +136,23 @@ void Grafo:: FFOperacaoNoFluxo(int vOrigem, int vDestino, int valor, int operaca
     }
 }
 
-void Grafo:: FFHandleFluxoAresta(int vOrigem, int vDestino)
+void Grafo:: handleArestaPorTipo(int vOrigem, int vDestino)
 {
-    if (FFQualTipoDeArco(vOrigem, vDestino) == DIRETO)
+    if (qualTipoDeArco(vOrigem, vDestino) == DIRETO)
     {
-        FFOperacaoNoFluxo(vOrigem, vDestino, csiT, SOMA);
+        handleFluxo(vOrigem, vDestino, csiT, SOMA);
 
-        if (FFQualTipoDeArco(vDestino, vOrigem) == REVERSO)
+
+        if (qualTipoDeArco(vDestino, vOrigem) == REVERSO)
         {
-            FFOperacaoNoFluxo(vDestino, vOrigem, csiT, SOMA);
+            handleFluxo(vDestino, vOrigem, csiT, SOMA);
         }
-        else if (!DFSExisteAresta(vDestino, vOrigem))
+        else if (!existeAresta(vDestino, vOrigem))
         {
             struct node* nodeAux = this->adjLists[vOrigem];
             struct node* nodeAux2 = NULL;
-
-            while (nodeAux) {
+            while (nodeAux)
+            {
                 if (nodeAux->vDestino == vDestino)
                 {
                     nodeAux2 = criarNode(vOrigem, nodeAux->limiteSuperior, nodeAux->fluxoAtual, REVERSO);
@@ -194,11 +166,11 @@ void Grafo:: FFHandleFluxoAresta(int vOrigem, int vDestino)
     }
     else
     {
-        FFOperacaoNoFluxo(vOrigem, vDestino, csiT, SUBTRAI);
+        handleFluxo(vOrigem, vDestino, csiT, SUBTRAI);
     }
 }
 
-int Grafo:: FFQualTipoDeArco(int vOrigem, int vDestino)
+int Grafo:: qualTipoDeArco(int vOrigem, int vDestino)
 {
     struct node* nodeAux = this->adjLists[vOrigem];
     while (nodeAux)
@@ -212,7 +184,7 @@ int Grafo:: FFQualTipoDeArco(int vOrigem, int vDestino)
     return 9999;
 }
 
-int Grafo:: FFCalcularCsi(int verticeAnterior, int verticeAtual, int tipoDeArco, int csiPai)
+int Grafo:: calcularCsi(int verticeAnterior, int verticeAtual, int tipoDeArco, int csiPai)
 {
     int limSupIJ, fluxoIJ;
     struct node* nodeAux = this->adjLists[verticeAnterior];
@@ -225,17 +197,15 @@ int Grafo:: FFCalcularCsi(int verticeAnterior, int verticeAtual, int tipoDeArco,
         }
         nodeAux = nodeAux->pProx;
     }
-    //cout << "--O fluxo entre " << verticeAnterior+1 << "-" << verticeAtual+1 << "eh " << fluxoIJ << endl;
-    //cout << "--O limsup entre " << verticeAnterior+1 << "-" << verticeAtual+1 << "eh " << limSupIJ << endl;
-    //cout << "--CSI de " << verticeAnterior+1 << " eh " << csiPai << endl;
-    if (FFQualTipoDeArco(verticeAnterior, verticeAtual) == DIRETO) //DIRETO
+
+    if (qualTipoDeArco(verticeAnterior, verticeAtual) == DIRETO) //DIRETO
     {
         return min(csiPai , (limSupIJ - fluxoIJ));
     }
     return min(csiPai , fluxoIJ);
 }
 
-bool Grafo:: FFFluxoMenorQueLimSup(Vertice vOrigem, Vertice vDestino)
+bool Grafo:: fluxoMenorQueLimSup(Vertice vOrigem, Vertice vDestino)
 {
     struct node* nodeAux = this->adjLists[vOrigem.id];
     while (nodeAux) {
@@ -248,7 +218,7 @@ bool Grafo:: FFFluxoMenorQueLimSup(Vertice vOrigem, Vertice vDestino)
     return false;
 }
 
-bool Grafo:: FFFluxoMaiorQueLimInf(Vertice vOrigem, Vertice vDestino)
+bool Grafo:: fluxoMaiorQueLimInf(Vertice vOrigem, Vertice vDestino)
 {
     struct node* nodeAux = this->adjLists[vOrigem.id];
     while (nodeAux) {
@@ -261,21 +231,32 @@ bool Grafo:: FFFluxoMaiorQueLimInf(Vertice vOrigem, Vertice vDestino)
     return false;
 }
 
-void Grafo:: FFRotularVerticesEAtualizarAumento(Vertice *vOrigem, Vertice *vDestino)
+void Grafo:: rotularEAumentar(Vertice *vOrigem, Vertice *vDestino)
 {
     int verticeT = listaVertices[qtdVertices - 1].id;
     int csiRotulo = 0;
-    if (FFQualTipoDeArco(vOrigem->id, vDestino->id) == DIRETO) //DIRETO
+    
+    if (qualTipoDeArco(vOrigem->id, vDestino->id) == DIRETO) //DIRETO
     {
-        csiRotulo = FFCalcularCsi(vOrigem->id, vDestino->id, DIRETO, vOrigem->rCsi);
+        csiRotulo = calcularCsi(vOrigem->id, vDestino->id, DIRETO, vOrigem->rCsi);
         vDestino->rotular(vOrigem->id, DIRETO, csiRotulo, verticeT);
     }
     else //REVERSO
     {
-        csiRotulo = FFCalcularCsi(vOrigem->id, vDestino->id, REVERSO, vOrigem->rCsi);
+        csiRotulo = calcularCsi(vOrigem->id, vDestino->id, REVERSO, vOrigem->rCsi);
         vDestino->rotular(vOrigem->id, REVERSO, csiRotulo, verticeT);
     }
     csiT = csiRotulo;
+}
+
+bool Grafo:: arestaDiretaUtilizavel(int verticeInicial, int w)
+{
+    return fluxoMenorQueLimSup(listaVertices[verticeInicial], listaVertices[w]) && qualTipoDeArco(verticeInicial, w) == DIRETO;
+}
+
+bool Grafo:: arestaReversaUtilizavel(int verticeInicial, int w)
+{
+    return fluxoMaiorQueLimInf(listaVertices[verticeInicial], listaVertices[w]) && qualTipoDeArco(verticeInicial, w) == REVERSO;
 }
 
 void Grafo:: buscaEmProfundidadeAdaptada(int verticeInicial, vector<int> *ordemFinal, bool *done)
@@ -289,7 +270,6 @@ void Grafo:: buscaEmProfundidadeAdaptada(int verticeInicial, vector<int> *ordemF
     {
         if (verticeInicial == listaVertices[qtdVertices - 1].id)
         {
-            //cout << "chegou em T !!!! "<< endl;
             verticesTestados = 0;
             tamanhoCaminho = ordemFinal->size() - 1;
             *done = true;
@@ -300,32 +280,20 @@ void Grafo:: buscaEmProfundidadeAdaptada(int verticeInicial, vector<int> *ordemF
             return;
         }
 
-        if (DFSExisteAresta(verticeInicial, w)) // TODO: melhorar esse if
+        if (existeAresta(verticeInicial, w))
         {
-            //cout << "------"<< w+1 << " foi viistado:" << boolalpha << listaVertices[w].foiVisitado << endl;
-            //cout << "------fluxo" <<verticeInicial+1 <<"-" << w+1<< " < limsup: " << boolalpha << FFFluxoMenorQueLimSup(listaVertices[verticeInicial], listaVertices[w]) << endl;
-            if (!listaVertices[w].foiVisitado && FFFluxoMenorQueLimSup(listaVertices[verticeInicial], listaVertices[w]) && FFQualTipoDeArco(verticeInicial, w) == DIRETO)
+            if (!listaVertices[w].foiVisitado)
             {
-                //cout << "O vertice " << w+1 << " nao foi visitado ainda. visitando a aresta " << verticeInicial+1 << "-" << w+1 << endl;
-                DFSVisitacaoAresta(verticeInicial, w, true);
-                buscaEmProfundidadeAdaptada(w, ordemFinal, done);
-            }
-            else if (!listaVertices[w].foiVisitado && FFFluxoMaiorQueLimInf(listaVertices[verticeInicial], listaVertices[w]) && FFQualTipoDeArco(verticeInicial, w) == REVERSO)
-            {
-                //cout << "O vertice " << w+1 << " nao foi visitado ainda. visitando a aresta " << verticeInicial+1 << "-" << w+1 << endl;
-                DFSVisitacaoAresta(verticeInicial, w, true);
-                buscaEmProfundidadeAdaptada(w, ordemFinal, done);
-            }
-            else
-            {
-                if (!DFSArestaFoiVisitada(verticeInicial, w)) //TODO: ver se precisa disso
+                if (arestaDiretaUtilizavel(verticeInicial, w) || arestaReversaUtilizavel(verticeInicial, w))
                 {
-                    DFSVisitacaoAresta(verticeInicial, w, true);
+                    buscaEmProfundidadeAdaptada(w, ordemFinal, done);
                 }
             }
         }
+
         verticesTestados = verticesTestados + 1;
         int ultimoDoCaminho = ordemFinal->back();
+
         if (verticesTestados == qtdVertices &&
             verticeInicial != listaVertices[qtdVertices - 1].id &&
             ultimoDoCaminho != listaVertices[qtdVertices - 1].id)
@@ -335,32 +303,21 @@ void Grafo:: buscaEmProfundidadeAdaptada(int verticeInicial, vector<int> *ordemF
     }
 }
 
-void Grafo:: TEMPimprimirCaminho(vector<int> caminhoAteT)
-{
-    cout << "---- CAMINHO"<< endl;
-    for (int i = 0 ; i<tamanhoCaminho; i++)
-    {
-        cout << caminhoAteT[i]+1 << "-- ";
-        //csiT = listaVertices[i].rCsi;
-    }
-    cout << endl;
-}
-
-void Grafo:: FFCaminharEAumentarFluxo(vector<int> caminhoAteT)
+void Grafo:: aumentarFluxo(vector<int> caminhoAteT)
 {
     int vOrigem, vDestino, endCaminho = caminhoAteT.size();
     for (int i = 0 ; i < endCaminho - 1; i++)
     {
         vOrigem = caminhoAteT[i];
         vDestino = caminhoAteT[i+1];
-        FFRotularVerticesEAtualizarAumento(&listaVertices[vOrigem], &listaVertices[vDestino]);
+        rotularEAumentar(&listaVertices[vOrigem], &listaVertices[vDestino]);
     }
 
     for (int i = 0 ; i < endCaminho - 1; i++)
     {
         vOrigem = caminhoAteT[i];
         vDestino = caminhoAteT[i+1];
-        FFHandleFluxoAresta(vOrigem, vDestino);
+        handleArestaPorTipo(vOrigem, vDestino);
     }
 }
 
@@ -370,15 +327,15 @@ void Grafo:: FordFulkerson()
     int verticeT = listaVertices[qtdVertices - 1].id;
 
     bool done = false;
+    listaVertices[0].rotular(INT_MIN, 0, INT_MAX, verticeT);
 
-    listaVertices[0].rotular(INT_MIN, 0, INT_MAX, verticeT); // rotulando S com [-inf, 0, +inf]
     do
     {
         tamanhoCaminho = 0;
         done = false;
         buscaEmProfundidadeAdaptada(0, &caminhoAteT, &done);
-        FFCaminharEAumentarFluxo(caminhoAteT);
-        DFSLimparVisitacoes();
+        aumentarFluxo(caminhoAteT);
+        limparVisitacoes();
         caminhoAteT.clear();
     }
     while(caminhoAteT[tamanhoCaminho] == verticeT);

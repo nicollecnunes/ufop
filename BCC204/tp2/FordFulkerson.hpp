@@ -32,7 +32,6 @@ struct node
     int limiteSuperior;
     int fluxoAtual;
     int tipoDeArco;
-
     int foiVisitada;
 
     struct node* pProx;
@@ -53,26 +52,25 @@ class Grafo
         Grafo(int qtdVertices, int qtdArcos);
         ~Grafo();
 
-        void TEMPimprimirCaminho(vector<int> caminhoAteT);
-
         void criaGrafo();
         void FordFulkerson();
 
-        bool DFSArestaFoiVisitada(int vOrigem, int vDestino);
-        void DFSVisitacaoAresta(int vOrigem, int vDestino, bool resultVisitacao);
-        bool DFSExisteAresta(int vOrigem, int vDestino);
-        void DFSLimparVisitacoes();
+        bool arestaDiretaUtilizavel(int verticeInicial, int w);
+        bool arestaReversaUtilizavel(int verticeInicial, int w);
+        bool existeAresta(int vOrigem, int vDestino);
+        int qualTipoDeArco(int vOrigem, int vDestino);
 
-        void FFRotularVerticesEAtualizarAumento(Vertice *vOrigem, Vertice *vDestino);
-        bool FFFluxoMenorQueLimSup(Vertice vOrigem, Vertice vDestino);
-        bool FFFluxoMaiorQueLimInf(Vertice vOrigem, Vertice vDestino);
-        void FFCaminharEAumentarFluxo(vector<int> caminhoAteT);
-        int FFCalcularCsi(int verticeAnterior, int verticeAtual, int tipoDeArco, int csiPai);
-        void FFHandleFluxoAresta(int vOrigem, int vDestino);
-        int FFQualTipoDeArco(int vOrigem, int vDestino);
-        void FFOperacaoNoFluxo(int vOrigem, int vDestino, int valor, int operacao);
+        bool fluxoMenorQueLimSup(Vertice vOrigem, Vertice vDestino);
+        bool fluxoMaiorQueLimInf(Vertice vOrigem, Vertice vDestino);
+
+        void aumentarFluxo(vector<int> caminhoAteT);
+        void rotularEAumentar(Vertice *vOrigem, Vertice *vDestino);
+        int calcularCsi(int verticeAnterior, int verticeAtual, int tipoDeArco, int csiPai);
+        void handleArestaPorTipo(int vOrigem, int vDestino);
+        void handleFluxo(int vOrigem, int vDestino, int valor, int operacao);
 
         void buscaEmProfundidadeAdaptada(int verticeInicial, vector<int> *ordemFinal, bool *done);
+        void limparVisitacoes();
 };
 
 #endif
