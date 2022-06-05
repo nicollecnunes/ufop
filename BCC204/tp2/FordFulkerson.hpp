@@ -71,6 +71,8 @@ class Grafo
 
         void buscaEmProfundidadeAdaptada(int verticeInicial, vector<int> *ordemFinal, bool *done);
         void limparVisitacoes();
+
+        void TMPimprimir(int vi, int vo);
 };
 
 #endif

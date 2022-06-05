@@ -167,6 +167,10 @@ void Grafo:: handleArestaPorTipo(int vOrigem, int vDestino)
     else
     {
         handleFluxo(vOrigem, vDestino, csiT, SUBTRAI);
+        if (qualTipoDeArco(vDestino, vOrigem) == DIRETO)
+        {
+            handleFluxo(vDestino, vOrigem, csiT, SUBTRAI);
+        }
     }
 }
 
