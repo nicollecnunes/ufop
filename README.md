@@ -18,5 +18,5 @@
 <a href="https://github.com/nicollecnunes/ufop/tree/main/BCC322"> BCC322 Engenharia de Software 1 </a><br>
 <a href="https://github.com/nicollecnunes/ufop/tree/main/BCC264"> BCC264 Redes de Computadores </a><br>
 
-
-
+### 5º Período
+<a href="https://github.com/nicollecnunes/ufop/tree/main/BCC325"> BCC325 Inteligência Artificial </a><br>
