@@ -64,6 +64,7 @@ Na função `string`, haverão as seguintes tratativas para os casamentos:
     
     Essa regra lida com espaços internos que existem entre duas `\`. Os “espaços” podem ser considerados qualquer sequência de: espaços em branco ( ``), quebras de linha (`\n`) ou tabulação horizontal (`\t`). Esses espaços são descartados, por isso, na chamada recursiva de `string`, passa-se `sequence` sem concatenar com nenhum elemento. Porém, é preciso atualizar a contagem de linhas caso exista um `\n` dentre os espaços lidos. Para isso, a função `str_incr_linenum` é chamada, passando a sequência de espaços para que ela identifique possíveis quebras de linha e atualize o valor de `new_line` do módulo `Lexing`.
     
+    ……………………………………….
     
 - `| "\\" ((digit digit digit) as ascii) { string init (sequence ^ String.make 1 (Char.chr (int_of_string ascii))) lexbuf }`
     
