@@ -18,18 +18,18 @@ d = [10,20,3,4,30]
 
 #d = [30,1,40,10,25]
 
-n = len(d) 
+n = len(d)-1 
 m = [[-1 for x in range(n)] for y in range(n)]
 c = [[-1 for x in range(n)] for y in range(n)]
 
-for i in range(1,n):
+for i in range(n):
     m[i][i] = 0
 
-for l in range(2,n):
-    for i in range(1,n-l+1):
-        j = i + l - 1
+for l in range(1,n):
+    for i in range(n-l):
+        j = i + l
         m[i][j] = math.inf
-        for k in range(i,j-1+1): #k vai de i ate j-1
+        for k in range(i,j): #k vai de i ate j-1
             q = m[i][k] + m[k+1][j] + d[i-1] * d[k] * d[j] #q = mij
             if (q < m[i][j]):
                 m[i][j] = q
@@ -57,7 +57,7 @@ def printParenthesis(i , j, n, bracket):
 
 imprime(m)
 imprime(c)
-print("\ncusto:", m[1][n-1]);
-#resultadoc(c,1, len(c)-1)
+print("\ncusto:", m[0][n-1]);
+resultadoc(c,1, len(c)-1)
 name = 'A';
 printParenthesis(1, n-1, n, c)
