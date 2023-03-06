@@ -14,18 +14,19 @@ d = [10,20,3,4,30]
 #c 3x4
 #d 4x30
 # cd 360 3x30
-
 #ult 900 10x30 -> 900+600+360 1860
 
-n = len(d) -1
-m = [[-1 for x in range(n+1)] for y in range(n+1)]
-c = [[-1 for x in range(n+1)] for y in range(n+1)]
+#d = [30,1,40,10,25]
 
-for i in range(1,n+1):
+n = len(d) 
+m = [[-1 for x in range(n)] for y in range(n)]
+c = [[-1 for x in range(n)] for y in range(n)]
+
+for i in range(1,n):
     m[i][i] = 0
 
-for l in range(2,n+1):
-    for i in range(1,n-l+1+1):
+for l in range(2,n):
+    for i in range(1,n-l+1):
         j = i + l - 1
         m[i][j] = math.inf
         for k in range(i,j-1+1): #k vai de i ate j-1
@@ -56,7 +57,7 @@ def printParenthesis(i , j, n, bracket):
 
 imprime(m)
 imprime(c)
-print("\ncusto:", m[1][n]);
+print("\ncusto:", m[1][n-1]);
 #resultadoc(c,1, len(c)-1)
 name = 'A';
-printParenthesis(1, n, n+1, c)
+printParenthesis(1, n-1, n, c)
