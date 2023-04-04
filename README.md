@@ -20,6 +20,7 @@
 
 ### 5º Período
 <a href="https://github.com/nicollecnunes/ufop/tree/main/BCC325"> BCC325 Inteligência Artificial </a><br>
+<a href="https://github.com/nicollecnunes/ufop/tree/main/BCC321"> BCC321 Banco de Dados I </a><br>
 
 ### 6º Período
 <a href="https://github.com/nicollecnunes/ufop/tree/main/BCC328"> BCC328 Construção de Compiladores </a><br>
