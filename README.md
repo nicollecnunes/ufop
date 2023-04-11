@@ -26,3 +26,6 @@
 <a href="https://github.com/nicollecnunes/ufop/tree/main/BCC328"> BCC328 Construção de Compiladores </a><br>
 <a href="https://github.com/nicollecnunes/ufop/tree/main/BCC241"> BCC241 Projeto e Análise de Algoritmos </a><br>
 <a href="https://github.com/nicollecnunes/ufop/tree/main/BCC409"> BCC409 Sistemas de Recomendação </a><br>
+
+### Outros
+<a href="https://github.com/nicollecnunes/ufop/tree/main/rodetas"> Rodetas Robô Clube </a><br>
