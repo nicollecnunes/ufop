@@ -215,6 +215,8 @@ representação apropriada.</p>
 """
 
 def hist_img(img):
+  if (img.dims>2):
+    img = color.rgb2gray(img)
   img = util.img_as_float(img)
   h = ndimage.histogram(img, min=0, max=1, bins=256)
   h = h / np.max(h)*256
