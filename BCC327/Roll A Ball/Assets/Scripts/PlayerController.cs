@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public float speed = 0;
+
     private Rigidbody _rb;
     private float _moveX, _moveY, _moveZ;
 
@@ -25,6 +27,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 movement = new Vector3(_moveX, _moveZ, _moveY);
-        _rb.AddForce(movement);
+        _rb.AddForce(movement * speed);
     }
 }
