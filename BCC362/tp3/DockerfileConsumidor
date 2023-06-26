@@ -1,0 +1,9 @@
+FROM python:3.8-slim-buster
+
+COPY consumidor.py .
+
+RUN chmod +x consumidor.py
+
+RUN pip install pika
+
+CMD ["python3", "-m" , "consumidor.py"]

@@ -1,0 +1,10 @@
+# Imagem base
+FROM rabbitmq:3-management
+
+# Configuração do usuário e senha
+ENV RABBITMQ_DEFAULT_USER=alexnicolle
+ENV RABBITMQ_DEFAULT_PASS=1234
+
+# Porta de exposição do RabbitMQ
+EXPOSE 5672
+

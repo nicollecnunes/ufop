@@ -1,0 +1,9 @@
+FROM python:3.8-slim-buster
+
+COPY produtor.py .
+
+RUN chmod +x produtor.py
+
+RUN pip install pika
+
+CMD ["python3", "-m" , "produtor.py"]
