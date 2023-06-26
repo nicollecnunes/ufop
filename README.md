@@ -30,6 +30,7 @@
 ### 7º Período
 <a href="https://github.com/nicollecnunes/ufop/tree/main/BCC326"> BCC326 Processamento de Imagens </a><br>
 <a href="https://github.com/nicollecnunes/ufop/tree/main/BCC327"> BCC327 Computação Gráfica </a><br>
+<a href="https://github.com/nicollecnunes/ufop/tree/main/BCC362"> BCC362 Sistemas Distribuídos </a><br>
 
 ### Outros
 <a href="https://github.com/nicollecnunes/ufop/tree/main/rodetas"> Rodetas Robô Clube </a><br>
