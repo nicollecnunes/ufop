@@ -1,0 +1,51 @@
+version: '3'
+services:
+  kafka:
+    ports:
+      - 29094:29092  # Ajuste a porta conforme necessário
+    image: confluentinc/cp-kafka:latest
+    networks:
+      - kafka-net
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://:9092,PLAINTEXT_HOST://:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://127.0.0.1:29094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+
+  zookeeper:
+    ports:
+      - 32181:2181  # Ajuste a porta conforme necessário
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    image: confluentinc/cp-zookeeper:latest
+    networks:
+      - kafka-net
+
+  producer:
+    build: ./producer
+    command: python producer.py
+    depends_on:
+      - kafka
+    volumes:
+      - ./producer:/home/appuser/producer
+    networks:
+      - kafka-net
+
+  consumer:
+    build: ./consumer
+    command: python consumer.py
+    depends_on:
+      - kafka
+    volumes:
+      - ./consumer:/home/appuser/consumer
+    networks:
+      - kafka-net
+
+networks:
+  kafka-net:
