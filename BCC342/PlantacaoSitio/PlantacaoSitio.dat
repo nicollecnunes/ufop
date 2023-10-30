@@ -1,0 +1,9 @@
+Cultura = {trigo, milho, arroz};
+ 
+MinPorCultura = [400, 10000, 800];
+ProdutividadePorCultura = [0.2, 0.3, 0.4];
+LucroPorCultura = [10.8, 4.2, 2.03];
+ 
+MaxArmazenamento = 60000;
+MaxArea = 200000;
+ 		

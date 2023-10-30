@@ -1,0 +1,12 @@
+Racao = {AMS, RE};
+Materiais = {Cereal, Carne};
+ 
+PrecoRacao = [20, 30];
+PrecoMaterial = [1, 4];
+ 
+Disponibilidade = [30000, 10000];
+ 
+Qtd = [[5, 1],
+ 	   [2, 4]];
+ 		
+ 		
