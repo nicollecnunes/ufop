@@ -1,0 +1,9 @@
+Esportes = {tenis, corrida};
+ 
+PrecoEsportes2h = [3, 2];
+GastoCaloricoEsportes = [1500, 1000];
+ 
+OrcamentoMensal = 70;
+TempoMensal = 18;
+CaloriasMensal = 80000;
+ 		
