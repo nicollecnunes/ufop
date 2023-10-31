@@ -1,3 +1,6 @@
 [submodule "BCC327/missao-fauna"]
 	path = BCC327/missao-fauna
 	url = https://github.com/nicollecnunes/missao-fauna
+[submodule "BCC403/eco-sort"]
+	path = BCC403/eco-sort
+	url = https://github.com/nicollecnunes/eco-sort
