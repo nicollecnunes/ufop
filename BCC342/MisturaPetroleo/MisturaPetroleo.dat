@@ -1,0 +1,16 @@
+Petroleos = {p1, p2, p3, p4};
+Gasolinas = {superazul, azul, amarela};
+
+ 
+BarrisPorDia  = [3500, 2200, 4200, 1800];
+CustoDoBarril  = [19, 24, 20, 27];
+
+MinimosDePetroleoPorGasolina = [[0.0, 0.4, 0.0, 0.0],
+							   [0.0, 0.1, 0.0, 0.0],
+							   [0.0, 0.0, 0.0, 0.0]];
+							  					  
+MaximosDePetroleoPorGasolina = [[0.3, 1.0, 0.5, 1.0],
+							   [0.3, 1.0, 1.0, 1.0],
+							   [0.7, 1.0, 1.0, 1.0]];
+
+PrecoPorBarril = [35, 28, 22];

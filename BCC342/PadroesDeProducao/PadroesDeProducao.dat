@@ -1,0 +1,11 @@
+Panelas = {media, grande};
+Matrizes = {m1, m2, m3, m4};
+ 
+DiametroPanelas = [25, 40];
+MinimoPanelasPorTipo = [500, 350];
+
+CustoPorMatriz = [1, 2, 3, 2];
+QtdDePanelaPorMatriz = [[8, 0],
+ 	                       [4, 1],
+ 	                       [2, 2],
+ 	                       [0, 3]];

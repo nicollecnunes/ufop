@@ -1,0 +1,9 @@
+Fazendas = {f1, f2, f3};
+Culturas = {milho, arroz, feijao};
+ 
+AreaPorFazenda = [400, 650, 350];
+AguaPorFazenda = [180, 2200, 950];
+
+AreaMaxPorCultura = [660, 880, 400];
+AguaPorCultura = [5.5, 4, 3.5];
+LucroPorCultura = [5000, 4000, 1800];
