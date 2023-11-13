@@ -1,0 +1,15 @@
+Pilhas = {Pilha1, Pilha2, Pilha3};
+Parametros = {Ferro};
+
+QtdRequeridaMistura = 2;
+
+Porcentagem = [[0.6], [0.5], [0.55]];
+CustoPorToneladaNaPilha = [10, 6, 9];
+
+MaxDoParametro = [0.55];
+MinDoParametro = [0.55];
+
+MaxMinerioNaPilha = [80000, 80000, 80000];
+
+PesoDesvioNegativo = [0];
+PesoDesvioPositivo = [0];
