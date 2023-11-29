@@ -43,5 +43,5 @@ subject to
   		    
   	MatrizDeCustos:
   	forall(i in ANMs, j in Pocos)
-    	custos[i][j] == (DistanciaDosPortos[j][Origem[i]] * (DataNecessidadePocos[j] - DataDisponibilidadeANMS[i]));
+    	custos[i][j] == DistanciaDosPortos[j][Origem[i]];
 }
