@@ -27,6 +27,11 @@ subject to
 		    else {
       			rf[i][j] == 1;
     		}*/
+    		
+    DisponibilidadeTemporal:
+  		forall(i in ANMs)
+  		  forall(j in Pocos)
+  		    x[i][j] * (DataNecessidadePocos[j] - DataDisponibilidadeANMS[i]) >= 0;
    
   	UmaArvorePorPoco:
   		forall(j in Pocos)
@@ -39,9 +44,9 @@ subject to
   	PodeAlocar:
   		forall(i in ANMs)
   		  forall(j in Pocos)
-  		    x[i][j] <= rf[i][j];
+  		    x[i][j] <= rf[i][j];    
   		    
   	MatrizDeCustos:
-  	forall(i in ANMs, j in Pocos)
-    	custos[i][j] == DataNecessidadePocos[j] - DataDisponibilidadeANMS[i];
+  		forall(i in ANMs, j in Pocos)
+    		custos[i][j] == DataNecessidadePocos[j] - DataDisponibilidadeANMS[i];
 }

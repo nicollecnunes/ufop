@@ -1,0 +1,23 @@
+ANMs = {ANM1, ANM2, ANM3, ANM4};
+Pocos = {P1, P2, P3, P4};
+Portos = {RIO, SALVADOR, SANTOS, VITORIA};
+
+DataDisponibilidadeANMS = [2, 0, 26, 66];
+DataNecessidadePocos = [1, 27, 95, 44];
+
+BIN_PodeAlocar = [[1, 1, 1, 1],
+                 [1, 1, 1, 1],
+                 [1, 1, 1, 1],
+                 [1, 1, 1, 1]];
+                 
+Origem = [RIO, SALVADOR, SANTOS, VITORIA];
+              
+DistanciaDosPortos = [[0, 1000, 350, 220],
+					 [450, 20, 250, 450],
+					 [200, 100, 200, 600],
+					 [550, 450, 0, 170]];
+					 
+rf = [[1, 1, 1, 1],
+      [1, 1, 1, 1],
+      [1, 1, 1, 1],
+      [1, 1, 1, 1]];
