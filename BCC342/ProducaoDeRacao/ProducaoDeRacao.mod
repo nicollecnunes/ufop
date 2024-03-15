@@ -21,6 +21,6 @@ subject to
      	
     forall(r in Racao)
     	Nao_Negatividade:
-    		x[r] >= 0;
+    		x[r] > = 0;
 }
 
